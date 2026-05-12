@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-label="Lab placeholder">
   <rect width="800" height="600" fill="#0f172a"/>
   <rect x="80" y="120" width="640" height="360" rx="16" fill="#1e293b" stroke="#334155" stroke-width="2"/>
-  <circle cx="400" cy="300" r="80" fill="#2563eb" opacity="0.35"/>
+  <circle cx="400" cy="300" r="80" fill="#000080" opacity="0.35"/>
   <text x="400" y="520" text-anchor="middle" fill="#94a3b8" font-family="system-ui,sans-serif" font-size="20">Laboratory</text>
 </svg>

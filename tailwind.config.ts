@@ -10,17 +10,17 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          50: "#eff6ff",
-          100: "#dbeafe",
-          200: "#bfdbfe",
-          300: "#93c5fd",
-          400: "#60a5fa",
-          500: "#3b82f6",
-          600: "#2563eb",
-          700: "#1d4ed8",
-          800: "#1e40af",
-          900: "#1e3a8a",
-          950: "#172554",
+          50: "#f5f5fb",
+          100: "#e8e9f4",
+          200: "#cfd1e8",
+          300: "#aeb2d6",
+          400: "#878cc0",
+          500: "#5c619f",
+          600: "#000080",
+          700: "#000066",
+          800: "#000052",
+          900: "#000044",
+          950: "#000028",
         },
       },
       fontFamily: {
@@ -28,7 +28,7 @@ const config: Config = {
         mono: ["var(--font-geist-mono)", "monospace"],
       },
       boxShadow: {
-        card: "0 4px 24px -4px rgb(30 58 138 / 0.12)",
+        card: "0 4px 24px -4px rgb(0 0 128 / 0.12)",
       },
     },
   },

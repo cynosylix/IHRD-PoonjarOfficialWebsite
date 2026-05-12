@@ -10,7 +10,7 @@ export function HeroSection() {
     <section className="relative overflow-hidden bg-gradient-to-br from-brand-900 via-brand-800 to-brand-700 text-white">
       <div className="pointer-events-none absolute inset-0 opacity-30">
         <div className="absolute -left-20 top-10 h-72 w-72 rounded-full bg-brand-400 blur-3xl" />
-        <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-sky-300 blur-3xl" />
+        <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-brand-300 blur-3xl" />
       </div>
       <div className="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:flex lg:items-center lg:gap-12 lg:px-8 lg:py-24">
         <div className="max-w-2xl min-w-0 flex-1">

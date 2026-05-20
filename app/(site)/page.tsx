@@ -1,9 +1,6 @@
 import Link from "next/link";
 import {
   publishedAnnouncements,
-  publishedEvents,
-  departments,
-  placementStatistics,
   facilities,
   publishedTestimonials,
   galleryItems,
@@ -13,12 +10,38 @@ import { AboutIntroBand } from "@/components/home/about-intro-band";
 import { AnnouncementsSpotlight } from "@/components/home/announcements-spotlight";
 import { SectionHeading } from "@/components/home/section-heading";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { format } from "@/lib/format";
+
+const CAMPUS_ALBUM = [
+  {
+    src: "/images/placements_and_passouts_2k25.webp",
+    title: "Placements & pass-outs",
+    alt: "Placements and pass-outs highlights for the academic year 2025.",
+    contain: false,
+  },
+  {
+    src: "/images/scholarship.webp",
+    title: "Scholarships",
+    alt: "Scholarship and financial support programmes",
+    contain: false,
+  },
+  {
+    src: "/images/kuttaottam.webp",
+    title: "Marathon Against Drugs",
+    alt: "Run for a Better Future",
+    description:
+      "The College of Engineering Poonjar, in association with IHRD Kerala, organized a Marathon Against Drugs to raise awareness about substance abuse. Students, faculty, and the community participated, promoting a drug-free society and a healthier future.",
+    contain: false,
+  },
+  {
+    src: "/images/2.webp",
+    title: "Campus highlights",
+    alt: "College of Engineering Poonjar — campus moments and activities",
+    contain: false,
+  },
+] as const;
 
 export default function HomePage() {
   const announcements = publishedAnnouncements().slice(0, 6);
-  const events = publishedEvents().slice(0, 4);
-  const stats = placementStatistics.slice(0, 2);
   const facilityList = [...facilities].sort((a, b) => a.order - b.order).slice(0, 6);
   const testimonials = publishedTestimonials().slice(0, 6);
   const gallery = [...galleryItems].sort((a, b) => a.order - b.order).slice(0, 8);
@@ -34,92 +57,38 @@ export default function HomePage() {
       <section className="bg-white py-12 sm:py-14 md:py-16">
         <div className="mx-auto max-w-6xl min-w-0 px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            eyebrow="Calendar"
-            title="Events & news"
-            description="Workshops, seminars, and campus programmes."
+            eyebrow="Gallery"
+            title="Campus album"
+            description="Moments from campus life, programmes, and celebrations at College of Engineering Poonjar."
           />
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
-            {events.length === 0 ? (
-              <p className="text-slate-600">No upcoming events.</p>
-            ) : (
-              events.map((e) => (
-                <Card key={e.id} className="overflow-hidden p-0">
-                  <div className="grid min-w-0 grid-cols-1 gap-0 md:min-h-[140px] md:grid-cols-[1fr_160px] md:gap-0">
-                    <div className="relative order-1 aspect-[16/10] w-full bg-brand-50 md:order-2 md:aspect-auto md:h-full md:min-h-[120px]">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={e.imageUrl ?? "/images/placeholder-lab.svg"}
-                        alt=""
-                        className="h-full w-full object-cover"
-                      />
-                    </div>
-                    <CardHeader className="order-2 mb-0 px-4 pb-5 pt-4 sm:px-6 md:order-1 md:px-6 md:py-6">
-                      <CardTitle className="text-base leading-snug sm:text-lg">{e.title}</CardTitle>
-                      <CardDescription className="line-clamp-2 sm:line-clamp-3">
-                        {e.description}
-                      </CardDescription>
-                      <p className="break-words text-xs text-slate-500">
-                        {format.datetime(e.startsAt)}
-                        {e.venue ? ` · ${e.venue}` : ""}
-                      </p>
-                    </CardHeader>
-                  </div>
-                </Card>
-              ))
-            )}
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-6xl min-w-0 px-4 py-12 sm:px-6 sm:py-14 md:py-16 lg:px-8">
-        <SectionHeading
-          eyebrow="Academics"
-          title="Featured departments"
-          description="Explore programmes anchored by experienced faculty and laboratories."
-        />
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {departments.map((d) => (
-            <Link key={d.slug} href={`/academics/departments/${d.slug}`}>
-              <Card className="h-full transition hover:border-brand-300 hover:shadow-lg">
-                <CardHeader>
-                  <CardTitle>{d.name}</CardTitle>
-                  <CardDescription className="line-clamp-3">{d.intro}</CardDescription>
-                </CardHeader>
-              </Card>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className="bg-brand-950 py-12 text-white sm:py-14 md:py-16">
-        <div className="mx-auto max-w-6xl min-w-0 px-4 sm:px-6 lg:px-8">
-          <SectionHeading
-            eyebrow="Careers"
-            title="Placement highlights"
-            description="Training, industry visits, and placement outcomes at a glance."
-            className="[&_h2]:text-white [&_p]:text-brand-100"
-          />
-          <div className="mt-10 grid gap-6 sm:grid-cols-2">
-            {stats.map((s) => (
-              <Card key={s.academicYear} className="border-brand-800 bg-brand-900 text-white">
-                <CardHeader>
-                  <CardTitle className="text-white">Academic year {s.academicYear}</CardTitle>
-                  <ul className="mt-2 space-y-1 text-sm text-brand-100">
-                    {s.totalOffers != null && <li>Total offers: {s.totalOffers}</li>}
-                    {s.highestPackage && <li>Highest package: {s.highestPackage}</li>}
-                    {s.averagePackage && <li>Average package: {s.averagePackage}</li>}
-                    {s.placementPercent != null && (
-                      <li>Placement %: {s.placementPercent}</li>
-                    )}
-                  </ul>
-                  <Link
-                    href="/placements"
-                    className="mt-3 inline-block text-sm font-medium text-brand-200 underline-offset-2 hover:underline"
-                  >
-                    View placement cell
-                  </Link>
-                </CardHeader>
-              </Card>
+          <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4">
+            {CAMPUS_ALBUM.map((item) => (
+              <figure
+                key={item.src}
+                className="group flex min-h-0 flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-card transition hover:border-brand-200 hover:shadow-lg"
+              >
+                <div className="relative aspect-[4/3] w-full shrink-0 bg-slate-100">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    className={
+                      item.contain
+                        ? "h-full w-full object-contain p-4 transition duration-300 group-hover:scale-[1.02]"
+                        : "h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]"
+                    }
+                  />
+                </div>
+                <figcaption className="border-t border-slate-100 px-4 py-3.5 sm:px-5 sm:py-4">
+                  <p className="text-sm font-semibold text-brand-950">{item.title}</p>
+                  <p className="mt-1 text-xs leading-relaxed text-slate-600">{item.alt}</p>
+                  {"description" in item && item.description ? (
+                    <p className="mt-2.5 border-t border-slate-100 pt-2.5 text-xs leading-relaxed text-slate-600 sm:text-[13px]">
+                      {item.description}
+                    </p>
+                  ) : null}
+                </figcaption>
+              </figure>
             ))}
           </div>
         </div>

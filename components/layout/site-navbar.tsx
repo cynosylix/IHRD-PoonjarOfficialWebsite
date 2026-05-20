@@ -8,7 +8,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
   ChevronDown,
   Menu,
-  Search,
   X,
 } from "lucide-react";
 import { ABOUT_DROPDOWN, MAIN_NAV } from "@/lib/constants";
@@ -135,13 +134,6 @@ export function SiteNavbar() {
         </nav>
 
         <div className="flex flex-1 items-center justify-end gap-2 lg:flex-none lg:justify-self-end">
-          <Link
-            href="/search"
-            className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-slate-200 text-slate-600 transition-colors hover:border-brand-200 hover:bg-brand-50 hover:text-brand-800 lg:inline-flex"
-            aria-label="Search"
-          >
-            <Search className="h-[18px] w-[18px]" strokeWidth={2} />
-          </Link>
           <button
             type="button"
             className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-slate-200 text-slate-700 transition-colors hover:bg-slate-50 lg:hidden"
@@ -192,14 +184,6 @@ export function SiteNavbar() {
                   </NavLink>
                 ))}
               </div>
-              <Link
-                href="/search"
-                onClick={closeMobile}
-                className="mt-4 inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-brand-600 text-sm font-semibold text-white shadow-sm ring-1 ring-brand-900/10 transition hover:bg-brand-700"
-              >
-                <Search className="h-4 w-4 shrink-0" strokeWidth={2.5} />
-                Search
-              </Link>
             </div>
           </motion.div>
         )}

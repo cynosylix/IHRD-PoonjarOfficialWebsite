@@ -28,7 +28,7 @@ export function searchPublic(query: string, take = 30): SearchHit[] {
       hits.push({
         type: "Announcement",
         title: a.title,
-        href: "/",
+        href: "/notices",
         snippet: a.excerpt ?? a.content.replace(/<[^>]+>/g, "").slice(0, 140),
       });
     }
@@ -83,8 +83,8 @@ export function searchPublic(query: string, take = 30): SearchHit[] {
       hits.push({
         type: "Program",
         title: p.name,
-        href: "/academics/programs",
-        snippet: "",
+        href: `/academics/programs/${p.slug}`,
+        snippet: p.about.replace(/<[^>]+>/g, " ").slice(0, 140),
       });
     }
   });

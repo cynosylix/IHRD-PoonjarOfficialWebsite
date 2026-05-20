@@ -62,7 +62,7 @@ export function HeroSection() {
                 "inline-flex h-12 w-full items-center justify-center rounded-lg border border-white/40 bg-transparent px-6 text-base font-medium text-white transition-colors hover:bg-white/10 sm:w-auto",
               )}
             >
-              Programs
+              Academic Opportunities
             </Link>
           </motion.div>
         </div>

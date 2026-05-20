@@ -40,3 +40,7 @@ yarn-error.log*
 # uploads (keep folder, ignore files)
 /public/uploads/*
 !/public/uploads/.gitkeep
+
+# Large video sources (exceed GitHub 100MB limit; keep locally or use LFS/CDN)
+/public/videos/*.MOV
+/public/videos/*.mov

@@ -18,7 +18,7 @@ export const ABOUT_DROPDOWN = [
   { href: "/about/departments", label: "Departments" },
   { href: "/about/iqac", label: "IQAC" },
   { href: "/academics/council", label: "Academic Council" },
-  { href: "/academics/programs", label: "Programs Offered" },
+  { href: "/academics/programs", label: "Academic Opportunities" },
   { href: "/academics/syllabus", label: "Syllabus" },
 ] as const;
 

@@ -1,65 +1,200 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { ArrowRight, ChevronRight } from "lucide-react";
+import { programs, type ProgramType } from "@/data/site-data";
+
 export const metadata: Metadata = {
   title: "Admission",
-  description: "B.Tech, Diploma, MCA, and lateral entry admission information.",
+  description: "Programme-wise admission information for UG, PG, and Diploma courses.",
 };
 
-const cards = [
-  {
-    slug: "btech",
-    title: "B.Tech Admission",
-    desc: "Eligibility, allotment, fee structure, and important links.",
+const SECTION_META: Record<
+  ProgramType,
+  { title: string; blurb: string; label: string }
+> = {
+  UG: {
+    label: "UG",
+    title: "Undergraduate programmes",
+    blurb: "B.Tech admissions through KEAM — eligibility, allotment, and programme details.",
   },
-  {
-    slug: "diploma",
-    title: "Diploma Admission",
-    desc: "Polytechnic admission guidelines and schedules.",
+  PG: {
+    label: "PG",
+    title: "Postgraduate programmes",
+    blurb: "Advanced programmes — eligibility, allotment, and full course information.",
   },
-  {
-    slug: "mca",
-    title: "MCA Admission",
-    desc: "Postgraduate programme in computer applications.",
+  DIPLOMA: {
+    label: "Diploma",
+    title: "Diploma programmes",
+    blurb: "Polytechnic branches under SBTE Kerala — eligibility and allotment details.",
   },
-  {
-    slug: "lateral",
-    title: "Lateral Entry",
-    desc: "Lateral entry for diploma holders into degree programmes.",
-  },
-];
+};
+
+const SECTION_ORDER: ProgramType[] = ["UG", "PG", "DIPLOMA"];
+
+function programLabel(name: string, fullName?: string) {
+  return fullName ?? name;
+}
 
 export default function AdmissionHubPage() {
+  const total = programs.length;
+  const sections = SECTION_ORDER.map((type) => ({
+    type,
+    meta: SECTION_META[type],
+    rows: programs.filter((p) => p.type === type).sort((a, b) => a.order - b.order),
+  })).filter((s) => s.rows.length > 0);
+
   return (
-    <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-      <h1 className="text-3xl font-bold text-brand-950">Admission</h1>
-      <p className="mt-3 max-w-2xl text-slate-600">
-        Select a track for detailed eligibility, fees, allotment information, and
-        downloadable prospectus materials.
-      </p>
-      <div className="mt-10 grid gap-6 sm:grid-cols-2">
-        {cards.map((c) => (
-          <Link key={c.slug} href={`/admission/${c.slug}`}>
-            <Card className="h-full hover:border-brand-300">
-              <CardHeader>
-                <CardTitle>{c.title}</CardTitle>
-                <CardDescription>{c.desc}</CardDescription>
-              </CardHeader>
-            </Card>
-          </Link>
-        ))}
-      </div>
-      <div className="mt-12 rounded-2xl border border-brand-100 bg-brand-50 p-8">
-        <h2 className="text-lg font-semibold text-brand-900">Need help?</h2>
-        <p className="mt-2 text-sm text-slate-700">
-          Submit an admission enquiry and our office will respond during working hours.
-        </p>
-        <Link
-          href="/admission/enquiry"
-          className="mt-4 inline-block text-sm font-semibold text-brand-700 underline-offset-2 hover:underline"
-        >
-          Admission enquiry form →
-        </Link>
+    <div className="min-w-0">
+      <header className="relative overflow-hidden bg-gradient-to-br from-brand-900 via-brand-800 to-brand-700 text-white">
+        <div className="pointer-events-none absolute inset-0 opacity-25">
+          <div className="absolute -left-16 top-0 h-56 w-56 rounded-full bg-brand-400 blur-3xl" />
+          <div className="absolute bottom-0 right-0 h-64 w-64 rounded-full bg-brand-300 blur-3xl" />
+        </div>
+        <div className="relative mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
+          <nav className="flex flex-wrap items-center gap-1 text-xs font-medium text-white/70 sm:text-sm">
+            <Link href="/" className="transition hover:text-white">
+              Home
+            </Link>
+            <ChevronRight className="h-3.5 w-3.5 shrink-0 opacity-60" aria-hidden />
+            <span className="text-white">Admission</span>
+          </nav>
+          <div className="mt-6 mx-auto max-w-3xl text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-200">
+              Admissions
+            </p>
+            <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">Admission</h1>
+            <p className="mt-4 text-sm leading-relaxed text-brand-100 sm:text-base">
+              Choose a programme to view academic eligibility, allotment process, course
+              objectives, outcomes, and complete programme information.
+            </p>
+            <p className="mt-4 text-sm font-medium text-brand-200">
+              {total} programme{total === 1 ? "" : "s"} available
+            </p>
+          </div>
+        </div>
+      </header>
+
+      <div className="bg-gradient-to-b from-slate-50 to-white pb-16 pt-10 sm:pb-20 sm:pt-12">
+        <div className="mx-auto max-w-6xl space-y-12 px-4 sm:px-6 lg:px-8">
+          {sections.map(({ type, meta, rows }) => (
+            <section key={type} aria-labelledby={`admission-${type.toLowerCase()}`}>
+              <div className="flex flex-col items-center gap-3 border-b border-slate-200/80 pb-4 text-center">
+                <div className="min-w-0 max-w-2xl">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-600">
+                    {meta.label}
+                  </p>
+                  <h2
+                    id={`admission-${type.toLowerCase()}`}
+                    className="mt-1 text-xl font-bold text-brand-950 sm:text-2xl"
+                  >
+                    {meta.title}
+                  </h2>
+                  <p className="mt-1 text-sm text-slate-600">{meta.blurb}</p>
+                </div>
+                <span className="inline-flex w-fit shrink-0 items-center rounded-full border border-brand-200 bg-white px-3 py-1 text-xs font-semibold text-brand-700 shadow-sm">
+                  {rows.length} programme{rows.length === 1 ? "" : "s"}
+                </span>
+              </div>
+
+              <ul className="mt-6 flex list-none flex-wrap justify-center gap-4 p-0">
+                {rows.map((program) => (
+                  <li
+                    key={program.slug}
+                    className="w-full min-w-0 max-w-sm sm:w-[calc(50%-0.5rem)] sm:max-w-[19rem] xl:w-[calc(33.333%-0.67rem)]"
+                  >
+                    <Link
+                      href={`/academics/programs/${program.slug}`}
+                      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-brand-200/80 bg-white shadow-card transition hover:border-brand-300 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
+                    >
+                      <div
+                        className="h-1 shrink-0 bg-gradient-to-r from-brand-600 to-brand-700"
+                        aria-hidden
+                      />
+                      <div className="flex min-h-[11.5rem] flex-1 flex-col p-5 sm:min-h-[12rem] sm:p-6">
+                        <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-brand-600">
+                          {meta.label}
+                        </p>
+                        <h3 className="mt-2 text-base font-bold leading-snug text-brand-950 transition-colors group-hover:text-brand-700 sm:text-[1.05rem]">
+                          {programLabel(program.name, program.fullName)}
+                        </h3>
+
+                        <dl className="mt-3 space-y-1.5 text-xs text-slate-600">
+                          {program.duration ? (
+                            <div className="flex gap-2">
+                              <dt className="shrink-0 font-semibold text-slate-500">Duration</dt>
+                              <dd>{program.duration}</dd>
+                            </div>
+                          ) : null}
+                          {program.intake ? (
+                            <div className="flex gap-2">
+                              <dt className="shrink-0 font-semibold text-slate-500">Intake</dt>
+                              <dd>{program.intake}</dd>
+                            </div>
+                          ) : null}
+                        </dl>
+
+                        {program.affiliation ? (
+                          <p className="mt-2 line-clamp-2 text-[11px] leading-relaxed text-slate-500">
+                            {program.affiliation}
+                          </p>
+                        ) : null}
+
+                        <span className="mt-auto inline-flex items-center gap-1.5 pt-4 text-xs font-semibold text-brand-600 transition-colors group-hover:text-brand-700">
+                          View programme details
+                          <ArrowRight
+                            className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"
+                            aria-hidden
+                          />
+                        </span>
+                      </div>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+
+          <section
+            className="flex flex-wrap justify-center gap-4 sm:gap-6"
+            aria-label="Additional admission resources"
+          >
+            <div className="flex h-full w-full max-w-sm flex-col items-center rounded-2xl border border-slate-200/80 bg-white p-6 text-center shadow-sm sm:p-7">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-600">
+                Lateral entry
+              </p>
+              <h2 className="mt-2 text-lg font-bold text-brand-950">Degree lateral entry</h2>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
+                Diploma holders may apply for lateral entry into degree programmes as per
+                AICTE and university regulations.
+              </p>
+              <Link
+                href="/admission/lateral"
+                className="mt-5 inline-flex items-center justify-center gap-2 rounded-xl border border-brand-200 bg-brand-50/50 px-4 py-2.5 text-sm font-semibold text-brand-700 transition hover:border-brand-300 hover:bg-brand-50"
+              >
+                Lateral entry admission
+                <ArrowRight className="h-4 w-4" aria-hidden />
+              </Link>
+            </div>
+
+            <div className="flex h-full w-full max-w-sm flex-col items-center rounded-2xl border border-brand-200/60 bg-gradient-to-br from-brand-50/80 to-white p-6 text-center shadow-sm sm:p-7">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-600">
+                Support
+              </p>
+              <h2 className="mt-2 text-lg font-bold text-brand-950">Need help?</h2>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
+                Submit an admission enquiry and our office will respond during working
+                hours.
+              </p>
+              <Link
+                href="/admission/enquiry"
+                className="mt-5 inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-4 py-2.5 text-sm font-semibold text-white shadow-md transition hover:bg-brand-700"
+              >
+                Admission enquiry form
+                <ArrowRight className="h-4 w-4" aria-hidden />
+              </Link>
+            </div>
+          </section>
+        </div>
       </div>
     </div>
   );

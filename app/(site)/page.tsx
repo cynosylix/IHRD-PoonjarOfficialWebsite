@@ -10,13 +10,13 @@ import {
 } from "@/data/site-data";
 import { HeroSection } from "@/components/home/hero-section";
 import { AboutIntroBand } from "@/components/home/about-intro-band";
+import { AnnouncementsSpotlight } from "@/components/home/announcements-spotlight";
 import { SectionHeading } from "@/components/home/section-heading";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { format } from "@/lib/format";
 
 export default function HomePage() {
-  const announcements = publishedAnnouncements().slice(0, 5);
+  const announcements = publishedAnnouncements().slice(0, 6);
   const events = publishedEvents().slice(0, 4);
   const stats = placementStatistics.slice(0, 2);
   const facilityList = [...facilities].sort((a, b) => a.order - b.order).slice(0, 6);
@@ -29,34 +29,7 @@ export default function HomePage() {
 
       <AboutIntroBand />
 
-      <section className="mx-auto max-w-6xl min-w-0 px-4 py-12 sm:px-6 sm:py-14 md:py-16 lg:px-8">
-        <SectionHeading
-          eyebrow="Notices"
-          title="Latest announcements"
-          description="Official updates for students, parents, and visitors."
-        />
-        <div className="mt-10 grid gap-4 md:grid-cols-2">
-          {announcements.length === 0 ? (
-            <p className="text-slate-600">No announcements yet.</p>
-          ) : (
-            announcements.map((a) => (
-              <Card key={a.id} className="border-brand-100">
-                <CardHeader>
-                  <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
-                    <CardTitle className="text-base leading-snug">{a.title}</CardTitle>
-                    {a.publishedAt && (
-                      <Badge className="w-fit shrink-0">{format.date(a.publishedAt)}</Badge>
-                    )}
-                  </div>
-                  {a.excerpt && (
-                    <CardDescription className="line-clamp-3">{a.excerpt}</CardDescription>
-                  )}
-                </CardHeader>
-              </Card>
-            ))
-          )}
-        </div>
-      </section>
+      <AnnouncementsSpotlight announcements={announcements} />
 
       <section className="bg-white py-12 sm:py-14 md:py-16">
         <div className="mx-auto max-w-6xl min-w-0 px-4 sm:px-6 lg:px-8">

@@ -19,11 +19,28 @@ Content lives in **`data/site-data.ts`** — edit that file and rebuild to updat
 
 ```bash
 npm install
-npm run dev          # local preview
-npm run build        # produces ./out for static hosting
+npm run dev          # local preview (clears .next cache automatically)
+npm run build        # produces ./out — stop dev first, or use a new terminal
 ```
 
 After `npm run build`, upload the contents of the **`out`** directory to your host.
+
+**Do not use `next start`** — this project is a static export only; there is no Node server in production.
+
+## Deploy on Netlify
+
+1. Push this repo to GitHub/GitLab and connect it in [Netlify](https://www.netlify.com/).
+2. Build settings are read from **`netlify.toml`** automatically:
+   - Build command: `npm run build`
+   - Publish directory: `out`
+3. In **Site settings → Environment variables**, add:
+   ```
+   NEXT_PUBLIC_APP_URL = https://your-site.netlify.app
+   ```
+   Use your custom domain when you attach one (e.g. `https://cepoonjar.ac.in`).
+4. Deploy. Each push to your main branch triggers a rebuild.
+
+Do **not** enable the Netlify Next.js runtime plugin — this site is fully static HTML in `out/`.
 
 ## Content updates
 
@@ -34,7 +51,7 @@ After `npm run build`, upload the contents of the **`out`** directory to your ho
 
 ## Environment
 
-Copy `.env.example` to `.env` if you want to set `NEXT_PUBLIC_APP_URL` for canonical URLs in metadata (optional for local dev).
+Copy `.env.example` to `.env` for local development. On Netlify, set `NEXT_PUBLIC_APP_URL` in the dashboard so sitemap, robots, and Open Graph URLs use your live domain.
 
 ## Security / HTML
 

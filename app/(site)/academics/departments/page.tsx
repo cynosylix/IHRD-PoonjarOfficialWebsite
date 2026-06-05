@@ -13,8 +13,7 @@ export default function DepartmentsListPage() {
     <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
       <h1 className="text-3xl font-bold text-brand-950">Departments</h1>
       <p className="mt-3 max-w-2xl text-slate-600">
-        Explore department pages for programmes, vision, mission, faculty, and lab
-        coordinators.
+        Explore department pages for programmes, vision, mission, and faculty.
       </p>
       <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {departments.map((d) => (

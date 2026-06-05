@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { searchPublic } from "@/lib/search-public";
+import type { SearchHit } from "@/lib/search-public";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -11,8 +11,17 @@ import { Badge } from "@/components/ui/badge";
 export function SearchClient() {
   const searchParams = useSearchParams();
   const q = searchParams.get("q") ?? "";
+  const [hits, setHits] = useState<SearchHit[]>([]);
 
-  const hits = useMemo(() => searchPublic(q), [q]);
+  useEffect(() => {
+    let cancelled = false;
+    import("@/lib/search-public").then((mod) => {
+      if (!cancelled) setHits(mod.searchPublic(q));
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [q]);
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
@@ -28,29 +37,29 @@ export function SearchClient() {
         <Button type="submit">Search</Button>
       </form>
 
-      <div className="mt-10 space-y-4">
-        {q.trim().length < 2 ? (
-          <p className="text-sm text-slate-600">Enter a search query to see results.</p>
-        ) : hits.length === 0 ? (
-          <p className="text-sm text-slate-600">No matches found.</p>
-        ) : (
-          hits.map((h, i) => (
-            <Link
-              key={`${h.href}-${h.title}-${i}`}
-              href={h.href}
-              className="block rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition hover:border-brand-200"
-            >
-              <div className="flex items-start justify-between gap-2">
-                <p className="font-semibold text-brand-900">{h.title}</p>
-                <Badge>{h.type}</Badge>
-              </div>
-              {h.snippet && (
-                <p className="mt-2 line-clamp-2 text-sm text-slate-600">{h.snippet}</p>
-              )}
-            </Link>
-          ))
-        )}
-      </div>
+      {q.length >= 2 && (
+        <div className="mt-8 space-y-4">
+          {hits.length === 0 ? (
+            <p className="text-slate-600">No results for &ldquo;{q}&rdquo;.</p>
+          ) : (
+            hits.map((hit) => (
+              <Link
+                key={`${hit.href}-${hit.title}`}
+                href={hit.href}
+                className="block rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition hover:border-brand-300"
+              >
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="font-medium text-brand-950">{hit.title}</span>
+                  <Badge>{hit.type}</Badge>
+                </div>
+                {hit.snippet && (
+                  <p className="mt-1 text-sm text-slate-600">{hit.snippet}</p>
+                )}
+              </Link>
+            ))
+          )}
+        </div>
+      )}
     </div>
   );
 }

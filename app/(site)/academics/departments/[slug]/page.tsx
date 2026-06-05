@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { departments, getDepartmentBySlug } from "@/data/site-data";
 import { HtmlBlock } from "@/components/content/html-block";
@@ -64,36 +65,40 @@ export default async function DepartmentPage({ params }: Props) {
 
       <div className="mt-12">
         <h2 className="text-xl font-semibold text-brand-900">Faculty</h2>
-        <div className="mt-4 overflow-x-auto rounded-xl border border-slate-200 bg-white">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Name</TableHead>
-                <TableHead>Designation</TableHead>
-                <TableHead>Qualification</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {faculty.length === 0 ? (
+        {faculty.length === 0 && labCoordinators.length === 0 ? (
+          <p className="mt-3 text-sm leading-relaxed text-slate-600">
+            Faculty profiles will be published here. For current faculty details,
+            contact the department office or the college office at{" "}
+            <Link href="/contact" className="font-medium text-brand-700 hover:underline">
+              contact
+            </Link>
+            .
+          </p>
+        ) : (
+          <div className="mt-4 overflow-x-auto rounded-xl border border-slate-200 bg-white">
+            <Table>
+              <TableHeader>
                 <TableRow>
-                  <TableCell colSpan={3} className="text-slate-500">
-                    No faculty records.
-                  </TableCell>
+                  <TableHead>Name</TableHead>
+                  <TableHead>Designation</TableHead>
+                  <TableHead>Qualification</TableHead>
                 </TableRow>
-              ) : (
-                faculty.map((f) => (
+              </TableHeader>
+              <TableBody>
+                {faculty.map((f) => (
                   <TableRow key={f.name}>
                     <TableCell className="font-medium">{f.name}</TableCell>
                     <TableCell>{f.designation}</TableCell>
                     <TableCell>{f.qualification ?? "—"}</TableCell>
                   </TableRow>
-                ))
-              )}
-            </TableBody>
-          </Table>
-        </div>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+        )}
       </div>
 
+      {labCoordinators.length > 0 && (
       <div className="mt-10">
         <h2 className="text-xl font-semibold text-brand-900">Lab coordinators</h2>
         <div className="mt-4 overflow-x-auto rounded-xl border border-slate-200 bg-white">
@@ -105,24 +110,17 @@ export default async function DepartmentPage({ params }: Props) {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {labCoordinators.length === 0 ? (
-                <TableRow>
-                  <TableCell colSpan={2} className="text-slate-500">
-                    No lab coordinators listed.
-                  </TableCell>
+              {labCoordinators.map((f) => (
+                <TableRow key={f.name}>
+                  <TableCell className="font-medium">{f.name}</TableCell>
+                  <TableCell>{f.designation}</TableCell>
                 </TableRow>
-              ) : (
-                labCoordinators.map((f) => (
-                  <TableRow key={f.name}>
-                    <TableCell className="font-medium">{f.name}</TableCell>
-                    <TableCell>{f.designation}</TableCell>
-                  </TableRow>
-                ))
-              )}
+              ))}
             </TableBody>
           </Table>
         </div>
       </div>
+      )}
     </div>
   );
 }

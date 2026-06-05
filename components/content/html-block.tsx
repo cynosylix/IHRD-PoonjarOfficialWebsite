@@ -1,6 +1,6 @@
 /**
- * Renders trusted HTML from the CMS / admin editor.
- * Content is authored by authenticated staff only; sanitize further if exposing public forms to HTML.
+ * Renders trusted HTML from static site content (data/site-data.ts).
+ * Only commit content you trust; sanitize if accepting user-generated HTML.
  */
 export function HtmlBlock({
   html,

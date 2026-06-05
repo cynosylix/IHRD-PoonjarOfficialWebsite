@@ -13,8 +13,8 @@ export default function CommunityHubPage() {
     <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
       <h1 className="text-3xl font-bold text-brand-950">Community</h1>
       <p className="mt-3 max-w-2xl text-slate-600">
-        Engage with campus bodies and associations — events, members, and initiatives are
-        maintained dynamically from the admin dashboard.
+        Engage with campus bodies and associations — explore events, members, and initiatives
+        for each group below.
       </p>
       <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {COMMUNITY_KINDS.map((c) => (

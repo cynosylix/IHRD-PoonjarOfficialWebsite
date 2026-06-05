@@ -23,7 +23,8 @@ export default function SyllabusPage() {
     <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
       <h1 className="text-3xl font-bold text-brand-950">Syllabus</h1>
       <p className="mt-3 text-slate-600">
-        Official syllabus documents. Update links in <code className="text-sm">data/site-data.ts</code>.
+        Official syllabus resources from the university and state board. Department-specific PDFs
+        may also be available from the college office.
       </p>
       <div className="mt-8 overflow-x-auto rounded-xl border border-slate-200 bg-white">
         <Table>
@@ -33,7 +34,7 @@ export default function SyllabusPage() {
               <TableHead>Department</TableHead>
               <TableHead>Semester</TableHead>
               <TableHead>Year</TableHead>
-              <TableHead className="text-right">Download</TableHead>
+              <TableHead className="text-right">Resource</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -72,8 +73,8 @@ export default function SyllabusPage() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1 text-sm font-medium text-brand-700 hover:underline"
                       >
-                        <Download className="h-4 w-4" />
-                        PDF
+                        <Download className="h-4 w-4" aria-hidden />
+                        {s.fileUrl.endsWith(".pdf") ? "PDF" : "Visit site"}
                       </a>
                     </TableCell>
                   </TableRow>

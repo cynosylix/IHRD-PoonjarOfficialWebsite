@@ -1,8 +1,5 @@
 /** Primary navigation — public site */
 export const MAIN_NAV = [
-  { href: "/", label: "Home" },
-  { href: "/about/institution", label: "About" },
-  { href: "/academics/programs", label: "Academics" },
   { href: "/admission", label: "Admission" },
   { href: "/students", label: "Students" },
   { href: "/placements", label: "Placements" },
@@ -14,12 +11,13 @@ export const MAIN_NAV = [
 /** About / Academics dropdown */
 export const ABOUT_DROPDOWN = [
   { href: "/about/institution", label: "About Institution" },
-  { href: "/about/principal", label: "Principal’s Desk" },
-  { href: "/about/departments", label: "Departments" },
+  { href: "/about/principal", label: "Principal's Desk" },
+  { href: "/academics/departments", label: "Departments" },
   { href: "/about/iqac", label: "IQAC" },
   { href: "/academics/council", label: "Academic Council" },
   { href: "/academics/programs", label: "Academic Opportunities" },
   { href: "/academics/syllabus", label: "Syllabus" },
+  { href: "/notices", label: "Notices" },
 ] as const;
 
 export const DEPARTMENT_SLUGS = [
@@ -33,7 +31,7 @@ export const DEPARTMENT_SLUGS = [
 
 export type DepartmentSlug = (typeof DEPARTMENT_SLUGS)[number];
 
-export const ADMISSION_SLUGS = ["btech", "diploma", "mca", "lateral"] as const;
+export const ADMISSION_SLUGS = ["lateral"] as const;
 
 export const COMMUNITY_KINDS = [
   { kind: "ALUMNI" as const, href: "/community/alumni", label: "Alumni" },

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Megaphone } from "lucide-react";
 import { publishedAnnouncements } from "@/data/site-data";
+import { HtmlBlock } from "@/components/content/html-block";
 import { format } from "@/lib/format";
 
 export const metadata: Metadata = {
@@ -58,6 +59,21 @@ export default function NoticesPage() {
                     <p className="mt-2 text-sm leading-relaxed text-slate-600">
                       {a.excerpt}
                     </p>
+                  )}
+                  {a.content && (
+                    <div className="cms-content mt-3 border-t border-slate-100 pt-3 text-sm">
+                      <HtmlBlock html={a.content} />
+                    </div>
+                  )}
+                  {a.spotlight && (
+                    <div className="mt-3 rounded-lg border border-brand-100 bg-brand-50/60 px-4 py-3 text-sm text-slate-700">
+                      <p className="font-medium text-brand-900">Programmes covered</p>
+                      <ul className="mt-2 list-disc space-y-1 pl-5">
+                        {a.spotlight.programLines.map((line, idx) => (
+                          <li key={idx}>{line.replace(/\*\*/g, "")}</li>
+                        ))}
+                      </ul>
+                    </div>
                   )}
                 </div>
               </div>

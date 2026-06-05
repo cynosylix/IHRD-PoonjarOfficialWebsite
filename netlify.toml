@@ -1,0 +1,10 @@
+# Static export — publish the Next.js `out/` folder (no Node server on Netlify)
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Next.js static export ships 404.html; Netlify serves it for missing routes.
+# Asset caching is configured in public/_headers.

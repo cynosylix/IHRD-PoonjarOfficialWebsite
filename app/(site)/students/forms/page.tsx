@@ -22,8 +22,8 @@ export default function StudentFormsPage() {
     <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
       <h1 className="text-3xl font-bold text-brand-950">Downloadable forms</h1>
       <p className="mt-3 text-slate-600">
-        Add PDFs under <code className="text-sm">public/documents</code> and list them in{" "}
-        <code className="text-sm">data/site-data.ts</code>.
+        Downloadable forms and office procedures for students. Contact the college office if
+        you need assistance.
       </p>
       <div className="mt-8 overflow-x-auto rounded-xl border border-slate-200 bg-white">
         <Table>
@@ -31,7 +31,7 @@ export default function StudentFormsPage() {
             <TableRow>
               <TableHead>Title</TableHead>
               <TableHead>Category</TableHead>
-              <TableHead className="text-right">Download</TableHead>
+              <TableHead className="text-right">Action</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -49,12 +49,17 @@ export default function StudentFormsPage() {
                   <TableCell className="text-right">
                     <a
                       href={f.fileUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      {...(f.fileUrl.startsWith("http")
+                        ? { target: "_blank", rel: "noopener noreferrer" }
+                        : {})}
                       className="inline-flex items-center gap-1 text-sm font-medium text-brand-700 hover:underline"
                     >
                       <Download className="h-4 w-4" />
-                      File
+                      {f.fileUrl.startsWith("http")
+                        ? "Download"
+                        : f.category === "office"
+                          ? "Details"
+                          : "Open"}
                     </a>
                   </TableCell>
                 </TableRow>

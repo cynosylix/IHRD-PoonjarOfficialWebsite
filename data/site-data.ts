@@ -101,26 +101,40 @@ export const siteSettings = {
   collegeName: "College of Engineering Poonjar",
   tagline: "Excellence in Technical Education — IHRD",
   address:
-    "College of Engineering Poonjar, Poonjar, Kottayam District, Kerala, India — 686582",
-  phones: ["+91-4828-XXXXXX"],
-  emails: ["principal@cepoonjar.ac.in", "office@cepoonjar.ac.in"],
+    "College of Engineering Poonjar, Poonjar Thekkekara (P.O), Kottayam District, Kerala, India — 686582",
+  phones: ["04822-271737", "+91 9188405172"],
+  emails: [
+    "cepoonjar.ihrd@gmail.com",
+    "principal@cepoonjar.ac.in",
+    "office@cepoonjar.ac.in",
+  ],
   mapEmbedUrl:
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.0!2d76.8!3d9.6!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOcKwMzYnMDAuMCJONzYsNDgnMDAuMCJF!5e0!3m2!1sen!2sin!4v1",
+    "https://maps.google.com/maps?q=College+of+Engineering+Poonjar,Poonjar+Thekkekara,Kottayam,Kerala+686582&hl=en&z=15&output=embed",
 };
 
+export const admissionHelplines = [
+  { name: "Mr. Shine P James", phone: "+91 9446122060" },
+  { name: "Ms. Flower Abraham Mundackal", phone: "+91 9400858312" },
+  { name: "Ms. Josymol Joseph", phone: "+91 8281649584" },
+  { name: "College office", phone: "+91 9562401737" },
+] as const;
+
 export const aboutInstitution = {
-  history: `<p>The College of Engineering Poonjar is a premier institution under the Institute of Human Resources Development (IHRD), Government of Kerala. Located in the scenic Poonjar region, the college has been nurturing engineering talent with a strong focus on academic rigour, ethics, and employability.</p>`,
+  /** Short intro shown on the homepage only — full details on /about/institution */
+  homeIntro:
+    "Established in 2000 under the Institute of Human Resources Development (IHRD), Government of Kerala, College of Engineering Poonjar is committed to excellence in technical education, innovation, and holistic student development. Situated amidst the serene hills of Poonjar, the college provides an ideal environment for learning and professional growth.",
+  history: `<p>College of Engineering Poonjar was established in 2000 as an institution under IHRD, Government of Kerala. The campus at Poonjar Thekkekara serves the Kottayam district with B.Tech, MCA, and diploma programmes in engineering and computer applications.</p><p>The college follows IHRD governance and academic policies, with affiliations to APJ Abdul Kalam Technological University and the State Board of Technical Education as applicable to each programme.</p>`,
   vision: `<p>To emerge as a centre of excellence in engineering education and research, contributing to sustainable development and societal well-being.</p>`,
   mission: `<ul><li>Impart quality technical education aligned with industry and societal needs.</li><li>Foster innovation, entrepreneurship, and lifelong learning.</li><li>Promote inclusive practices and environmental consciousness.</li></ul>`,
 };
 
 export const principalProfile = {
-  name: "Dr. Principal Name",
+  name: "Dr. Rajesh M. V.",
   designation: "Principal",
-  message: `<p>Welcome to the College of Engineering Poonjar. Our campus is committed to holistic development of students through academics, co-curricular activities, and industry connect.</p>`,
-  photoUrl: undefined as string | undefined,
+  message: `<p>Welcome to the College of Engineering Poonjar, an institution under the Institute of Human Resources Development (IHRD), Government of Kerala. We are committed to quality technical education, ethical values, and holistic development of every student through rigorous academics, laboratories, and industry engagement.</p><p>Our faculty and staff work together to nurture innovation, employability, and responsible citizenship. I invite prospective students, parents, and partners to explore our programmes and campus life.</p>`,
+  photoUrl: "/images/collageOutDoor-2.webp",
   email: "principal@cepoonjar.ac.in",
-  phone: "+91-4828-XXXXXX",
+  phone: "+91 8547005035",
 };
 
 const dept = (
@@ -139,22 +153,7 @@ const dept = (
   vision,
   mission,
   order,
-  faculties: [
-    {
-      name: `HoD — ${short}`,
-      designation: "Professor & Head",
-      qualification: "Ph.D",
-      isLabCoordinator: false,
-      order: 1,
-    },
-    {
-      name: `Faculty Member — ${short}`,
-      designation: "Assistant Professor",
-      qualification: "M.Tech",
-      isLabCoordinator: true,
-      order: 2,
-    },
-  ],
+  faculties: [],
 });
 
 export const departments: Department[] = [
@@ -438,82 +437,41 @@ export const programs: ProgramRow[] = [
 
 export const admissionTracks: AdmissionTrack[] = [
   {
-    slug: "btech",
-    title: "B.Tech Admission",
-    eligibility:
-      "<p>Pass in Higher Secondary (+2) with Physics, Chemistry, and Mathematics. KEAM qualification as per government norms.</p>",
-    allotment:
-      "<p>Centralized allotment through DTE Kerala / CAP as per applicable prospectus.</p>",
-    feeStructure:
-      "<p>Fee as prescribed by Government of Kerala / IHRD from time to time. Contact office for latest fee schedule.</p>",
-    importantLinks: [
-      { label: "DTE Kerala", url: "https://dtekerala.gov.in" },
-      { label: "KEAM", url: "https://cee.kerala.gov.in" },
-    ],
-    downloads: [],
-  },
-  {
-    slug: "diploma",
-    title: "Diploma Admission",
-    eligibility:
-      "<p>SSLC or equivalent. Polytechnic admission through centralized allotment.</p>",
-    allotment: "<p>Through Polytechnic centralized admission process.</p>",
-    feeStructure: "<p>As per government polytechnic fee norms.</p>",
-    importantLinks: [{ label: "Polytechnic Admission", url: "https://www.dtekerala.gov.in" }],
-    downloads: [],
-  },
-  {
-    slug: "mca",
-    title: "MCA Admission",
-    eligibility:
-      "<p>Recognized Bachelor’s degree with Mathematics at +2 or degree level, with valid entrance score as per prospectus.</p>",
-    allotment: "<p>Centralized allotment / institute-level as per regulations.</p>",
-    feeStructure: "<p>As per university and government norms.</p>",
-    importantLinks: [{ label: "LBS Centre", url: "https://lbscentre.in" }],
-    downloads: [],
-  },
-  {
     slug: "lateral",
     title: "Lateral Entry Admission",
     eligibility:
       "<p>Diploma holders in relevant branch as per AICTE / university regulations.</p>",
     allotment: "<p>Through centralized lateral entry counselling where applicable.</p>",
     feeStructure: "<p>Same fee structure as regular programme for respective year.</p>",
-    importantLinks: [],
-    downloads: [],
+    importantLinks: [{ label: "DTE Kerala", url: "https://dtekerala.gov.in" }],
+    downloads: [
+      { label: "KEAM / lateral entry information", fileUrl: "https://cee.kerala.gov.in" },
+    ],
   },
 ];
 
 export const placementOverview = {
-  content: `<p>The Training & Placement Cell facilitates internships, campus drives, and skill programmes. Students are supported with aptitude training, technical workshops, and mock interviews.</p>`,
+  content: `<p>The Training & Placement Cell facilitates internships, campus drives, and skill programmes. Students are supported with aptitude training, technical workshops, and mock interviews.</p><p>Recruitment statistics below are updated as official data is published each academic year.</p>`,
 };
 
 export const placementTeamMembers = [
   {
-    name: "Prof. Placement Coordinator",
+    name: "Ms. Flower Abraham Mundackal",
     role: "Training & Placement Officer",
     isOfficer: true,
-    email: "tpo@cepoonjar.ac.in",
-    phone: undefined as string | undefined,
+    email: "cgpucepoonjar@gmail.com",
+    phone: "+91 9400858312",
     order: 1,
-  },
-  {
-    name: "Dr. Faculty Mentor",
-    role: "Placement Cell Member",
-    isOfficer: false,
-    order: 2,
   },
 ];
 
-export const placementDrives = [
-  {
-    company: "Sample Tech Pvt Ltd",
-    description: "Campus drive for software engineer roles.",
-    driveDate: new Date().toISOString(),
-    package: "4.5 LPA",
-    selectedCount: 8,
-  },
-];
+export const placementDrives: {
+  company: string;
+  description: string;
+  driveDate?: string;
+  package?: string;
+  selectedCount?: number;
+}[] = [];
 
 export const placementStatistics = [
   {
@@ -555,6 +513,7 @@ export const facilities: Facility[] = [
     summary: "Modern labs with high-speed connectivity.",
     description:
       "<p>Central computing facility supports academic labs, internet access, and project development with licensed software and servers.</p>",
+    imageUrl: "/images/events/eduai-workshop.png",
     order: 1,
   },
   {
@@ -563,6 +522,7 @@ export const facilities: Facility[] = [
     summary: "Digital and print learning resources.",
     description:
       "<p>Central library with technical books, journals, e-resources, and quiet study spaces.</p>",
+    imageUrl: "/images/collageOutDoor-1.webp",
     order: 2,
   },
   {
@@ -571,6 +531,7 @@ export const facilities: Facility[] = [
     summary: "Venue for conferences and workshops.",
     description:
       "<p>Seminar hall equipped with audio-visual systems for academic and cultural events.</p>",
+    imageUrl: "/images/events/eduai-school.png",
     order: 3,
   },
   {
@@ -579,6 +540,7 @@ export const facilities: Facility[] = [
     summary: "Bus services covering nearby routes.",
     description:
       "<p>College buses connect major towns for day scholars. Timetable available at office.</p>",
+    imageUrl: "/images/slides/industry-campus.jpg",
     order: 4,
   },
   {
@@ -587,6 +549,7 @@ export const facilities: Facility[] = [
     summary: "Separate hostel facilities (as applicable).",
     description:
       "<p>Hostel accommodation with mess and common amenities. Admission as per rules.</p>",
+    imageUrl: "/images/slides/kalika-26.jpg",
     order: 5,
   },
   {
@@ -595,30 +558,19 @@ export const facilities: Facility[] = [
     summary: "Hygienic food services on campus.",
     description:
       "<p>Canteen provides meals and snacks at subsidized rates during working hours.</p>",
+    imageUrl: "/images/events/placements-2k25.jpg",
     order: 6,
   },
 ];
 
-function community(
-  kind: CommunityKind,
-  title: string,
-): CommunitySection {
+function community(kind: CommunityKind, title: string): CommunitySection {
   return {
     kind,
     title,
-    description: `${title} activities at College of Engineering Poonjar.`,
-    content: `<p>This section highlights ${title} initiatives, events, and member information. Update copy in <code>data/site-data.ts</code>.</p>`,
-    members: [
-      { name: `${title} Coordinator`, role: "Coordinator", order: 1 },
-      { name: "Member Representative", role: "Member", order: 2 },
-    ],
-    events: [
-      {
-        title: `${title} annual meet`,
-        description: "Networking and planning session.",
-        eventDate: new Date(Date.now() + 86400000 * 60).toISOString(),
-      },
-    ],
+    description: title,
+    content: `<p>The ${title} chapter at College of Engineering Poonjar connects students, faculty, and stakeholders through programmes, leadership, and service initiatives on campus.</p>`,
+    members: [],
+    events: [],
   };
 }
 
@@ -637,8 +589,13 @@ export const iqacContent = {
 };
 
 export const iqacMembers = [
-  { name: "Dr. IQAC Coordinator", designation: "Coordinator", department: "CSE", order: 1 },
-  { name: "Prof. Member", designation: "Member", department: "ECE", order: 2 },
+  {
+    name: "IQAC Coordinator",
+    designation: "Coordinator",
+    department: "Quality cell",
+    order: 1,
+  },
+  { name: "Faculty member", designation: "Member", department: "Academics", order: 2 },
 ];
 
 export const academicCouncilPage = {
@@ -648,9 +605,60 @@ export const academicCouncilPage = {
 
 export const academicCouncilMembers = [
   { name: "Principal", designation: "Chairperson", order: 1 },
-  { name: "HoD — CSE", designation: "Member", order: 2 },
-  { name: "Senior Professor", designation: "Member", order: 3 },
+  { name: "Heads of departments", designation: "Members", order: 2 },
+  { name: "Senior faculty representatives", designation: "Members", order: 3 },
 ];
+
+export const campusAlbum = [
+  {
+    src: "/images/slides/placement-2025-26.png",
+    title: "Placement",
+    alt: "Placement highlights 2025–26",
+    description: undefined as string | undefined,
+  },
+  {
+    src: "/images/slides/kalika-26.jpg",
+    title: "College Arts Day",
+    alt: "KALIKA'26 — college arts day celebration",
+    description: undefined as string | undefined,
+  },
+  {
+    src: "/images/slides/yuga-26.jpg",
+    title: "College Sports Day",
+    alt: "YUGA'26 — college sports day",
+    description: undefined as string | undefined,
+  },
+  {
+    src: "/images/slides/achievements-2025.jpg",
+    title: "Hall Of Achievements",
+    alt: "Hall of Achievements 2025",
+    description: undefined as string | undefined,
+  },
+  {
+    src: "/images/slides/anti-ragging.png",
+    title: "Anti-Ragging Week",
+    alt: "Anti-ragging awareness week on campus",
+    description: undefined as string | undefined,
+  },
+  {
+    src: "/images/slides/thrikonam-25.png",
+    title: "College Onam Celebration",
+    alt: "THRIKONAM'25 — Onam celebration",
+    description: undefined as string | undefined,
+  },
+  {
+    src: "/images/slides/excellence-day-25.png",
+    title: "Graduation Ceremony",
+    alt: "EXCELLENCE-DAY'25 — graduation ceremony",
+    description: undefined as string | undefined,
+  },
+  {
+    src: "/images/slides/ekthara-25.jpg",
+    title: "College Day",
+    alt: "EKTHARA'25 — college day",
+    description: undefined as string | undefined,
+  },
+] as const;
 
 /** Optional rich “spotlight” block for the homepage featured panel (trusted static copy). */
 export type AnnouncementSpotlight = {
@@ -675,137 +683,99 @@ export const announcements: Announcement[] = [
   {
     id: "a-admissions",
     title: "Admissions — Academic Year 2026–2027",
-    excerpt: "Registration is open for B.Tech, MCA, BCA, BBA, and Diploma programmes.",
+    excerpt:
+      "Registration is open for B.Tech, MCA, and Diploma programmes at College of Engineering Poonjar.",
     content: "<p>Refer the admissions page for eligibility, fees, and schedules.</p>",
     published: true,
     priority: 10,
-    publishedAt: "2025-03-31T12:00:00.000Z",
+    publishedAt: "2026-06-20T12:00:00.000Z",
     spotlight: {
       body:
         "Registration is now open for admissions to the following programs at **College of Engineering Poonjar** (An Institution Under IHRD) for the year **2026 - 2027**.",
       programLines: [
         "**B.Tech:** CSE / ECE",
-        "**MCA / BCA / BBA**",
-        "**Diploma:** Computer / Electronics / Electrical / Civil (Health & Hygiene) / Automobile",
+        "**MCA**",
+        "**Diploma:** Computer / Electronics / Electrical / Automobile",
       ],
     },
   },
   {
-    id: "a-faculty-disclosure",
-    title: "MANDATORY DISCLOSURE - FACULTY PROFILES",
-    excerpt: "Mandatory disclosure notice regarding faculty profiles.",
-    content: "<p>Details are published as per regulatory requirements.</p>",
+    id: "a-press-notification",
+    title: "Press Notification",
+    excerpt: "Official press notification from the college.",
+    content: "<p>Details available at the college office and notices board.</p>",
+    published: true,
+    priority: 9,
+    publishedAt: "2026-06-02T12:00:00.000Z",
+  },
+  {
+    id: "a-temp-appointment-2",
+    title: "Temporary Appointment 2",
+    excerpt: "Temporary appointment notification.",
+    content: "<p>Refer the college office for application details.</p>",
+    published: true,
+    priority: 8,
+    publishedAt: "2026-05-26T12:00:00.000Z",
+  },
+  {
+    id: "a-temp-appointment",
+    title: "Temporary Appointment",
+    excerpt: "Temporary appointment notification.",
+    content: "<p>Refer the college office for application details.</p>",
+    published: true,
+    priority: 7,
+    publishedAt: "2026-05-26T12:00:00.000Z",
+  },
+  {
+    id: "a-guest-notification-2",
+    title: "Guest Notification 2",
+    excerpt: "Guest lecture / visit notification.",
+    content: "<p>Schedule and venue details will be announced in due course.</p>",
+    published: true,
+    priority: 6,
+    publishedAt: "2026-05-22T12:00:00.000Z",
+  },
+  {
+    id: "a-guest-notification",
+    title: "Guest Notification",
+    excerpt: "Guest lecture / visit notification.",
+    content: "<p>Schedule and venue details will be announced in due course.</p>",
     published: true,
     priority: 5,
-    publishedAt: "2026-03-25T12:00:00.000Z",
+    publishedAt: "2026-05-20T12:00:00.000Z",
   },
-  {
-    id: "a-hall-achievements",
-    title: "Hall of Achievements",
-    excerpt: "Achievements and accolades of students and the institution.",
-    content: "<p>Visit the Hall of Achievements section for updates.</p>",
-    published: true,
-    priority: 4,
-    publishedAt: "2026-02-05T12:00:00.000Z",
-  },
-  {
-    id: "a-btech-fee",
-    title: "B-tech Fee Notice",
-    excerpt: "Fee payment schedule and instructions for B.Tech students.",
-    content: "<p>Refer the notice board for fee structure and deadlines.</p>",
-    published: true,
-    priority: 3,
-    publishedAt: "2025-11-25T12:00:00.000Z",
-  },
-  {
-    id: "a-spot-admission",
-    title: "College of Engineering Poonjar Spot Admission Open - 2025",
-    excerpt: "Spot admission window for the academic year 2025.",
-    content: "<p>Contact the admissions office for seat availability and procedures.</p>",
-    published: true,
-    priority: 2,
-    publishedAt: "2025-08-21T12:00:00.000Z",
-  },
-  {
-    id: "a-malayalam-sample",
-    title: "പുതിയ അക്കാദമിക് കലണ്ടർ പ്രസിദ്ധീകരിച്ചു",
-    excerpt: "Academic calendar published (Malayalam notice).",
-    content: "<p>കലണ്ടർ കോളേജ് വെബ്സൈറ്റിലും നോട്ടീസ് ബോർഡിലും ലഭ്യമാണ്.</p>",
-    published: true,
-    priority: 1,
-    publishedAt: "2025-08-21T12:00:00.000Z",
-  },
-  {
-    id: "a-holiday",
-    title: "Holiday — Regional Festival",
-    excerpt: "College remains closed on notified dates.",
-    content: "<p>Refer academic calendar for updates.</p>",
-    published: true,
-    priority: 0,
-    publishedAt: new Date().toISOString(),
-  },
-];
-
-export const collegeEvents = [
-  {
-    id: "e1",
-    title: "TechFest 2026",
-    slug: "techfest-2026",
-    description: "Annual technical festival with workshops and competitions.",
-    startsAt: new Date(Date.now() + 86400000 * 14).toISOString(),
-    venue: "Main Auditorium",
-    imageUrl: undefined as string | undefined,
-    published: true,
-  },
-  {
-    id: "e2",
-    title: "Alumni Meet",
-    slug: "alumni-meet-2026",
-    description: "Networking and knowledge sharing with alumni.",
-    startsAt: new Date(Date.now() + 86400000 * 30).toISOString(),
-    venue: undefined as string | undefined,
-    published: true,
-  },
-];
-
-export const testimonials = [
-  {
-    id: "t1",
-    authorName: "Alumni — Batch 2020",
-    role: "Software Engineer",
-    batch: "2020",
-    content:
-      "Strong fundamentals and supportive faculty helped me start my career with confidence.",
-    published: true,
-    order: 1,
-  },
-];
-
-export const galleryItems = [
-  { id: "g1", title: "Campus", url: "/images/placeholder-campus.svg", category: "Campus", order: 1 },
-  { id: "g2", title: "Lab", url: "/images/placeholder-lab.svg", category: "Labs", order: 2 },
 ];
 
 export const studentForms = [
   {
     id: "sf1",
-    title: "Bonafide Certificate Request",
-    category: "downloadable",
-    description: "Request form for bonafide certificate (add PDF to /public/documents).",
-    fileUrl: "/documents/README.txt",
+    title: "Bonafide certificate",
+    category: "office",
+    description:
+      "Submit a written application at the college office with ID proof and fee receipt as notified by the office.",
+    fileUrl: "/contact",
     order: 1,
   },
 ];
 
 export const syllabi = [
   {
-    id: "sy1",
-    departmentSlug: "computer-science-engineering",
-    title: "B.Tech CSE — Semester 1 Syllabus (Sample)",
-    fileUrl: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
-    semester: "S1",
-    academicYear: "2024-25",
+    id: "sy-ktu",
+    departmentSlug: undefined as string | undefined,
+    title: "APJ Abdul Kalam Technological University — Syllabus",
+    fileUrl: "https://ktu.edu.in/en/academic/syllabus",
+    semester: undefined as string | undefined,
+    academicYear: undefined as string | undefined,
     order: 0,
+  },
+  {
+    id: "sy-sbte",
+    departmentSlug: undefined as string | undefined,
+    title: "SBTE Kerala — Diploma syllabus",
+    fileUrl: "https://sbte.kerala.gov.in",
+    semester: undefined as string | undefined,
+    academicYear: undefined as string | undefined,
+    order: 1,
   },
 ];
 
@@ -839,12 +809,4 @@ export function publishedAnnouncements() {
   return announcements
     .filter((a) => a.published)
     .sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0));
-}
-
-export function publishedEvents() {
-  return collegeEvents.filter((e) => e.published);
-}
-
-export function publishedTestimonials() {
-  return testimonials.filter((t) => t.published).sort((a, b) => a.order - b.order);
 }

@@ -41,3 +41,26 @@ body {
 .cms-content a {
   @apply text-brand-600 underline underline-offset-2 hover:text-brand-800;
 }
+
+/* Visible on keyboard focus — Tailwind has no focus:not-sr-only utility */
+.skip-to-content:focus {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  z-index: 100;
+  width: auto;
+  height: auto;
+  padding: 0.5rem 1rem;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  border-radius: 0.5rem;
+  background-color: white;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1e3a8a;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}

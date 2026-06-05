@@ -8,6 +8,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
   ChevronDown,
   Menu,
+  Search,
   X,
 } from "lucide-react";
 import { ABOUT_DROPDOWN, MAIN_NAV } from "@/lib/constants";
@@ -57,6 +58,15 @@ export function SiteNavbar() {
     };
   }, [open]);
 
+  useEffect(() => {
+    if (!aboutOpen) return;
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") setAboutOpen(false);
+    }
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [aboutOpen]);
+
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl min-w-0 items-center gap-3 px-3 py-2.5 sm:gap-4 sm:px-6 sm:py-3 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-6 lg:px-8">
@@ -69,8 +79,8 @@ export function SiteNavbar() {
             <Image
               src="/images/logo.webp"
               alt="College of Engineering Poonjar"
-              width={280}
-              height={72}
+              width={1000}
+              height={413}
               priority
               className="h-9 w-auto max-w-[min(58vw,260px)] object-contain object-left sm:h-10 sm:max-w-[min(50vw,300px)] lg:max-w-[min(100%,340px)]"
             />
@@ -89,12 +99,15 @@ export function SiteNavbar() {
           >
             <button
               type="button"
+              id="about-academics-trigger"
+              aria-controls="about-academics-menu"
               className={cn(
-                "inline-flex h-10 items-center gap-1 rounded-lg px-3.5 text-sm font-medium text-slate-700 transition-colors hover:bg-brand-50 hover:text-brand-900",
+                "inline-flex h-10 items-center gap-1 rounded-lg px-3 text-sm font-medium text-slate-700 transition-colors hover:bg-brand-50 hover:text-brand-900 lg:px-3.5",
                 aboutOpen && "bg-brand-50 text-brand-900",
               )}
               aria-expanded={aboutOpen}
               aria-haspopup="true"
+              onClick={() => setAboutOpen((v) => !v)}
             >
               <span className="whitespace-nowrap">About / Academics</span>
               <ChevronDown
@@ -107,6 +120,9 @@ export function SiteNavbar() {
             <AnimatePresence>
               {aboutOpen && (
                 <motion.div
+                  id="about-academics-menu"
+                  role="menu"
+                  aria-labelledby="about-academics-trigger"
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 8 }}
@@ -117,6 +133,8 @@ export function SiteNavbar() {
                     <Link
                       key={item.href}
                       href={item.href}
+                      role="menuitem"
+                      onClick={() => setAboutOpen(false)}
                       className="block px-4 py-2.5 text-sm leading-snug text-slate-700 transition-colors hover:bg-brand-50 hover:text-brand-900"
                     >
                       {item.label}
@@ -126,7 +144,7 @@ export function SiteNavbar() {
               )}
             </AnimatePresence>
           </div>
-          {MAIN_NAV.slice(3).map((item) => (
+          {MAIN_NAV.map((item) => (
             <NavLink key={item.href} href={item.href}>
               {item.label}
             </NavLink>
@@ -134,6 +152,13 @@ export function SiteNavbar() {
         </nav>
 
         <div className="flex flex-1 items-center justify-end gap-2 lg:flex-none lg:justify-self-end">
+          <Link
+            href="/search"
+            className="hidden h-10 w-10 items-center justify-center rounded-lg border border-slate-200 text-slate-700 transition-colors hover:bg-slate-50 lg:inline-flex"
+            aria-label="Search site"
+          >
+            <Search className="h-4 w-4" />
+          </Link>
           <button
             type="button"
             className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-slate-200 text-slate-700 transition-colors hover:bg-slate-50 lg:hidden"
@@ -178,11 +203,14 @@ export function SiteNavbar() {
                 </div>
               </div>
               <div className="flex flex-col gap-0.5 border-b border-slate-100 py-4">
-                {MAIN_NAV.slice(3).map((item) => (
+                {MAIN_NAV.map((item) => (
                   <NavLink key={item.href} href={item.href} onClick={closeMobile}>
                     {item.label}
                   </NavLink>
                 ))}
+                <NavLink href="/search" onClick={closeMobile}>
+                  Search
+                </NavLink>
               </div>
             </div>
           </motion.div>

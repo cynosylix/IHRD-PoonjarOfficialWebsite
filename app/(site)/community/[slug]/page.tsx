@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { communitySections, getCommunityByKind } from "@/data/site-data";
 import { communitySlugToKind, communityKindToSlug } from "@/lib/community";
 import { HtmlBlock } from "@/components/content/html-block";
+import { StaticImage } from "@/components/ui/static-image";
 import { format } from "@/lib/format";
 import {
   Table,
@@ -41,16 +42,16 @@ export default async function CommunitySectionPage({ params }: Props) {
     <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
       {section.heroImageUrl && (
         <div className="mb-8 overflow-hidden rounded-2xl border border-slate-200">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <StaticImage
             src={section.heroImageUrl}
             alt=""
             className="aspect-video w-full object-cover"
+            priority
+            sizes="(min-width: 896px) 768px, 100vw"
           />
         </div>
       )}
       <h1 className="text-3xl font-bold text-brand-950">{section.title}</h1>
-      <p className="mt-2 text-slate-600">{section.description}</p>
       <div className="cms-content mt-6">
         <HtmlBlock html={section.content} />
       </div>

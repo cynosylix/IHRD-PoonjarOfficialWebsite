@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "node scripts/dev-server.cjs",
+    "dev:clean": "node scripts/dev-server.cjs",
+    "prebuild": "node -e \"try{require('fs').rmSync('.next',{recursive:true,force:true})}catch(e){}\"",
     "build": "next build",
-    "start": "next start",
     "lint": "next lint",
+    "optimize:images": "node scripts/optimize-images.cjs",
+    "refresh:images": "node scripts/refresh-image-assets.cjs",
     "enhance:hero-bg": "node scripts/enhance-hero-bg.cjs"
   },
   "dependencies": {

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
+import { getSiteUrl } from "@/lib/site-url";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,9 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000",
-  ),
+  metadataBase: new URL(getSiteUrl()),
   title: {
     default: "College of Engineering Poonjar",
     template: "%s | College of Engineering Poonjar",
@@ -28,6 +27,25 @@ export const metadata: Metadata = {
     description:
       "IHRD engineering college — quality technical education in Kerala.",
     type: "website",
+    images: [
+      {
+        url: "/images/collageOutDoor-2.webp",
+        width: 1920,
+        height: 495,
+        alt: "College of Engineering Poonjar campus",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "College of Engineering Poonjar",
+    description:
+      "IHRD engineering college — quality technical education in Kerala.",
+    images: ["/images/collageOutDoor-2.webp"],
+  },
+  icons: {
+    icon: [{ url: "/images/logo.webp", type: "image/webp" }],
+    apple: [{ url: "/images/logo.webp", type: "image/webp" }],
   },
 };
 

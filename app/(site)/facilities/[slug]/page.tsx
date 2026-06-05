@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { facilities, getFacilityBySlug } from "@/data/site-data";
 import { HtmlBlock } from "@/components/content/html-block";
+import { StaticImage } from "@/components/ui/static-image";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -26,11 +27,12 @@ export default async function FacilityDetailPage({ params }: Props) {
   return (
     <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="overflow-hidden rounded-2xl border border-slate-200">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <StaticImage
           src={f.imageUrl ?? "/images/placeholder-campus.svg"}
           alt={f.name}
           className="aspect-video w-full object-cover"
+          priority
+          sizes="(min-width: 896px) 768px, 100vw"
         />
       </div>
       <h1 className="mt-8 text-3xl font-bold text-brand-950">{f.name}</h1>
@@ -47,12 +49,12 @@ export default async function FacilityDetailPage({ params }: Props) {
       {gallery.length > 0 && (
         <div className="mt-10 columns-2 gap-3 sm:columns-3">
           {gallery.map((url) => (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
+            <StaticImage
               key={url}
               src={url}
               alt=""
               className="mb-3 break-inside-avoid rounded-lg border border-slate-200"
+              sizes="(min-width: 640px) 33vw, 50vw"
             />
           ))}
         </div>

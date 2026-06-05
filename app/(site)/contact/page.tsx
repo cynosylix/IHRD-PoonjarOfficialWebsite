@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { siteSettings } from "@/data/site-data";
+import {
+  siteSettings,
+  principalProfile,
+  admissionHelplines,
+  placementTeamMembers,
+} from "@/data/site-data";
 import { ContactForm } from "@/components/forms/contact-form";
 import { Mail, MapPin, Phone } from "lucide-react";
 
@@ -34,9 +39,59 @@ export default function ContactPage() {
             <div>
               <p className="flex items-center gap-2 text-sm font-semibold text-brand-900">
                 <Phone className="h-4 w-4" />
-                Phone
+                College office
               </p>
-              <p className="mt-2 text-sm text-slate-700">{phones.join(" · ")}</p>
+              <ul className="mt-2 space-y-1 text-sm text-slate-700">
+                {phones.map((phone) => (
+                  <li key={phone}>
+                    <a href={`tel:${phone.replace(/\s/g, "")}`} className="text-brand-700 hover:underline">
+                      {phone}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          <div>
+            <p className="text-sm font-semibold text-brand-900">Principal</p>
+            <p className="mt-2 text-sm text-slate-700">{principalProfile.name}</p>
+            <a
+              href={`tel:${principalProfile.phone.replace(/\s/g, "")}`}
+              className="mt-1 block text-sm text-brand-700 hover:underline"
+            >
+              {principalProfile.phone}
+            </a>
+          </div>
+          {placementTeamMembers[0] && (
+            <div>
+              <p className="text-sm font-semibold text-brand-900">Training &amp; placement</p>
+              <p className="mt-2 text-sm text-slate-700">{placementTeamMembers[0].name}</p>
+              {placementTeamMembers[0].phone && (
+                <a
+                  href={`tel:${placementTeamMembers[0].phone.replace(/\s/g, "")}`}
+                  className="mt-1 block text-sm text-brand-700 hover:underline"
+                >
+                  {placementTeamMembers[0].phone}
+                </a>
+              )}
+            </div>
+          )}
+          {admissionHelplines.length > 0 && (
+            <div>
+              <p className="text-sm font-semibold text-brand-900">Admission helpline</p>
+              <ul className="mt-2 space-y-2 text-sm text-slate-700">
+                {admissionHelplines.map((h) => (
+                  <li key={h.phone}>
+                    <span className="block font-medium text-slate-800">{h.name}</span>
+                    <a
+                      href={`tel:${h.phone.replace(/\s/g, "")}`}
+                      className="text-brand-700 hover:underline"
+                    >
+                      {h.phone}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
           )}
           {emails.length > 0 && (

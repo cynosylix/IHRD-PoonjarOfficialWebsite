@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { principalProfile } from "@/data/site-data";
 import { HtmlBlock } from "@/components/content/html-block";
+import { StaticImage } from "@/components/ui/static-image";
 import { Mail, Phone } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -18,11 +19,12 @@ export default function PrincipalPage() {
       </h1>
       <div className="mt-8 flex min-w-0 flex-col gap-8 sm:mt-10 md:flex-row md:items-start md:gap-10">
         <div className="mx-auto w-full max-w-[280px] shrink-0 overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-sm sm:max-w-xs">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <StaticImage
             src={p.photoUrl ?? "/images/placeholder-campus.svg"}
             alt={p.name}
             className="aspect-[3/4] w-full object-cover"
+            priority
+            sizes="(min-width: 768px) 280px, 100vw"
           />
         </div>
         <div className="min-w-0 flex-1">
@@ -43,7 +45,9 @@ export default function PrincipalPage() {
             {p.phone && (
               <p className="flex min-w-0 items-center gap-2 break-words">
                 <Phone className="h-4 w-4 shrink-0" />
-                {p.phone}
+                <a href={`tel:${p.phone.replace(/\s/g, "")}`} className="text-brand-700 hover:underline">
+                  {p.phone}
+                </a>
               </p>
             )}
           </div>

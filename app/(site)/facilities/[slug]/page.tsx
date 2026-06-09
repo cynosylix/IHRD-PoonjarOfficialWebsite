@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { facilities, getFacilityBySlug } from "@/data/site-data";
 import { HtmlBlock } from "@/components/content/html-block";
+import { PageShell } from "@/components/layout/page-shell";
 import { StaticImage } from "@/components/ui/static-image";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -25,7 +26,16 @@ export default async function FacilityDetailPage({ params }: Props) {
   const highlights = f.highlights ?? [];
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
+    <PageShell
+      title={f.name}
+      description={f.summary}
+      breadcrumbs={[
+        { label: "Home", href: "/" },
+        { label: "Facilities", href: "/facilities" },
+        { label: f.name },
+      ]}
+      maxWidth="max-w-4xl"
+    >
       <div className="overflow-hidden rounded-2xl border border-slate-200">
         <StaticImage
           src={f.imageUrl ?? "/images/placeholder-campus.svg"}
@@ -35,18 +45,17 @@ export default async function FacilityDetailPage({ params }: Props) {
           sizes="(min-width: 896px) 768px, 100vw"
         />
       </div>
-      <h1 className="mt-8 text-3xl font-bold text-brand-950">{f.name}</h1>
-      {highlights.length > 0 && (
-        <ul className="mt-4 list-disc space-y-1 pl-6 text-slate-700">
+      {highlights.length > 0 ? (
+        <ul className="mt-6 list-disc space-y-1 pl-6 text-slate-700">
           {highlights.map((h) => (
             <li key={h}>{h}</li>
           ))}
         </ul>
-      )}
+      ) : null}
       <div className="cms-content mt-6">
         <HtmlBlock html={f.description} />
       </div>
-      {gallery.length > 0 && (
+      {gallery.length > 0 ? (
         <div className="mt-10 columns-2 gap-3 sm:columns-3">
           {gallery.map((url) => (
             <StaticImage
@@ -58,7 +67,7 @@ export default async function FacilityDetailPage({ params }: Props) {
             />
           ))}
         </div>
-      )}
-    </div>
+      ) : null}
+    </PageShell>
   );
 }

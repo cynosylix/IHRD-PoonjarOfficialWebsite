@@ -41,6 +41,24 @@ body {
 .cms-content a {
   @apply text-brand-600 underline underline-offset-2 hover:text-brand-800;
 }
+.cms-content img {
+  @apply my-4 h-auto max-w-full rounded-lg;
+}
+.cms-content table {
+  @apply mb-4 block w-full overflow-x-auto text-sm;
+}
+.cms-content th,
+.cms-content td {
+  @apply border border-slate-200 px-3 py-2 text-left;
+}
+.cms-content th {
+  @apply bg-slate-50 font-semibold text-brand-900;
+}
+
+/* Responsive data tables site-wide */
+.table-scroll {
+  @apply -mx-4 overflow-x-auto px-4 sm:mx-0 sm:overflow-visible sm:px-0;
+}
 
 /* Visible on keyboard focus — Tailwind has no focus:not-sr-only utility */
 .skip-to-content:focus {

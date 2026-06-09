@@ -1,0 +1,106 @@
+import type { CommunitySection } from "./site-data";
+
+/** Community tab content synced from https://cep.ac.in */
+export const communitySections: CommunitySection[] = [
+  {
+    kind: "ALUMNI",
+    title: "Alumni",
+    description: "Alumni association at College of Engineering Poonjar",
+    content: `<p>Our active alumni association serves as a vibrant hub for former students to reconnect, engage, and contribute to the legacy of our college. Through a variety of events, networking opportunities, and philanthropic endeavors, our alumni association fosters lifelong connections and celebrates the achievements of our graduates. Stay connected with fellow alumni through social media groups, attend alumni reunions, and participate in mentorship programs to support the next generation of students. Share your success stories, professional insights, and experiences with our alumni community, and join us in giving back to our alma mater through volunteerism, donations, and collaborative initiatives.</p>`,
+    heroImageUrl: "/images/community/alumni.jpg",
+    members: [],
+    events: [
+      {
+        title: "VLSI domain — industry expert session",
+        description:
+          "We had the privilege of hosting an insightful interview with Jinse S, Program Manager at Western Digital, where he shared valuable insights on the VLSI Domain. This engaging session provided students with a unique opportunity to learn from an industry expert, gaining valuable knowledge and perspective on this dynamic field.",
+      },
+      {
+        title: "Cloud computing in communications",
+        description:
+          "Exciting news! Shijimol AK, an Infrastructure Modernization Specialist at Google Cloud, recently delivered an inspiring talk on how cloud computing is transforming the communication industry. Her insights left us energized and eager to explore the endless possibilities of cloud technology.",
+      },
+      {
+        title: "Alumni support for campus infrastructure",
+        description:
+          "Exciting news! Thanks to our generous alumni, we now have top-notch projectors and lab equipment enriching our learning environment. Their support propels us forward, ensuring an even brighter future for all.",
+      },
+    ],
+  },
+  {
+    kind: "PTA",
+    title: "PTA",
+    description: "Parent-Teacher Association",
+    content: `<p>Our Parent-Teacher Association (PTA) is an integral part of our college community, facilitating collaboration and communication between parents, teachers, and the administration. Committed to enhancing the educational experience of our students, the PTA organizes various initiatives and programs aimed at supporting academic, social, and emotional development. Through regular meetings and discussions, parents and teachers work together to address challenges, share ideas, and implement solutions for the benefit of the entire college community. The PTA provides a platform for parents to voice their concerns, provide feedback, and actively participate in decision-making processes that impact their children's education. For details of the current PTA general body, please refer to the table below.</p>`,
+    members: [
+      { name: "Mr. Dennis Jose", role: "PTA President", phone: "+91 9447911830", order: 1 },
+      { name: "Mr. Mathew M", role: "PTA Executive Member", phone: "+91 9946696714", order: 2 },
+      { name: "Mr. Shaji Kurian", role: "PTA Executive Member", phone: "+91 9747437076", order: 3 },
+      { name: "Mr. Nadarajan K V", role: "PTA Executive Member", phone: "+91 8590792562", order: 4 },
+      { name: "Mr. Simon M J", role: "PTA Executive Member", phone: "+91 9495444813", order: 5 },
+      { name: "Ms. Shiny Joseph", role: "PTA Executive Member", phone: "+91 9744536564", order: 6 },
+      { name: "Mr. Joshy Michael", role: "PTA Executive Member", phone: "+91 9495480477", order: 7 },
+      { name: "Mr. K S Thomas", role: "PTA Executive Member", phone: "+91 7025553171", order: 8 },
+      { name: "Ms. Reni Kuriakose", role: "PTA Executive Member", phone: "+91 9745800651", order: 9 },
+    ],
+    events: [],
+  },
+  {
+    kind: "SENATE",
+    title: "Senate",
+    description: "Students Senate",
+    content: `<p>The Students Senate serves as the representative body of the student community at our college. It provides a platform for student voices to be heard, ideas to be shared, and initiatives to be implemented for the betterment of student life and the college community as a whole. Comprising elected representatives from various departments and academic levels, the Senate works tirelessly to address student concerns, organize events, and advocate for student rights and welfare. Through collaboration, leadership, and active participation, the Students Senate plays a pivotal role in shaping the college experience and fostering a vibrant and inclusive campus culture.</p>`,
+    members: [
+      { name: "Aswin Babu", role: "Chairman", order: 1 },
+      { name: "Amal C Mohan", role: "Vice Chairman", order: 2 },
+      { name: "Niranjan K Ajay", role: "General Secretary", order: 3 },
+      { name: "Roopasree K", role: "Arts Club Secretary", order: 4 },
+      { name: "Donish jose", role: "Joint Arts Club Secretary", order: 5 },
+      { name: "Adarsh S", role: "Sports Secretary", order: 6 },
+      { name: "Akash Prasad", role: "Joint sports secretary", order: 7 },
+      { name: "Sreeparvathi", role: "Representative Leader", order: 8 },
+      { name: "Roneena Maria Joseph", role: "BCA S2 Representative", order: 9 },
+      { name: "Jose Mathew", role: "Class representative", order: 10 },
+      { name: "Alan Joseph", role: "Class Representative", order: 11 },
+      { name: "K V Vachas Shaji", role: "S2 CSE A Representative", order: 12 },
+      { name: "Sajesh Kumar VH", role: "EEE S2 Class Representative", order: 13 },
+      { name: "Sandeep M S", role: "First Year Diploma EL Representative", order: 14 },
+      { name: "Dawn Roy", role: "Member", order: 15 },
+      { name: "Irene Anna Shibu", role: "A Batch S2 Representative", order: 16 },
+      { name: "Sayana k", role: "S2 B Representative", order: 17 },
+      { name: "Faiha Safeer", role: "Representative", order: 18 },
+      { name: "Hanna Merin", role: "2nd Year BTech ECE Representative", order: 19 },
+      { name: "Maria James", role: "Student Representative", order: 20 },
+      { name: "Isha Shajahan", role: "Student Representative", order: 21 },
+      { name: "Sreerag Biju", role: "Volunteer", order: 22 },
+    ],
+    events: [],
+  },
+  {
+    kind: "IEEE",
+    title: "IEEE",
+    description: "IEEE Student Branch",
+    content: `<p>The IEEE Student Branch is a vibrant community of students passionate about technology, innovation, and collaboration. As a part of the Institute of Electrical and Electronics Engineers (IEEE), the world's largest technical professional organization, our student branch provides a platform for students to explore their interests, enhance their skills, and network with like-minded individuals. Through a variety of events, workshops, and activities, we aim to foster a culture of creativity, learning, and professional development among our members. Whether you're interested in robotics, artificial intelligence, renewable energy, or any other area of technology, the IEEE Student Branch offers opportunities for you to expand your knowledge, gain hands-on experience, and connect with industry professionals. Join us and be a part of our dynamic community dedicated to shaping the future of technology.</p><p><a href="http://ieee.cep.ac.in/" target="_blank" rel="noopener noreferrer">Visit students Branch Website</a></p>`,
+    heroImageUrl: "/images/community/ieee.png",
+    members: [],
+    events: [],
+  },
+  {
+    kind: "IEDC",
+    title: "IEDC",
+    description: "Innovation and Entrepreneurship Development Cell",
+    content: `<p>Our IEDC is a dynamic hub for fostering innovation, creativity, and entrepreneurship among students. Supported by the Innovation and Entrepreneurship Development Centre (IEDC) program of the Government of Kerala, our cell provides a platform for aspiring entrepreneurs to turn their ideas into viable ventures. Through workshops, seminars, mentoring sessions, and networking opportunities, we empower students to explore their entrepreneurial potential, develop innovative solutions to real-world problems, and launch successful startups. Our goal is to cultivate an entrepreneurial mindset, nurture creativity, and inspire the next generation of innovators and changemakers.</p>`,
+    heroImageUrl: "/images/community/iedc.jpg",
+    members: [],
+    events: [],
+  },
+  {
+    kind: "NSS",
+    title: "NSS",
+    description: "National Service Scheme",
+    content: `<p>The NSS Unit at our college is dedicated to fostering a spirit of social responsibility, community engagement, and leadership among students. As a part of the National Service Scheme, a flagship program of the Government of India aimed at developing student volunteers into socially conscious citizens, our NSS unit undertakes various activities and initiatives for the betterment of society. From organizing blood donation drives and health camps to conducting cleanliness drives and awareness campaigns, our volunteers actively contribute to community development and social welfare. Through these endeavors, students not only make a positive impact on society but also develop valuable skills, empathy, and a sense of civic duty. Join us in making a difference and being the change we wish to see in the world.</p>`,
+    heroImageUrl: "/images/community/nss.png",
+    members: [],
+    events: [],
+  },
+];

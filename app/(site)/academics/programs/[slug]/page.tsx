@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { HtmlBlock } from "@/components/content/html-block";
+import { PageBanner } from "@/components/layout/page-banner";
 import { Card } from "@/components/ui/card";
 import {
   getProgramBySlug,
@@ -44,57 +45,42 @@ export default async function ProgramDetailPage({ params }: Props) {
 
   return (
     <div className="min-w-0">
-      <header className="relative overflow-hidden bg-gradient-to-br from-brand-900 via-brand-800 to-brand-700 text-white">
-        <div className="pointer-events-none absolute inset-0 opacity-25">
-          <div className="absolute -left-16 top-0 h-56 w-56 rounded-full bg-brand-400 blur-3xl" />
-          <div className="absolute bottom-0 right-0 h-64 w-64 rounded-full bg-brand-300 blur-3xl" />
-        </div>
-        <div className="relative mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
-          <nav className="flex flex-wrap items-center justify-start gap-1 text-xs font-medium text-white/70 sm:text-sm">
-            <Link href="/" className="transition hover:text-white">
-              Home
-            </Link>
-            <ChevronRight className="h-3.5 w-3.5 shrink-0 opacity-60" aria-hidden />
-            <Link href="/academics/programs" className="transition hover:text-white">
-              Academic Opportunities
-            </Link>
-            <ChevronRight className="h-3.5 w-3.5 shrink-0 opacity-60" aria-hidden />
-            <span className="line-clamp-1 text-white">{heroTitle}</span>
-          </nav>
-          <div className="mt-6 max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-200">
-              {typeLabel}
-            </p>
-            <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">{heroTitle}</h1>
-            <dl className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-sm text-brand-100">
-              {program.duration ? (
-                <div>
-                  <dt className="text-[11px] font-semibold uppercase tracking-wider text-brand-200">
-                    Duration
-                  </dt>
-                  <dd className="mt-0.5 font-medium text-white">{program.duration}</dd>
-                </div>
-              ) : null}
-              {program.intake ? (
-                <div>
-                  <dt className="text-[11px] font-semibold uppercase tracking-wider text-brand-200">
-                    Intake
-                  </dt>
-                  <dd className="mt-0.5 font-medium text-white">{program.intake}</dd>
-                </div>
-              ) : null}
-              {program.affiliation ? (
-                <div className="min-w-[12rem] max-w-xl">
-                  <dt className="text-[11px] font-semibold uppercase tracking-wider text-brand-200">
-                    Affiliation
-                  </dt>
-                  <dd className="mt-0.5 font-medium text-white">{program.affiliation}</dd>
-                </div>
-              ) : null}
-            </dl>
-          </div>
-        </div>
-      </header>
+      <PageBanner
+        eyebrow={typeLabel}
+        title={heroTitle}
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Academic Opportunities", href: "/academics/programs" },
+          { label: heroTitle },
+        ]}
+      >
+        <dl className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-sm text-brand-100">
+          {program.duration ? (
+            <div>
+              <dt className="text-[11px] font-semibold uppercase tracking-wider text-brand-200">
+                Duration
+              </dt>
+              <dd className="mt-0.5 font-medium text-white">{program.duration}</dd>
+            </div>
+          ) : null}
+          {program.intake ? (
+            <div>
+              <dt className="text-[11px] font-semibold uppercase tracking-wider text-brand-200">
+                Intake
+              </dt>
+              <dd className="mt-0.5 font-medium text-white">{program.intake}</dd>
+            </div>
+          ) : null}
+          {program.affiliation ? (
+            <div className="min-w-0 max-w-xl">
+              <dt className="text-[11px] font-semibold uppercase tracking-wider text-brand-200">
+                Affiliation
+              </dt>
+              <dd className="mt-0.5 font-medium text-white">{program.affiliation}</dd>
+            </div>
+          ) : null}
+        </dl>
+      </PageBanner>
 
       <div className="bg-gradient-to-b from-slate-50 to-white pb-16 pt-10 sm:pb-20 sm:pt-12">
         <div className="mx-auto max-w-4xl space-y-10 px-4 sm:px-6 lg:px-8">

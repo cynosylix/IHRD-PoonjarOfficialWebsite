@@ -19,9 +19,14 @@ Content lives in **`data/site-data.ts`** — edit that file and rebuild to updat
 
 ```bash
 npm install
+npm run sync:images  # mirror images & PDFs locally (run once, then after content updates)
 npm run dev          # local preview (clears .next cache automatically)
-npm run build        # produces ./out — stop dev first, or use a new terminal
+npm run build        # produces ./out — stop dev first (build refuses if dev is running)
+npm run verify:images
+npm run verify:documents
 ```
+
+**Before first deploy:** commit everything under `public/images/` and `public/documents/` — the Netlify build verifies these assets exist.
 
 After `npm run build`, upload the contents of the **`out`** directory to your host.
 

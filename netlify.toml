@@ -5,6 +5,8 @@
 
 [build.environment]
   NODE_VERSION = "20"
+  # Canonical URL for sitemap, Open Graph, and metadata (override in Netlify UI if needed)
+  NEXT_PUBLIC_APP_URL = "https://cepoonjar.ac.in"
 
 # Next.js static export ships 404.html; Netlify serves it for missing routes.
 # Asset caching is configured in public/_headers.

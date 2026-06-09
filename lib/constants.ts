@@ -10,7 +10,7 @@ export const MAIN_NAV = [
 
 /** About / Academics dropdown */
 export const ABOUT_DROPDOWN = [
-  { href: "/about/institution", label: "About Institution" },
+  { href: "/about/institution", label: "About The Institution" },
   { href: "/about/principal", label: "Principal's Desk" },
   { href: "/academics/departments", label: "Departments" },
   { href: "/about/iqac", label: "IQAC" },

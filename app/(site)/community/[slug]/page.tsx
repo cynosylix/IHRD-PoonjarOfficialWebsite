@@ -3,16 +3,10 @@ import { notFound } from "next/navigation";
 import { communitySections, getCommunityByKind } from "@/data/site-data";
 import { communitySlugToKind, communityKindToSlug } from "@/lib/community";
 import { HtmlBlock } from "@/components/content/html-block";
+import { CommunityMembers } from "@/components/content/community-members";
+import { PageShell } from "@/components/layout/page-shell";
 import { StaticImage } from "@/components/ui/static-image";
 import { format } from "@/lib/format";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -37,26 +31,51 @@ export default async function CommunitySectionPage({ params }: Props) {
 
   const members = [...section.members].sort((a, b) => a.order - b.order);
   const events = section.events;
+  const isLogoSection = kind === "IEEE" || kind === "IEDC" || kind === "NSS";
+  const showTopHero = section.heroImageUrl && kind === "ALUMNI";
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
-      {section.heroImageUrl && (
+    <PageShell
+      title={section.title}
+      breadcrumbs={[
+        { label: "Home", href: "/" },
+        { label: "Community", href: "/community" },
+        { label: section.title },
+      ]}
+    >
+      {showTopHero ? (
         <div className="mb-8 overflow-hidden rounded-2xl border border-slate-200">
           <StaticImage
-            src={section.heroImageUrl}
-            alt=""
+            src={section.heroImageUrl!}
+            alt={section.title}
             className="aspect-video w-full object-cover"
             priority
             sizes="(min-width: 896px) 768px, 100vw"
           />
         </div>
-      )}
-      <h1 className="text-3xl font-bold text-brand-950">{section.title}</h1>
-      <div className="cms-content mt-6">
+      ) : null}
+      <div className="cms-content">
         <HtmlBlock html={section.content} />
       </div>
 
-      {events.length > 0 && (
+      {isLogoSection && section.heroImageUrl ? (
+        <div className="mt-8 flex justify-center rounded-xl border border-slate-200 bg-white px-6 py-6">
+          <StaticImage
+            src={section.heroImageUrl}
+            alt={
+              kind === "IEEE"
+                ? "IEEE student branch logo"
+                : kind === "NSS"
+                  ? "NSS logo"
+                  : "IEDC activity"
+            }
+            className="mx-auto h-auto max-h-72 w-auto max-w-full object-contain"
+            sizes="(min-width: 896px) 640px, 100vw"
+          />
+        </div>
+      ) : null}
+
+      {events.length > 0 ? (
         <section className="mt-12">
           <h2 className="text-xl font-semibold text-brand-900">Events</h2>
           <ul className="mt-4 space-y-3">
@@ -66,39 +85,17 @@ export default async function CommunitySectionPage({ params }: Props) {
                 className="rounded-xl border border-slate-200 bg-white p-4 text-sm"
               >
                 <p className="font-semibold text-brand-900">{e.title}</p>
-                {e.description && <p className="mt-1 text-slate-600">{e.description}</p>}
-                {e.eventDate && (
+                {e.description ? <p className="mt-1 text-slate-600">{e.description}</p> : null}
+                {e.eventDate ? (
                   <p className="mt-2 text-xs text-slate-500">{format.date(e.eventDate)}</p>
-                )}
+                ) : null}
               </li>
             ))}
           </ul>
         </section>
-      )}
+      ) : null}
 
-      {members.length > 0 && (
-        <section className="mt-12">
-          <h2 className="text-xl font-semibold text-brand-900">Members</h2>
-          <div className="mt-4 overflow-x-auto rounded-xl border border-slate-200 bg-white">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Name</TableHead>
-                  <TableHead>Role</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {members.map((m) => (
-                  <TableRow key={m.name}>
-                    <TableCell className="font-medium">{m.name}</TableCell>
-                    <TableCell>{m.role ?? "—"}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </div>
-        </section>
-      )}
-    </div>
+      {members.length > 0 ? <CommunityMembers kind={kind} members={members} /> : null}
+    </PageShell>
   );
 }

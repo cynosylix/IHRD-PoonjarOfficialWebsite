@@ -1,7 +1,23 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, ChevronRight } from "lucide-react";
-import { programs, type ProgramType } from "@/data/site-data";
+import { ArrowRight } from "lucide-react";
+import { PageBanner } from "@/components/layout/page-banner";
+import {
+  admissionFeeStructure,
+  admissionHelplines,
+  programs,
+  pageHeroImages,
+  type ProgramType,
+} from "@/data/site-data";
+import { PageHeroImage } from "@/components/layout/page-hero-image";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 export const metadata: Metadata = {
   title: "Admission",
@@ -14,18 +30,18 @@ const SECTION_META: Record<
 > = {
   UG: {
     label: "UG",
-    title: "Undergraduate programmes",
-    blurb: "B.Tech admissions through KEAM — eligibility, allotment, and programme details.",
+    title: "B.Tech Admission",
+    blurb: "Full-time graduate courses of APJ Abdul Kalam Technological University (KTU), approved by AICTE.",
   },
   PG: {
     label: "PG",
-    title: "Postgraduate programmes",
-    blurb: "Advanced programmes — eligibility, allotment, and full course information.",
+    title: "MCA Admission",
+    blurb: "Master of Computer Applications (MCA) of APJ Abdul Kalam Technological University (KTU), approved by AICTE.",
   },
   DIPLOMA: {
     label: "Diploma",
-    title: "Diploma programmes",
-    blurb: "Polytechnic branches under SBTE Kerala — eligibility and allotment details.",
+    title: "Diploma Admission",
+    blurb: "Three year regular diploma courses affiliated to the Board of Technical Education, Kerala.",
   },
 };
 
@@ -45,37 +61,27 @@ export default function AdmissionHubPage() {
 
   return (
     <div className="min-w-0">
-      <header className="relative overflow-hidden bg-gradient-to-br from-brand-900 via-brand-800 to-brand-700 text-white">
-        <div className="pointer-events-none absolute inset-0 opacity-25">
-          <div className="absolute -left-16 top-0 h-56 w-56 rounded-full bg-brand-400 blur-3xl" />
-          <div className="absolute bottom-0 right-0 h-64 w-64 rounded-full bg-brand-300 blur-3xl" />
-        </div>
-        <div className="relative mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
-          <nav className="flex flex-wrap items-center gap-1 text-xs font-medium text-white/70 sm:text-sm">
-            <Link href="/" className="transition hover:text-white">
-              Home
-            </Link>
-            <ChevronRight className="h-3.5 w-3.5 shrink-0 opacity-60" aria-hidden />
-            <span className="text-white">Admission</span>
-          </nav>
-          <div className="mt-6 mx-auto max-w-3xl text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-200">
-              Admissions
-            </p>
-            <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">Admission</h1>
-            <p className="mt-4 text-sm leading-relaxed text-brand-100 sm:text-base">
-              Choose a programme to view academic eligibility, allotment process, course
-              objectives, outcomes, and complete programme information.
-            </p>
-            <p className="mt-4 text-sm font-medium text-brand-200">
-              {total} programme{total === 1 ? "" : "s"} available
-            </p>
-          </div>
-        </div>
-      </header>
+      <PageBanner
+        eyebrow="Admissions"
+        title="Admission"
+        description="Choose a programme to view academic eligibility, allotment process, course objectives, outcomes, and complete programme information."
+        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Admission" }]}
+        centered
+      >
+        <p className="mt-4 text-sm font-medium text-brand-200">
+          {total} programme{total === 1 ? "" : "s"} available
+        </p>
+      </PageBanner>
 
       <div className="bg-gradient-to-b from-slate-50 to-white pb-16 pt-10 sm:pb-20 sm:pt-12">
         <div className="mx-auto max-w-6xl space-y-12 px-4 sm:px-6 lg:px-8">
+          {pageHeroImages["/admission"] && (
+            <PageHeroImage
+              src={pageHeroImages["/admission"].src}
+              alt={pageHeroImages["/admission"].alt}
+              className="mb-0"
+            />
+          )}
           {sections.map(({ type, meta, rows }) => (
             <section key={type} aria-labelledby={`admission-${type.toLowerCase()}`}>
               <div className="flex flex-col items-center gap-3 border-b border-slate-200/80 pb-4 text-center">
@@ -153,6 +159,72 @@ export default function AdmissionHubPage() {
               </ul>
             </section>
           ))}
+
+          <section aria-labelledby="admission-helplines">
+            <h2
+              id="admission-helplines"
+              className="text-center text-xl font-bold text-brand-950 sm:text-2xl"
+            >
+              Admission Helpline Numbers
+            </h2>
+            <div className="mx-auto mt-6 max-w-lg overflow-x-auto rounded-xl border border-slate-200 bg-white">
+              <Table>
+                <TableBody>
+                  {admissionHelplines.map((h) => (
+                    <TableRow key={h.phone}>
+                      <TableCell className="font-medium">{h.name}</TableCell>
+                      <TableCell>
+                        <a
+                          href={`tel:${h.phone}`}
+                          className="text-brand-700 hover:underline"
+                        >
+                          {h.phone}
+                        </a>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          </section>
+
+          <section aria-labelledby="admission-fee-structure">
+            <h2
+              id="admission-fee-structure"
+              className="text-center text-xl font-bold text-brand-700 sm:text-2xl"
+            >
+              Fee Structure
+            </h2>
+            <div className="mx-auto mt-6 max-w-2xl overflow-x-auto rounded-xl border border-slate-200 bg-white">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Course</TableHead>
+                    <TableHead className="text-right">Fee</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {[...admissionFeeStructure]
+                    .sort((a, b) => a.order - b.order)
+                    .map((row) => (
+                      <TableRow key={row.course}>
+                        <TableCell className="font-medium">{row.course}</TableCell>
+                        <TableCell className="text-right">
+                          <a
+                            href={row.fileUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-sm font-semibold text-brand-700 hover:underline"
+                          >
+                            Download
+                          </a>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                </TableBody>
+              </Table>
+            </div>
+          </section>
 
           <section
             className="flex flex-wrap justify-center gap-4 sm:gap-6"

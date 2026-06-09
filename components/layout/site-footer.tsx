@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink, Mail, MapPin, Phone } from "lucide-react";
 import { siteSettings } from "@/data/site-data";
+import { gmailComposeUrl } from "@/lib/email-links";
 
 /** Pages not listed in the main navbar */
 const FOOTER_LINKS = [
@@ -106,7 +107,9 @@ export function SiteFooter() {
               {primaryEmail ? (
                 <li>
                   <a
-                    href={`mailto:${primaryEmail}`}
+                    href={gmailComposeUrl(primaryEmail)}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-start gap-2 break-all transition-colors hover:text-white"
                   >
                     <Mail className="mt-0.5 h-4 w-4 shrink-0 text-brand-400" aria-hidden />

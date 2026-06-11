@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { admissionTracks, getAdmissionTrack } from "@/data/site-data";
 import { ADMISSION_SLUGS } from "@/lib/constants";
 import { HtmlBlock } from "@/components/content/html-block";
+import { PageShell } from "@/components/layout/page-shell";
 import { ExternalLink, FileDown } from "lucide-react";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -29,9 +30,17 @@ export default async function AdmissionTrackPage({ params }: Props) {
   const downloads = track.downloads ?? [];
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
-      <h1 className="text-3xl font-bold text-brand-950">{track.title}</h1>
-      <div className="mt-10 space-y-10">
+    <PageShell
+      eyebrow="Admissions"
+      title={track.title}
+      breadcrumbs={[
+        { label: "Home", href: "/" },
+        { label: "Admission", href: "/admission" },
+        { label: track.title },
+      ]}
+      maxWidth="max-w-4xl"
+    >
+      <div className="space-y-10">
         <section>
           <h2 className="text-xl font-semibold text-brand-900">Eligibility</h2>
           <div className="cms-content mt-3">
@@ -50,7 +59,7 @@ export default async function AdmissionTrackPage({ params }: Props) {
             <HtmlBlock html={track.feeStructure} />
           </div>
         </section>
-        {links.length > 0 && (
+        {links.length > 0 ? (
           <section>
             <h2 className="text-xl font-semibold text-brand-900">Important links</h2>
             <ul className="mt-3 space-y-2">
@@ -69,8 +78,8 @@ export default async function AdmissionTrackPage({ params }: Props) {
               ))}
             </ul>
           </section>
-        )}
-        {downloads.length > 0 && (
+        ) : null}
+        {downloads.length > 0 ? (
           <section>
             <h2 className="text-xl font-semibold text-brand-900">Downloads</h2>
             <ul className="mt-3 space-y-2">
@@ -87,8 +96,8 @@ export default async function AdmissionTrackPage({ params }: Props) {
               ))}
             </ul>
           </section>
-        )}
+        ) : null}
       </div>
-    </div>
+    </PageShell>
   );
 }

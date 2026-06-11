@@ -1,5 +1,8 @@
-Place official PDF documents here (syllabus, forms, prospectus).
+Official PDFs mirrored locally from cep.ac.in (fee structure, EOA, student forms).
 
-Reference them in data/site-data.ts under studentForms, syllabi, or admissionTracks downloads.
+Refresh while production is still available:
+  npm run sync:images
 
-Example: /documents/bonafide-request.pdf → fileUrl: "/documents/bonafide-request.pdf"
+(or only documents: npm run sync:documents)
+
+Build verifies every /documents/... path in data/site-data.ts exists here.

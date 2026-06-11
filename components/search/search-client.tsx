@@ -24,9 +24,8 @@ export function SearchClient() {
   }, [q]);
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
-      <h1 className="text-3xl font-bold text-brand-950">Search</h1>
-      <form action="/search" method="get" className="mt-6 flex gap-2">
+    <div>
+      <form action="/search" method="get" className="flex gap-2">
         <Input
           name="q"
           defaultValue={q}

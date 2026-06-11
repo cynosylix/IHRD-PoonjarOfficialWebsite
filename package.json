@@ -5,11 +5,15 @@
   "scripts": {
     "dev": "node scripts/dev-server.cjs",
     "dev:clean": "node scripts/dev-server.cjs",
-    "prebuild": "node -e \"try{require('fs').rmSync('.next',{recursive:true,force:true})}catch(e){}\"",
-    "build": "next build",
+    "prebuild": "node scripts/verify-local-images.cjs && node scripts/verify-local-documents.cjs",
+    "build": "node scripts/build.cjs",
     "lint": "next lint",
     "optimize:images": "node scripts/optimize-images.cjs",
     "refresh:images": "node scripts/refresh-image-assets.cjs",
+    "sync:images": "node scripts/sync-all-images.cjs",
+    "verify:images": "node scripts/verify-local-images.cjs",
+    "sync:documents": "node scripts/sync-documents.cjs",
+    "verify:documents": "node scripts/verify-local-documents.cjs",
     "enhance:hero-bg": "node scripts/enhance-hero-bg.cjs"
   },
   "dependencies": {

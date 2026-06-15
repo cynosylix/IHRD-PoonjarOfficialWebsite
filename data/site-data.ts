@@ -654,17 +654,9 @@ export const iqacMembers = [
 ];
 
 export const academicCouncilPage = {
-  description: `<p>The Academic Council is a body which assists the Principal in decision making with regard to academic, courses of instruction, and rules of discipline of students. This body is constituted by the Principal. The council will be asked to consider and report on any question concerning the academic, courses of instruction and rules of discipline by the Principal. The council meets at least once in a month. The tenure of the members is three years. The organizational structure of Academic Council consists of the following members.</p>`,
+  description: `<p>The Academic Council is a body which assists the Principal in decision making with regard to academic, courses of instruction, and rules of discipline of students. This body is constituted by the Principal. The council will be asked to consider and report on any question concerning the academic, courses of instruction and rules of discipline by the Principal. The council meets at least once in a month. The tenure of the members is three years.</p>`,
   functions: `<ul><li>To discuss and adapt all important policy decisions before getting promulgated. The Principal can override any decision taken by the council in case of any contingency, on communication to the Academic Council.</li><li>To formulate the vision, mission and strategic plan of the college before being put up in the Board of Governors for approval.</li><li>To prepare academic calendar for the institution in tune with the University calendar.</li><li>To prepare information brochure for dissemination among the stake holders.</li><li>To discuss complaints regarding students and to suggest appropriate disciplinary actions.</li><li>To conduct periodic analysis of result upon declaration of the results of University Examinations.</li><li>To help the Principal in maintaining discipline and for the smooth conduct of academic and non-academic matters in the college.</li><li>To act as a liaisoning entity with various bodies like PTA, Alumni Association etc.</li></ul>`,
 };
-
-export const academicCouncilMembers = [
-  { name: "Dr. M V Rajesh", designation: "Principal (Chairperson)", order: 1 },
-  { name: "Heads of Departments", designation: "Members", order: 2 },
-  { name: "Senior Faculty Representatives", designation: "Members", order: 3 },
-  { name: "P.T.A. President", designation: "External Member", order: 4 },
-  { name: "Student Representatives", designation: "Members", order: 5 },
-];
 
 export const campusAlbum = [
   {

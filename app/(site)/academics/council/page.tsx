@@ -1,29 +1,21 @@
 import type { Metadata } from "next";
-import { academicCouncilMembers, academicCouncilPage, pageHeroImages } from "@/data/site-data";
+import { academicCouncilPage, pageHeroImages } from "@/data/site-data";
 import { HtmlBlock } from "@/components/content/html-block";
 import { PageBanner } from "@/components/layout/page-banner";
 import { PageHeroImage } from "@/components/layout/page-hero-image";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
-} from "@/components/ui/table";
 
 export const metadata: Metadata = {
   title: "Academic Council",
-  description: "Academic Council — roles, functions, and members.",
+  description: "Academic Council — roles and functions at College of Engineering Poonjar.",
 };
 
 export default function AcademicCouncilPage() {
-  const members = [...academicCouncilMembers].sort((a, b) => a.order - b.order);
-
   return (
     <div className="min-w-0">
       <PageBanner
         eyebrow="Academics"
         title="Academic Council"
-        description="Roles, functions, and members of the Academic Council."
+        description="Roles and functions of the Academic Council."
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Academics" },
@@ -49,23 +41,6 @@ export default function AcademicCouncilPage() {
               <HtmlBlock html={academicCouncilPage.functions} />
             </div>
           </div>
-          <section className="mt-12">
-            <h2 className="text-xl font-semibold text-brand-900">Members</h2>
-            <div className="mt-4 overflow-x-auto rounded-xl border border-slate-200 bg-white">
-              <Table>
-                <TableBody>
-                  {members.map((m) => (
-                    <TableRow key={m.order}>
-                      <TableCell className="w-[min(100%,20rem)] font-medium text-brand-900">
-                        {m.name}
-                      </TableCell>
-                      <TableCell className="text-slate-600">{m.designation}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </div>
-          </section>
         </div>
       </div>
     </div>

@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
 import { academicCouncilMembers, academicCouncilPage, pageHeroImages } from "@/data/site-data";
 import { HtmlBlock } from "@/components/content/html-block";
-import { MemberGrid } from "@/components/content/member-grid";
 import { PageBanner } from "@/components/layout/page-banner";
 import { PageHeroImage } from "@/components/layout/page-hero-image";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
+} from "@/components/ui/table";
 
 export const metadata: Metadata = {
   title: "Academic Council",
@@ -44,14 +49,23 @@ export default function AcademicCouncilPage() {
               <HtmlBlock html={academicCouncilPage.functions} />
             </div>
           </div>
-          <MemberGrid
-            title="Members"
-            members={members.map((m) => ({
-              name: m.name,
-              lines: [m.designation],
-              order: m.order,
-            }))}
-          />
+          <section className="mt-12">
+            <h2 className="text-xl font-semibold text-brand-900">Members</h2>
+            <div className="mt-4 overflow-x-auto rounded-xl border border-slate-200 bg-white">
+              <Table>
+                <TableBody>
+                  {members.map((m) => (
+                    <TableRow key={m.order}>
+                      <TableCell className="w-[min(100%,20rem)] font-medium text-brand-900">
+                        {m.name}
+                      </TableCell>
+                      <TableCell className="text-slate-600">{m.designation}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          </section>
         </div>
       </div>
     </div>

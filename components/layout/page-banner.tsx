@@ -28,21 +28,12 @@ export function PageBanner({
   className,
 }: PageBannerProps) {
   return (
-    <header
-      className={cn(
-        "relative overflow-hidden bg-gradient-to-br from-brand-900 via-brand-800 to-brand-700 text-white",
-        className,
-      )}
-    >
-      <div className="pointer-events-none absolute inset-0 opacity-25">
-        <div className="absolute -left-16 top-0 h-56 w-56 rounded-full bg-brand-400 blur-3xl" />
-        <div className="absolute bottom-0 right-0 h-64 w-64 rounded-full bg-brand-300 blur-3xl" />
-      </div>
-      <div className="relative mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-14">
+    <header className={cn("border-b border-[#1E293B] bg-[#0F172A] text-white", className)}>
+      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-14">
         {breadcrumbs && breadcrumbs.length > 0 ? (
           <nav
             className={cn(
-              "flex flex-wrap items-center gap-1 text-xs font-medium text-white/70 sm:text-sm",
+              "flex flex-wrap items-center gap-1 text-xs text-slate-400 sm:text-sm",
               centered && "justify-center",
             )}
             aria-label="Breadcrumb"
@@ -50,14 +41,18 @@ export function PageBanner({
             {breadcrumbs.map((crumb, index) => (
               <Fragment key={`${crumb.label}-${index}`}>
                 {index > 0 ? (
-                  <ChevronRight className="h-3.5 w-3.5 shrink-0 opacity-60" aria-hidden />
+                  <ChevronRight className="h-3.5 w-3.5 shrink-0" aria-hidden />
                 ) : null}
                 {crumb.href ? (
-                  <Link href={crumb.href} className="transition hover:text-white">
+                  <Link href={crumb.href} className="transition-colors hover:text-white">
                     {crumb.label}
                   </Link>
                 ) : (
-                  <span className={index === breadcrumbs.length - 1 ? "text-white" : "text-white/50"}>
+                  <span
+                    className={
+                      index === breadcrumbs.length - 1 ? "text-slate-200" : "text-slate-500"
+                    }
+                  >
                     {crumb.label}
                   </span>
                 )}
@@ -67,25 +62,25 @@ export function PageBanner({
         ) : null}
         <div
           className={cn(
-            "mt-6",
+            breadcrumbs && breadcrumbs.length > 0 ? "mt-5" : "",
             centered ? "mx-auto max-w-3xl text-center" : "max-w-2xl",
           )}
         >
           {eyebrow ? (
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-200">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#D4A017]">
               {eyebrow}
             </p>
           ) : null}
           <h1
             className={cn(
-              "text-2xl font-bold tracking-tight break-words sm:text-3xl md:text-4xl",
+              "font-display text-[clamp(1.75rem,3vw+0.5rem,2.5rem)] font-bold leading-tight tracking-tight",
               eyebrow && "mt-2",
             )}
           >
             {title}
           </h1>
           {description ? (
-            <p className="mt-4 text-sm leading-relaxed text-brand-100 sm:text-base">
+            <p className="mt-4 max-w-prose text-sm leading-relaxed text-slate-300 sm:text-base">
               {description}
             </p>
           ) : null}

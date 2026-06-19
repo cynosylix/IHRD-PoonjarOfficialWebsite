@@ -4,13 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import {
-  ChevronDown,
-  Menu,
-  Search,
-  X,
-} from "lucide-react";
+import { ChevronDown, Menu, Search, X } from "lucide-react";
 import { ABOUT_DROPDOWN, MAIN_NAV } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
@@ -23,21 +17,22 @@ function NavLink({
   href: string;
   children: React.ReactNode;
   onClick?: () => void;
-  /** Mobile drawer: nested items under a section label */
   indent?: boolean;
 }) {
   const pathname = usePathname();
-  const active = pathname === href || (href !== "/" && pathname.startsWith(href));
+  const active =
+    pathname === href || (href !== "/" && pathname.startsWith(href));
+
   return (
     <Link
       href={href}
       onClick={onClick}
       className={cn(
-        "inline-flex min-h-10 w-full items-center rounded-lg px-3 text-sm font-medium transition-colors lg:h-10 lg:w-auto lg:whitespace-nowrap lg:px-3.5",
-        indent && "pl-8 lg:pl-3.5",
+        "inline-flex min-h-10 w-full items-center px-3 py-2 text-sm font-medium transition-colors lg:h-10 lg:w-auto lg:whitespace-nowrap lg:px-3",
+        indent && "pl-8 lg:pl-6",
         active
-          ? "bg-brand-100 text-brand-900"
-          : "text-slate-700 hover:bg-brand-50 hover:text-brand-900",
+          ? "text-[#0F172A] lg:border-b-2 lg:border-[#D4A017]"
+          : "text-[#475569] hover:text-[#0F172A]",
       )}
     >
       {children}
@@ -68,27 +63,23 @@ export function SiteNavbar() {
   }, [aboutOpen]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur-md">
-      <div className="mx-auto flex max-w-6xl min-w-0 items-center gap-3 px-3 py-2.5 sm:gap-4 sm:px-6 sm:py-3 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-6 lg:px-8">
-        <div className="flex min-w-0 flex-1 justify-start lg:min-w-0 lg:flex-none">
-          <Link
-            href="/"
-            className="flex min-w-0 items-center"
-            onClick={closeMobile}
-          >
+    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white">
+      <div className="mx-auto flex max-w-6xl min-w-0 items-center gap-3 px-4 py-3 sm:px-6 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-6 lg:px-8">
+        <div className="flex min-w-0 flex-1 justify-start lg:flex-none">
+          <Link href="/" className="flex min-w-0 items-center" onClick={closeMobile}>
             <Image
               src="/images/logo.webp"
               alt="College of Engineering Poonjar"
               width={1000}
               height={413}
               priority
-              className="h-9 w-auto max-w-[min(58vw,260px)] object-contain object-left sm:h-10 sm:max-w-[min(50vw,300px)] lg:max-w-[min(100%,340px)]"
+              className="h-9 w-auto max-w-[min(58vw,260px)] object-contain object-left sm:h-10 sm:max-w-[min(50vw,300px)] lg:max-w-[min(100%,320px)]"
             />
           </Link>
         </div>
 
         <nav
-          className="hidden shrink-0 items-center gap-0.5 lg:flex"
+          className="hidden shrink-0 items-center gap-1 lg:flex"
           aria-label="Main"
         >
           <NavLink href="/">Home</NavLink>
@@ -102,8 +93,8 @@ export function SiteNavbar() {
               id="about-academics-trigger"
               aria-controls="about-academics-menu"
               className={cn(
-                "inline-flex h-10 items-center gap-1 rounded-lg px-3 text-sm font-medium text-slate-700 transition-colors hover:bg-brand-50 hover:text-brand-900 lg:px-3.5",
-                aboutOpen && "bg-brand-50 text-brand-900",
+                "inline-flex h-10 items-center gap-1 px-3 text-sm font-medium text-[#475569] transition-colors hover:text-[#0F172A] lg:px-3",
+                aboutOpen && "text-[#0F172A]",
               )}
               aria-expanded={aboutOpen}
               aria-haspopup="true"
@@ -112,37 +103,31 @@ export function SiteNavbar() {
               <span className="whitespace-nowrap">About / Academics</span>
               <ChevronDown
                 className={cn(
-                  "h-4 w-4 shrink-0 opacity-70 transition-transform duration-200",
+                  "h-4 w-4 shrink-0 transition-transform",
                   aboutOpen && "rotate-180",
                 )}
               />
             </button>
-            <AnimatePresence>
-              {aboutOpen && (
-                <motion.div
-                  id="about-academics-menu"
-                  role="menu"
-                  aria-labelledby="about-academics-trigger"
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 8 }}
-                  transition={{ duration: 0.15 }}
-                  className="absolute left-1/2 top-full z-50 mt-1.5 min-w-[260px] -translate-x-1/2 rounded-xl border border-slate-200 bg-white py-1.5 shadow-card"
-                >
-                  {ABOUT_DROPDOWN.map((item) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      role="menuitem"
-                      onClick={() => setAboutOpen(false)}
-                      className="block px-4 py-2.5 text-sm leading-snug text-slate-700 transition-colors hover:bg-brand-50 hover:text-brand-900"
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {aboutOpen && (
+              <div
+                id="about-academics-menu"
+                role="menu"
+                aria-labelledby="about-academics-trigger"
+                className="absolute left-1/2 top-full z-50 mt-0 min-w-[260px] -translate-x-1/2 border border-slate-200 bg-white py-1 shadow-md"
+              >
+                {ABOUT_DROPDOWN.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    role="menuitem"
+                    onClick={() => setAboutOpen(false)}
+                    className="block px-4 py-2.5 text-sm text-[#475569] transition-colors hover:bg-slate-50 hover:text-[#0F172A]"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
           {MAIN_NAV.map((item) => (
             <NavLink key={item.href} href={item.href}>
@@ -154,14 +139,14 @@ export function SiteNavbar() {
         <div className="flex flex-1 items-center justify-end gap-2 lg:flex-none lg:justify-self-end">
           <Link
             href="/search"
-            className="hidden h-10 w-10 items-center justify-center rounded-lg border border-slate-200 text-slate-700 transition-colors hover:bg-slate-50 lg:inline-flex"
+            className="hidden h-9 w-9 items-center justify-center border border-slate-200 text-[#475569] transition-colors hover:border-slate-300 hover:text-[#0F172A] lg:inline-flex"
             aria-label="Search site"
           >
             <Search className="h-4 w-4" />
           </Link>
           <button
             type="button"
-            className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-slate-200 text-slate-700 transition-colors hover:bg-slate-50 lg:hidden"
+            className="inline-flex h-9 w-9 shrink-0 items-center justify-center border border-slate-200 text-[#475569] transition-colors hover:border-slate-300 hover:text-[#0F172A] lg:hidden"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             onClick={() => setOpen(!open)}
@@ -171,51 +156,42 @@ export function SiteNavbar() {
         </div>
       </div>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="border-t border-slate-200 bg-white lg:hidden"
-          >
-            <div className="flex max-h-[min(70vh,100dvh)] flex-col gap-0 overflow-y-auto overscroll-contain px-4 py-4 pb-8">
-              <div className="flex flex-col gap-0.5 border-b border-slate-100 pb-4">
-                <NavLink href="/" onClick={closeMobile}>
-                  Home
-                </NavLink>
-              </div>
-              <div className="border-b border-slate-100 py-4">
-                <p className="mb-2 px-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500">
-                  About / Academics
-                </p>
-                <div className="flex flex-col gap-0.5">
-                  {ABOUT_DROPDOWN.map((item) => (
-                    <NavLink
-                      key={item.href}
-                      href={item.href}
-                      indent
-                      onClick={closeMobile}
-                    >
-                      {item.label}
-                    </NavLink>
-                  ))}
-                </div>
-              </div>
-              <div className="flex flex-col gap-0.5 border-b border-slate-100 py-4">
-                {MAIN_NAV.map((item) => (
-                  <NavLink key={item.href} href={item.href} onClick={closeMobile}>
-                    {item.label}
-                  </NavLink>
-                ))}
-                <NavLink href="/search" onClick={closeMobile}>
-                  Search
-                </NavLink>
-              </div>
+      {open && (
+        <div className="border-t border-slate-200 bg-white lg:hidden">
+          <div className="flex max-h-[min(70vh,100dvh)] flex-col overflow-y-auto px-4 py-4 pb-8">
+            <div className="border-b border-slate-100 pb-3">
+              <NavLink href="/" onClick={closeMobile}>
+                Home
+              </NavLink>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            <div className="border-b border-slate-100 py-3">
+              <p className="mb-2 px-3 text-[11px] font-semibold uppercase tracking-wider text-[#94A3B8]">
+                About / Academics
+              </p>
+              {ABOUT_DROPDOWN.map((item) => (
+                <NavLink
+                  key={item.href}
+                  href={item.href}
+                  indent
+                  onClick={closeMobile}
+                >
+                  {item.label}
+                </NavLink>
+              ))}
+            </div>
+            <div className="py-3">
+              {MAIN_NAV.map((item) => (
+                <NavLink key={item.href} href={item.href} onClick={closeMobile}>
+                  {item.label}
+                </NavLink>
+              ))}
+              <NavLink href="/search" onClick={closeMobile}>
+                Search
+              </NavLink>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

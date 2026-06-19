@@ -4,7 +4,6 @@ import { ExternalLink, Mail, MapPin, Phone } from "lucide-react";
 import { siteSettings } from "@/data/site-data";
 import { gmailComposeUrl } from "@/lib/email-links";
 
-/** Pages not listed in the main navbar */
 const FOOTER_LINKS = [
   { href: "/admission", label: "Admission" },
   { href: "/academics/programs", label: "Programmes" },
@@ -27,7 +26,7 @@ const AFFILIATIONS = [
 
 function FooterHeading({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-300">
+    <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#D4A017]">
       {children}
     </p>
   );
@@ -42,9 +41,9 @@ export function SiteFooter() {
   const [landline, mobile] = siteSettings.phones;
 
   return (
-    <footer className="border-t border-brand-800/60 bg-brand-950 text-brand-50">
-      <div className="mx-auto max-w-6xl min-w-0 px-4 py-12 sm:px-6 lg:px-8 lg:py-14">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-12 lg:gap-8 xl:gap-10">
+    <footer className="border-t border-[#1E293B] bg-[#0F172A] text-slate-300">
+      <div className="mx-auto max-w-6xl min-w-0 px-4 py-14 sm:px-6 lg:px-8">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-12 lg:gap-10">
           <div className="min-w-0 sm:col-span-2 lg:col-span-4">
             <Link href="/" className="inline-block">
               <Image
@@ -55,10 +54,10 @@ export function SiteFooter() {
                 className="h-auto w-[108px] object-contain sm:w-[120px]"
               />
             </Link>
-            <p className="mt-4 max-w-sm text-sm leading-relaxed text-brand-200">
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-slate-400">
               {siteSettings.tagline}
             </p>
-            <p className="mt-2 text-xs leading-relaxed text-brand-400">
+            <p className="mt-2 text-xs leading-relaxed text-slate-500">
               An institution under IHRD, Government of Kerala
             </p>
           </div>
@@ -70,7 +69,7 @@ export function SiteFooter() {
                 <li key={href}>
                   <Link
                     href={href}
-                    className="text-sm text-brand-100 transition-colors hover:text-white"
+                    className="text-sm text-slate-400 transition-colors hover:text-white"
                   >
                     {label}
                   </Link>
@@ -81,14 +80,14 @@ export function SiteFooter() {
 
           <div className="min-w-0 lg:col-span-2">
             <FooterHeading>Contact</FooterHeading>
-            <ul className="mt-4 space-y-3 text-sm text-brand-100">
+            <ul className="mt-4 space-y-3 text-sm text-slate-400">
               {landline ? (
                 <li>
                   <a
                     href={telHref(landline)}
                     className="inline-flex items-center gap-2 transition-colors hover:text-white"
                   >
-                    <Phone className="h-4 w-4 shrink-0 text-brand-400" aria-hidden />
+                    <Phone className="h-4 w-4 shrink-0" aria-hidden />
                     {landline}
                   </a>
                 </li>
@@ -99,7 +98,7 @@ export function SiteFooter() {
                     href={telHref(mobile)}
                     className="inline-flex items-center gap-2 transition-colors hover:text-white"
                   >
-                    <Phone className="h-4 w-4 shrink-0 text-brand-400" aria-hidden />
+                    <Phone className="h-4 w-4 shrink-0" aria-hidden />
                     {mobile}
                   </a>
                 </li>
@@ -112,7 +111,7 @@ export function SiteFooter() {
                     rel="noopener noreferrer"
                     className="inline-flex items-start gap-2 break-all transition-colors hover:text-white"
                   >
-                    <Mail className="mt-0.5 h-4 w-4 shrink-0 text-brand-400" aria-hidden />
+                    <Mail className="mt-0.5 h-4 w-4 shrink-0" aria-hidden />
                     {primaryEmail}
                   </a>
                 </li>
@@ -120,7 +119,7 @@ export function SiteFooter() {
             </ul>
             <Link
               href="/contact"
-              className="mt-4 inline-flex text-sm font-medium text-brand-200 underline-offset-4 transition-colors hover:text-white hover:underline"
+              className="mt-4 inline-flex text-sm text-slate-400 underline-offset-4 transition-colors hover:text-white hover:underline"
             >
               Full contact details
             </Link>
@@ -128,29 +127,26 @@ export function SiteFooter() {
 
           <div className="min-w-0 sm:col-span-2 lg:col-span-3">
             <FooterHeading>Campus</FooterHeading>
-            <div className="mt-4 flex items-start gap-2.5 text-sm leading-relaxed text-brand-100">
-              <MapPin
-                className="mt-0.5 h-4 w-4 shrink-0 text-brand-400"
-                aria-hidden
-              />
+            <div className="mt-4 flex items-start gap-2.5 text-sm leading-relaxed text-slate-400">
+              <MapPin className="mt-0.5 h-4 w-4 shrink-0" aria-hidden />
               <address className="not-italic">{siteSettings.address}</address>
             </div>
           </div>
         </div>
 
-        <div className="mt-10 border-t border-brand-800/80 pt-8">
+        <div className="mt-12 border-t border-[#1E293B] pt-8">
           <FooterHeading>Affiliated to</FooterHeading>
-          <ul className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-x-6 sm:gap-y-2">
+          <ul className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-x-6">
             {AFFILIATIONS.map(({ href, label }) => (
               <li key={href}>
                 <a
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm text-brand-200 transition-colors hover:text-white"
+                  className="inline-flex items-center gap-1.5 text-sm text-slate-400 transition-colors hover:text-white"
                 >
                   {label}
-                  <ExternalLink className="h-3.5 w-3.5 shrink-0 opacity-70" aria-hidden />
+                  <ExternalLink className="h-3.5 w-3.5 shrink-0 opacity-60" aria-hidden />
                 </a>
               </li>
             ))}
@@ -158,13 +154,13 @@ export function SiteFooter() {
         </div>
       </div>
 
-      <div className="border-t border-brand-800/80 bg-brand-900/40">
-        <div className="mx-auto flex max-w-6xl min-w-0 flex-col items-center justify-between gap-3 px-4 py-5 text-xs text-brand-300 sm:flex-row sm:px-6 lg:px-8">
+      <div className="border-t border-[#1E293B] bg-[#0A1120]">
+        <div className="mx-auto flex max-w-6xl min-w-0 flex-col items-center justify-between gap-3 px-4 py-5 text-xs text-slate-500 sm:flex-row sm:px-6 lg:px-8">
           <p suppressHydrationWarning className="text-center sm:text-left">
             © {new Date().getFullYear()} {siteSettings.collegeName}. All rights
             reserved.
           </p>
-          <Link href="/search" className="transition-colors hover:text-white">
+          <Link href="/search" className="transition-colors hover:text-slate-300">
             Search
           </Link>
         </div>

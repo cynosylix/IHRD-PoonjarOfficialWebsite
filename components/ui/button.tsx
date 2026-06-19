@@ -10,7 +10,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = "primary", size = "md", ...props }, ref) => {
     const variants: Record<NonNullable<ButtonProps["variant"]>, string> = {
       primary:
-        "bg-brand-600 text-white hover:bg-brand-700 shadow-sm disabled:opacity-50",
+        "bg-gradient-to-r from-brand-800 to-brand-700 text-white hover:from-brand-900 hover:to-brand-800 shadow-sm transition-all duration-300 hover:shadow-card disabled:opacity-50",
       secondary: "bg-slate-800 text-white hover:bg-slate-900",
       outline:
         "border border-brand-200 bg-white text-brand-800 hover:bg-brand-50",

@@ -1,11 +1,10 @@
 import Link from "next/link";
 import { Fragment } from "react";
-import { ArrowRight, ChevronRight, Megaphone, Newspaper } from "lucide-react";
+import { ArrowRight, ChevronRight, Megaphone } from "lucide-react";
 import type { Announcement } from "@/data/site-data";
 import { format } from "@/lib/format";
 import { cn } from "@/lib/utils";
 
-/** Renders `**bold**` segments as <strong> (trusted static copy from site data). */
 function RichInline({ text }: { text: string }) {
   const segments = text.split(/(\*\*[^*]+\*\*)/g);
   return (
@@ -30,213 +29,148 @@ export function AnnouncementsSpotlight({
 
   return (
     <section
-      className="relative overflow-hidden border-t border-slate-200/90 bg-gradient-to-b from-slate-50 via-white to-brand-50/35 py-14 sm:py-16 md:py-20"
+      className="relative overflow-hidden border-b border-slate-200/60 py-16 sm:py-20 lg:py-24"
       aria-labelledby="announcements-heading"
+      style={{
+        background: "linear-gradient(180deg, #F8FAFF 0%, #EEF4FF 100%)",
+      }}
     >
-      <div className="pointer-events-none absolute inset-0 opacity-[0.35]">
-        <div className="absolute -right-24 top-0 h-72 w-72 rounded-full bg-brand-200/40 blur-3xl" />
-        <div className="absolute -left-20 bottom-0 h-64 w-64 rounded-full bg-brand-300/25 blur-3xl" />
+      {/* Animated gradient blobs */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+        <div className="announcement-blob-drift absolute -left-20 top-[10%] h-72 w-72 rounded-full bg-[#3B82F6]/[0.07] blur-3xl" />
+        <div className="announcement-blob-drift-delayed absolute -right-16 top-[40%] h-64 w-64 rounded-full bg-[#1E3A8A]/[0.06] blur-3xl" />
+        <div className="announcement-blob-drift absolute bottom-[5%] left-[35%] h-56 w-56 rounded-full bg-[#60A5FA]/[0.05] blur-3xl" />
       </div>
 
       <div className="relative mx-auto max-w-6xl min-w-0 px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between sm:gap-8">
-          <div className="flex min-w-0 gap-4 sm:gap-5">
-            <div
-              className="hidden h-[4.5rem] w-1 shrink-0 rounded-full bg-gradient-to-b from-brand-600 to-brand-800 sm:block sm:h-[5.25rem]"
-              aria-hidden
-            />
-            <div className="min-w-0">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-200/90 bg-white/90 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-brand-700 shadow-sm sm:text-[11px]">
-                  <Newspaper className="h-3 w-3 text-brand-600" aria-hidden />
-                  Official notices
-                </span>
-                {count > 0 && (
-                  <span className="text-xs font-medium tabular-nums text-slate-500">
-                    {count} update{count === 1 ? "" : "s"}
-                  </span>
-                )}
-              </div>
-              <h2
-                id="announcements-heading"
-                className="mt-3 text-2xl font-bold tracking-tight text-brand-950 sm:text-3xl md:text-[2rem] md:leading-tight"
-              >
-                Latest announcements
-              </h2>
-              <p className="mt-2 max-w-xl text-sm leading-relaxed text-slate-600 sm:text-[15px]">
-                Timely information for students, parents, and visitors — admissions,
-                schedules, and campus updates.
-              </p>
-            </div>
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <div className="min-w-0">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#D4A017]">
+              Official notices
+            </p>
+            <h2
+              id="announcements-heading"
+              className="mt-2 font-display text-[clamp(1.5rem,2.5vw+0.5rem,2.25rem)] font-bold tracking-tight text-[#0F172A]"
+            >
+              Latest announcements
+            </h2>
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-[#64748B] sm:text-base">
+              Timely information for students, parents, and visitors — admissions,
+              schedules, and campus updates.
+            </p>
           </div>
           {count > 0 && (
             <Link
               href="/notices"
-              className="group inline-flex shrink-0 items-center justify-center gap-2 self-start rounded-xl border border-brand-200 bg-white px-4 py-2.5 text-sm font-semibold text-brand-800 shadow-sm transition hover:border-brand-300 hover:bg-brand-50 hover:shadow-md sm:self-auto"
+              className="inline-flex shrink-0 items-center gap-2 self-start border border-[#1E3A8A]/20 bg-white/80 px-4 py-2.5 text-sm font-semibold text-[#0B1F5B] shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-[#1E3A8A] hover:bg-white hover:shadow-md sm:self-auto"
             >
               View all notices
-              <ArrowRight
-                className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-                aria-hidden
-              />
+              <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
           )}
         </div>
 
         {count === 0 ? (
-          <div className="mt-12 rounded-2xl border border-dashed border-slate-300 bg-white/80 px-6 py-12 text-center shadow-sm">
+          <div className="mt-12 border border-dashed border-slate-300/80 bg-white/70 px-6 py-12 text-center backdrop-blur-sm">
             <Megaphone
               className="mx-auto h-10 w-10 text-slate-300"
               strokeWidth={1.25}
               aria-hidden
             />
-            <p className="mt-4 text-sm font-medium text-slate-700">No announcements yet</p>
-            <p className="mt-1 text-xs text-slate-500">
+            <p className="mt-4 text-sm font-medium text-[#1E293B]">No announcements yet</p>
+            <p className="mt-1 text-xs text-[#64748B]">
               New notices will appear here when published.
             </p>
           </div>
         ) : (
-          <div className="mt-10 flex flex-col gap-5 lg:mt-12 lg:gap-6">
+          <div className="mt-10 flex flex-col gap-10 sm:mt-12 sm:gap-12">
             {featured && (
-              <article
-                className={cn(
-                  "relative overflow-hidden rounded-2xl border border-brand-800/50 bg-gradient-to-br from-brand-950 via-brand-900 to-brand-950 text-white shadow-card ring-1 ring-white/10",
-                  rest.length === 0 && "mx-auto max-w-3xl",
-                )}
-              >
-                <div className="pointer-events-none absolute -right-16 top-0 h-48 w-48 rounded-full bg-brand-500/20 blur-3xl" />
-                <div className="pointer-events-none absolute bottom-0 left-1/4 h-32 w-64 rounded-full bg-brand-400/10 blur-2xl" />
-
-                <div className="relative p-6 sm:p-8 md:p-9">
-                  <div className="flex flex-col gap-6 sm:flex-row sm:gap-8">
+              <div className="announcement-featured-float mx-auto w-full max-w-[1000px]">
+                <Link href={`/notices#${featured.id}`} className="group block">
+                  <article
+                    className={cn(
+                      "relative overflow-hidden rounded-none border border-slate-200/90 border-l-[5px] border-l-[#1E3A8A] bg-white p-6 shadow-[0_8px_30px_-10px_rgba(11,31,91,0.14)] transition-all duration-300 ease-out sm:p-7",
+                      "group-hover:border-[#1E3A8A]/40 group-hover:border-l-[#2563EB] group-hover:bg-white group-hover:shadow-[0_16px_40px_-12px_rgba(11,31,91,0.2)]",
+                    )}
+                  >
                     <div
-                      className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-white/10 backdrop-blur-sm sm:h-14 sm:w-14"
+                      className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-[#D4A017] via-[#E8B923] to-[#D4A017]/30 transition-opacity duration-300 group-hover:opacity-100"
                       aria-hidden
-                    >
-                      <Megaphone
-                        className="h-6 w-6 text-brand-100 sm:h-7 sm:w-7"
-                        strokeWidth={1.5}
-                      />
+                    />
+
+                    <div className="flex flex-wrap items-center gap-2.5">
+                      <span className="inline-flex bg-[#0B1F5B] px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white sm:text-[11px]">
+                        Latest Update
+                      </span>
+                      <span className="inline-flex border border-[#D4A017]/60 bg-[#FFFBEB] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#92400E]">
+                        New
+                      </span>
                     </div>
-                    <div className="min-w-0 flex-1">
-                      {featured.publishedAt && (
-                        <time
-                          className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold tabular-nums text-brand-100 backdrop-blur-sm sm:text-[13px]"
-                          dateTime={featured.publishedAt}
-                        >
-                          {format.dateLong(featured.publishedAt)}
-                        </time>
-                      )}
-                      <div
-                        className={cn(
-                          "space-y-5 text-sm leading-relaxed text-white/95 sm:text-[15px] sm:leading-relaxed md:text-base",
-                          featured.publishedAt ? "mt-4" : "",
-                        )}
+
+                    {featured.publishedAt && (
+                      <time
+                        dateTime={featured.publishedAt}
+                        className="mt-4 inline-block border border-slate-200 bg-[#F8FAFF] px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-[#1E3A8A]"
                       >
+                        {format.dateLong(featured.publishedAt)}
+                      </time>
+                    )}
+
+                    <h3 className="mt-3 font-display text-xl font-bold leading-snug text-[#0F172A] transition-colors duration-300 group-hover:text-[#1E3A8A] sm:text-[1.35rem]">
+                      {featured.title}
+                    </h3>
+
+                    {(featured.spotlight?.body || featured.excerpt) && (
+                      <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-[#64748B] sm:text-[15px] sm:leading-relaxed">
                         {featured.spotlight ? (
-                          <>
-                            <p className="text-[15px] font-medium leading-relaxed text-white sm:text-base">
-                              <RichInline text={featured.spotlight.body} />
-                            </p>
-                            <div className="border-t border-white/15 pt-5">
-                              <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-200/90">
-                                Programmes covered
-                              </p>
-                              <ul className="grid list-none grid-cols-1 gap-3 p-0 sm:grid-cols-2">
-                                {featured.spotlight.programLines.map((line, idx) => (
-                                  <li
-                                    key={idx}
-                                    className="rounded-xl border border-white/15 bg-white/10 p-3.5 text-sm leading-snug shadow-sm backdrop-blur-sm sm:p-4"
-                                  >
-                                    <div className="flex gap-2.5">
-                                      <ChevronRight
-                                        className="mt-0.5 h-4 w-4 shrink-0 text-brand-300"
-                                        aria-hidden
-                                      />
-                                      <span>
-                                        <RichInline text={line} />
-                                      </span>
-                                    </div>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          </>
+                          <RichInline text={featured.spotlight.body} />
                         ) : (
-                          <>
-                            <p className="text-lg font-semibold text-white sm:text-xl">
-                              {featured.title}
-                            </p>
-                            {featured.excerpt && (
-                              <p className="text-white/88">{featured.excerpt}</p>
-                            )}
-                          </>
+                          featured.excerpt
                         )}
-                      </div>
-                      <div className="mt-6 flex flex-wrap gap-3">
-                        <Link
-                          href={`/notices#${featured.id}`}
-                          className="inline-flex items-center gap-1.5 rounded-lg bg-white px-4 py-2 text-sm font-semibold text-brand-900 shadow-md transition hover:bg-brand-50"
-                        >
-                          Full notice
-                          <ArrowRight className="h-3.5 w-3.5" aria-hidden />
-                        </Link>
-                        <Link
-                          href="/admission"
-                          className="inline-flex items-center gap-1.5 rounded-lg border border-white/25 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/10"
-                        >
-                          Admissions
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </article>
+                      </p>
+                    )}
+                  </article>
+                </Link>
+              </div>
             )}
 
             {rest.length > 0 && (
-              <div>
-                <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+              <div className="mx-auto w-full max-w-[1000px]">
+                <p className="mb-6 text-xs font-semibold uppercase tracking-wider text-[#64748B]">
                   More updates
                 </p>
-                <ul className="grid list-none grid-cols-1 gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3">
+                <ul className="list-none divide-y divide-slate-200/80 p-0">
                   {rest.map((a) => (
-                    <li key={a.id} className="min-w-0">
+                    <li key={a.id}>
                       <Link
                         href={`/notices#${a.id}`}
-                        className="group flex h-full min-h-[10.5rem] flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-white p-5 shadow-card transition hover:border-brand-200 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600 sm:min-h-[11rem] sm:p-6"
+                        className="group flex flex-col gap-2 py-6 transition-colors duration-300 first:pt-0 last:pb-0 sm:flex-row sm:items-start sm:justify-between sm:gap-8"
                       >
-                        <div
-                          className="h-1 w-12 shrink-0 rounded-full bg-gradient-to-r from-brand-600 to-brand-700"
-                          aria-hidden
-                        />
-                        <div className="mt-4 flex min-w-0 flex-1 flex-col">
+                        <div className="min-w-0 flex-1">
                           {a.publishedAt && (
                             <time
-                              className="inline-flex w-fit items-center rounded-md border border-slate-200 bg-slate-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-slate-600 sm:text-[11px]"
+                              className="text-[11px] font-semibold uppercase tracking-wider text-[#1E3A8A]/70"
                               dateTime={a.publishedAt}
                             >
                               {format.dateLong(a.publishedAt)}
                             </time>
                           )}
-                          <h3 className="mt-3 text-sm font-bold leading-snug text-brand-950 transition group-hover:text-brand-700 sm:text-[15px]">
+                          <h3 className="mt-2 text-base font-semibold leading-snug text-[#0F172A] transition-colors duration-300 group-hover:text-[#1E3A8A]">
                             {a.title}
                           </h3>
                           {a.excerpt ? (
-                            <p className="mt-2 line-clamp-3 flex-1 text-xs leading-relaxed text-slate-600 sm:text-[13px]">
+                            <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-[#64748B]">
                               {a.excerpt}
                             </p>
-                          ) : (
-                            <div className="flex-1" />
-                          )}
-                          <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-brand-700">
-                            Read notice
-                            <ChevronRight
-                              className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"
-                              aria-hidden
-                            />
-                          </span>
+                          ) : null}
                         </div>
+                        <span className="inline-flex shrink-0 items-center gap-1 text-sm font-medium text-[#0B1F5B] transition-colors group-hover:text-[#1E3A8A]">
+                          Read notice
+                          <ChevronRight
+                            className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5"
+                            aria-hidden
+                          />
+                        </span>
                       </Link>
                     </li>
                   ))}

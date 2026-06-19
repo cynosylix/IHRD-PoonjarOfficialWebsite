@@ -1,98 +1,59 @@
+"use client";
+
 import Image from "next/image";
-
 import Link from "next/link";
-
 import { ArrowRight } from "lucide-react";
-
-import { aboutInstitution } from "@/data/site-data";
-
-
-
-/**
-
- * Institute intro band — logo on the left, narrative copy + CTA on the right.
-
- */
+import { FadeInView } from "@/components/motion/fade-in-view";
+import { aboutInstitution, siteSettings } from "@/data/site-data";
+import { cn } from "@/lib/utils";
 
 export function AboutIntroBand() {
-
   return (
-
-    <section className="border-y border-slate-200/80 bg-slate-100">
-
-      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-20">
-
-        <div className="grid min-w-0 grid-cols-1 items-start gap-8 sm:gap-10 md:grid-cols-[minmax(0,25%)_minmax(0,1fr)] md:gap-x-6 md:gap-y-0 lg:gap-x-12">
-
-          <div className="flex min-w-0 justify-center md:justify-start">
-
+    <section className="border-b border-slate-200 bg-white pt-10 sm:pt-12 lg:pt-14">
+      <div className="mx-auto max-w-[900px] px-4 pb-14 sm:px-6 sm:pb-16 lg:pb-20">
+        <FadeInView className="flex flex-col items-center text-center">
+          <Link
+            href="/"
+            className="group mb-5 inline-block transition-transform duration-300 hover:scale-[1.03]"
+          >
             <Image
-
               src="/images/logo.webp"
-
-              alt="College of Engineering Poonjar"
-
+              alt={siteSettings.collegeName}
               width={1000}
-
               height={413}
-
-              className="h-auto w-full max-w-[220px] object-contain object-left sm:max-w-[260px] md:max-w-none md:w-full"
-
-              sizes="(min-width: 768px) 25vw, 260px"
-
+              className="h-auto w-[180px] object-contain sm:w-[200px] lg:w-[220px]"
+              sizes="220px"
             />
+          </Link>
 
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.12em] text-[#1E3A8A]">
+            {siteSettings.collegeName}
+          </p>
+
+          <h2 className="mb-3 font-display text-[clamp(1.75rem,3vw+0.5rem,2.25rem)] font-bold tracking-tight text-[#0F172A]">
+            About the Institution
+          </h2>
+
+          <div className="mb-6 h-px w-14 bg-[#D4A017]" aria-hidden />
+
+          <p className="text-[15px] leading-[1.8] text-[#475569] sm:text-base sm:leading-[1.85]">
+            {aboutInstitution.homeIntro}
+          </p>
+
+          <div className="mt-10 flex justify-center">
+            <Link
+              href="/about/institution"
+              className={cn(
+                "inline-flex items-center justify-center gap-2 rounded-md border border-[#CBD5E1] bg-white px-6 py-3 text-sm font-semibold text-[#0F172A] transition-colors",
+                "hover:border-[#1E3A8A] hover:bg-[#F8FAFC]",
+              )}
+            >
+              Read More About Us
+              <ArrowRight className="h-4 w-4" aria-hidden />
+            </Link>
           </div>
-
-
-
-          <div className="min-w-0 space-y-4 text-sm leading-relaxed text-slate-800 sm:space-y-5 sm:text-[15px] md:text-base md:leading-relaxed">
-
-            <p>{aboutInstitution.homeIntro}</p>
-
-
-
-            <div className="flex flex-wrap gap-3 pt-1 sm:pt-2">
-
-              <Link
-
-                href="/about/institution"
-
-                className="inline-flex items-center gap-2 text-sm font-semibold text-brand-700 underline-offset-4 hover:underline"
-
-              >
-
-                Read more about us
-
-                <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
-
-              </Link>
-
-              <Link
-
-                href="/admission"
-
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-b from-brand-600 to-brand-700 px-6 py-3 text-sm font-bold text-white shadow-[0_4px_14px_-3px_rgb(0_0_128_/_0.55)] transition hover:from-brand-700 hover:to-brand-800 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600 sm:w-auto sm:px-8"
-
-              >
-
-                Apply Online
-
-                <ArrowRight className="h-4 w-4 shrink-0" strokeWidth={2.5} aria-hidden />
-
-              </Link>
-
-            </div>
-
-          </div>
-
-        </div>
-
+        </FadeInView>
       </div>
-
     </section>
-
   );
-
 }
-

@@ -2,78 +2,156 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, GraduationCap } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { StaticImage } from "@/components/ui/static-image";
 import { cn } from "@/lib/utils";
 
 const HERO_IMAGE = "/images/collageOutDoor-2.webp";
+
+const OVERLAY_GRADIENT = `linear-gradient(
+  135deg,
+  rgba(11,31,91,0.92) 0%,
+  rgba(18,52,130,0.85) 45%,
+  rgba(30,58,138,0.65) 70%,
+  rgba(255,255,255,0.15) 100%
+)`;
+
+const STATS = [
+  { value: "2000+", label: "Students" },
+  { value: "8", label: "Programs" },
+  { value: "6", label: "Departments" },
+  { value: "25+", label: "Years of Excellence" },
+] as const;
+
+const fadeIn = {
+  hidden: { opacity: 0, y: 12 },
+  visible: (delay: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, delay, ease: [0.25, 0.1, 0.25, 1] },
+  }),
+};
+
+const statsContainer = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.1, delayChildren: 0.35 },
+  },
+};
+
+const statCard = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease: [0.25, 0.1, 0.25, 1] },
+  },
+};
+
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-brand-900 via-brand-800 to-brand-700 text-white">
-      <div className="pointer-events-none absolute inset-0 opacity-30">
-        <div className="absolute -left-20 top-10 h-72 w-72 rounded-full bg-brand-400 blur-3xl" />
-        <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-brand-300 blur-3xl" />
+    <section className="relative overflow-hidden text-white">
+      {/* Full-bleed campus background */}
+      <div className="absolute inset-0" aria-hidden>
+        <StaticImage
+          src={HERO_IMAGE}
+          alt=""
+          priority
+          sizes="100vw"
+          className="h-full w-full object-cover object-center"
+        />
       </div>
-      <div className="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:flex lg:items-center lg:gap-12 lg:px-8 lg:py-24">
-        <div className="max-w-2xl min-w-0 flex-1">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-medium backdrop-blur"
-          >
-            <GraduationCap className="h-4 w-4" />
-            IHRD · Government of Kerala
-          </motion.div>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.05, duration: 0.5 }}
-            className="mt-6 text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl"
-          >
-            College of Engineering{" "}
-            <span className="text-brand-200">Poonjar</span>
-          </motion.h1>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1, duration: 0.5 }}
-            className="mt-8 flex w-full max-w-md flex-col gap-3 sm:max-w-none sm:flex-row sm:flex-wrap"
-          >
-            <Link
-              href="/admission"
-              className={cn(
-                "inline-flex h-12 w-full items-center justify-center rounded-lg bg-white px-6 text-base font-medium text-brand-900 shadow-sm transition-colors hover:bg-brand-50 sm:w-auto",
-              )}
+
+      {/* Premium overlay */}
+      <div
+        className="absolute inset-0"
+        style={{ background: OVERLAY_GRADIENT }}
+        aria-hidden
+      />
+
+      <div className="relative mx-auto flex min-h-[min(92vh,880px)] max-w-6xl flex-col px-4 pb-16 pt-20 sm:px-6 sm:pb-20 sm:pt-24 lg:px-8 lg:pb-24 lg:pt-28">
+        {/* Main content */}
+        <div className="flex flex-1 items-center">
+          <div className="max-w-xl min-w-0 lg:max-w-2xl">
+            <motion.p
+              custom={0}
+              initial="hidden"
+              animate="visible"
+              variants={fadeIn}
+              className="text-xs font-semibold uppercase tracking-[0.16em] text-[#D4A017]"
             >
-              Admissions
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-            <Link
-              href="/academics/programs"
-              className={cn(
-                "inline-flex h-12 w-full items-center justify-center rounded-lg border border-white/40 bg-transparent px-6 text-base font-medium text-white transition-colors hover:bg-white/10 sm:w-auto",
-              )}
+              IHRD · Government of Kerala
+            </motion.p>
+
+            <motion.h1
+              custom={0.06}
+              initial="hidden"
+              animate="visible"
+              variants={fadeIn}
+              className="mt-5 font-display text-[clamp(2.375rem,5vw+0.75rem,4rem)] font-bold leading-[1.08] tracking-tight text-white"
             >
-              Academic Opportunities
-            </Link>
-          </motion.div>
-        </div>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-          className="mt-10 min-w-0 flex-1 lg:mt-0"
-        >
-          <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-white/20 bg-white/5 shadow-2xl backdrop-blur sm:aspect-[2/1] lg:aspect-[5/2]">
-            <StaticImage
-              src={HERO_IMAGE}
-              alt="College of Engineering Poonjar campus"
-              priority
-              sizes="(min-width: 1024px) 560px, 50vw"
-              className="h-full w-full object-cover object-center"
-            />
+              IHRD College Poonjar
+            </motion.h1>
+
+            <motion.p
+              custom={0.12}
+              initial="hidden"
+              animate="visible"
+              variants={fadeIn}
+              className="mt-5 max-w-lg text-[clamp(1.0625rem,1.25vw+0.5rem,1.3125rem)] font-medium leading-snug text-blue-50/95"
+            >
+              Excellence in Technical Education and Innovation
+            </motion.p>
+
+            <motion.div
+              custom={0.18}
+              initial="hidden"
+              animate="visible"
+              variants={fadeIn}
+              className="mt-10 flex w-full flex-col gap-3 sm:flex-row"
+            >
+              <Link
+                href="/admission"
+                className={cn(
+                  "inline-flex h-12 w-full items-center justify-center gap-2 rounded-md bg-[#D4A017] px-7 text-sm font-semibold text-[#0B1F5B] transition-colors duration-200 sm:w-auto sm:text-[15px]",
+                  "hover:bg-[#E5B422]",
+                )}
+              >
+                Apply for Admission
+                <ArrowRight className="h-4 w-4" aria-hidden />
+              </Link>
+              <Link
+                href="/academics/programs"
+                className={cn(
+                  "inline-flex h-12 w-full items-center justify-center gap-2 rounded-md border border-white/35 bg-white/10 px-7 text-sm font-semibold text-white transition-colors duration-200 sm:w-auto sm:text-[15px]",
+                  "hover:border-white/55 hover:bg-white/15",
+                )}
+              >
+                Explore Programs
+              </Link>
+            </motion.div>
           </div>
+        </div>
+
+        {/* Statistics — inside hero, overlapping bottom */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={statsContainer}
+          className="relative z-10 mt-14 grid grid-cols-1 gap-4 sm:mt-16 md:grid-cols-2 md:gap-5 lg:mt-20 lg:grid-cols-4 lg:translate-y-6"
+        >
+          {STATS.map((stat) => (
+            <motion.div
+              key={stat.label}
+              variants={statCard}
+              className="hero-stat-card text-center"
+            >
+              <p className="font-display text-[2.5rem] font-bold leading-none text-white">
+                {stat.value}
+              </p>
+              <p className="mt-3 text-base text-white/80">{stat.label}</p>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>

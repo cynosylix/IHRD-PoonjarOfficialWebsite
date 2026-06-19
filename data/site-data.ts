@@ -68,8 +68,8 @@ export const pageHeroImages: Record<string, { src: string; alt: string }> = {
     alt: "College of Engineering Poonjar — Academic Council",
   },
   "/students": {
-    src: "/images/pages/students.png",
-    alt: "Anti-ragging awareness at College of Engineering Poonjar",
+    src: "/images/pages/students.jpg",
+    alt: "Student life at College of Engineering Poonjar",
   },
   "/contact": {
     src: "/images/pages/contact.jpg",
@@ -243,11 +243,40 @@ export const aboutInstitution = {
 export const principalProfile = {
   name: "Dr. M V Rajesh",
   designation: "Principal",
+  qualification: "Ph.D.",
+  yearsOfExperience: "25+",
+  quote:
+    "Education is not merely the acquisition of knowledge, but the development of character, innovation, and leadership.",
   message: `<p>As we gather in the serene embrace of our college's verdant campus, I am filled with pride and gratitude for the journey we have embarked upon together. Our institution stands not only as a bastion of academic excellence but also as a nurturing ground for the leaders and innovators of tomorrow. At our college, we believe in more than just imparting knowledge; we strive to cultivate holistic development in our students. We endeavour to nurture their young minds, providing them with the fertile soil they need to enrich their intellect and spread the wings of their aspirations. Our commitment extends beyond the classroom, as we endeavour to equip our students with the real-life experiences and practical skills necessary to navigate the challenges they will encounter in their professional and personal lives.</p><p>One of the defining features of our institution is our commitment to fostering a calm, eco-friendly, and green environment. Our lush campus not only provides a picturesque backdrop for learning but also serves as a constant reminder of our responsibility to the planet. We take pride in our sustainability initiatives and our efforts to instil environmental consciousness in our students. It is heartening to see the fruits of our labour reflected in the success of our placement programs and the strong ties we maintain with our esteemed alumni. Our students are not only well-prepared academically but also possess the confidence and adaptability to excel in any work environment. The high placement success and active engagement of our alumni stand as a testament to the quality of education and mentorship provided at our college.</p><p>Moreover, the drive and enthusiasm of our students in organizing and participating in various programs and events are truly commendable. Whether it be cultural festivals, academic competitions, or community outreach initiatives, our students consistently demonstrate their passion and commitment to making a positive impact on society. Central to our mission is our unwavering focus on providing excellent academics and state-of-the-art facilities to our students. From cutting-edge laboratories to well-stocked libraries, we spare no effort in ensuring that our students have access to the resources they need to thrive. As we look ahead to the future, I am confident that our college will continue to be a beacon of excellence, guiding and inspiring generations of students to reach greater heights. Together, let us continue to nurture talent, foster innovation, and create a brighter tomorrow.</p>`,
   photoUrl: "/images/pages/principal.jpg",
   email: "principal@cep.ac.in",
   phone: "+918547005035",
 };
+
+export const principalVisionPillars = [
+  {
+    title: "Academic Excellence",
+    description:
+      "Delivering rigorous, industry-aligned programmes that uphold the highest standards of teaching, learning, and assessment under IHRD.",
+  },
+  {
+    title: "Research & Innovation",
+    description:
+      "Encouraging inquiry, experimentation, and creative problem-solving that prepares students for emerging technological challenges.",
+  },
+  {
+    title: "Student Development",
+    description:
+      "Nurturing character, leadership, and holistic growth through academics, co-curricular activities, and community engagement.",
+  },
+] as const;
+
+export const principalAchievements = [
+  { value: 25, suffix: "+", label: "Years of Service" },
+  { value: 2000, suffix: "+", label: "Student Strength" },
+  { value: 8, suffix: "", label: "Programs Offered" },
+  { value: 25, suffix: "+", label: "Institutional Achievements" },
+] as const;
 
 export { departments };
 
@@ -653,6 +682,125 @@ export const iqacMembers = [
   { role: "Nominee from Professional body", member: "Ms. Flower Abraham Mundackal (Co- ordinator,ISTE)", order: 14 },
 ];
 
+/** Academic Council composition — leadership and representatives across departments and stakeholders. */
+export type AcademicCouncilMember = {
+  name: string;
+  designation: string;
+  departmentOrRole: string;
+  email?: string;
+  phone?: string;
+  order: number;
+  leadership?: boolean;
+};
+
+export const academicCouncilMembers: AcademicCouncilMember[] = [
+  {
+    name: "Dr. M V Rajesh",
+    designation: "Chairman",
+    departmentOrRole: "Principal",
+    email: "principal@cep.ac.in",
+    phone: "+918547005035",
+    order: 1,
+    leadership: true,
+  },
+  {
+    name: "Mr. Babu Sukumaran",
+    designation: "Council Secretary",
+    departmentOrRole: "Senior Administrative Officer",
+    order: 2,
+    leadership: true,
+  },
+  {
+    name: "Mr. Rajesh K R",
+    designation: "Faculty Representative",
+    departmentOrRole: "Head of Department, Computer Science & Engineering",
+    order: 3,
+    leadership: true,
+  },
+  {
+    name: "Dr. Annie Julie Joseph",
+    designation: "Member",
+    departmentOrRole: "Head of Department, Computer Applications",
+    order: 4,
+  },
+  {
+    name: "Ms. Flower Abraham Mundackal",
+    designation: "Member",
+    departmentOrRole: "Head of Department, Electronics & Communication Engineering",
+    order: 5,
+  },
+  {
+    name: "Mr. Shine P James",
+    designation: "Member",
+    departmentOrRole: "Head of Department, Electrical & Electronics Engineering",
+    order: 6,
+  },
+  {
+    name: "Mr. Joshy Joseph",
+    designation: "Member",
+    departmentOrRole: "Head of Department, Automobile Engineering",
+    order: 7,
+  },
+  {
+    name: "Mr. Manoj K R",
+    designation: "Member",
+    departmentOrRole: "Head of Department, Applied Science",
+    order: 8,
+  },
+  {
+    name: "Mr. Arjun Nair",
+    designation: "Student Representative",
+    departmentOrRole: "Nominee from Students",
+    order: 9,
+  },
+  {
+    name: "Mr. Johnson Joseph",
+    designation: "External Member",
+    departmentOrRole: "Nominee from Local Society — SMVHSS Panachikappara",
+    order: 10,
+  },
+  {
+    name: "Mr. Romy Joy",
+    designation: "Alumni Representative",
+    departmentOrRole: "Nominee from Alumni (2015–19 ECE)",
+    order: 11,
+  },
+  {
+    name: "Mr. Arun M J",
+    designation: "Industry Representative",
+    departmentOrRole: "Director, Makonics Infinity Solutions, Kochi",
+    order: 12,
+  },
+];
+
+export const academicCouncilResponsibilities = [
+  {
+    title: "Academic Planning",
+    description:
+      "Formulate the institutional vision, mission, and strategic plan; prepare the academic calendar and information brochure in alignment with university schedules.",
+  },
+  {
+    title: "Curriculum Development",
+    description:
+      "Advise on courses of instruction, academic policies, and programme-related matters to ensure relevance and quality across all departments.",
+  },
+  {
+    title: "Quality Assurance",
+    description:
+      "Review and adapt important policy decisions, conduct periodic analysis of university examination results, and uphold academic standards.",
+  },
+  {
+    title: "Student Development",
+    description:
+      "Address student discipline, grievances, and welfare; support the smooth conduct of academic and co-curricular activities on campus.",
+  },
+  {
+    title: "Research & Innovation",
+    description:
+      "Promote a culture of inquiry and excellence; liaise with PTA, Alumni Association, and external bodies to strengthen academic engagement.",
+  },
+] as const;
+
 export const academicCouncilPage = {
   description: `<p>The Academic Council is a body which assists the Principal in decision making with regard to academic, courses of instruction, and rules of discipline of students. This body is constituted by the Principal. The council will be asked to consider and report on any question concerning the academic, courses of instruction and rules of discipline by the Principal. The council meets at least once in a month. The tenure of the members is three years.</p>`,
   functions: `<ul><li>To discuss and adapt all important policy decisions before getting promulgated. The Principal can override any decision taken by the council in case of any contingency, on communication to the Academic Council.</li><li>To formulate the vision, mission and strategic plan of the college before being put up in the Board of Governors for approval.</li><li>To prepare academic calendar for the institution in tune with the University calendar.</li><li>To prepare information brochure for dissemination among the stake holders.</li><li>To discuss complaints regarding students and to suggest appropriate disciplinary actions.</li><li>To conduct periodic analysis of result upon declaration of the results of University Examinations.</li><li>To help the Principal in maintaining discipline and for the smooth conduct of academic and non-academic matters in the college.</li><li>To act as a liaisoning entity with various bodies like PTA, Alumni Association etc.</li></ul>`,
@@ -667,53 +815,55 @@ export const campusAlbum = [
   },
   {
     src: "/images/slides/kalika-26.jpg",
-    title: "College Arts Day",
+    title: "College Arts Day KALIKA'26",
     alt: "College Arts Day KALIKA'26",
     description: undefined as string | undefined,
   },
   {
     src: "/images/slides/yuga-26.jpg",
-    title: "College Sports Day",
+    title: "College Sports Day YUGA'26",
     alt: "College Sports Day YUGA'26",
     description: undefined as string | undefined,
   },
   {
     src: "/images/slides/achievements-2025.jpg",
-    title: "Hall Of Achievements",
+    title: "Hall Of Achievements 2025",
     alt: "Hall Of Achievements 2025",
     description: undefined as string | undefined,
   },
   {
     src: "/images/slides/anti-ragging.png",
-    title: "Anti-Ragging Week",
-    alt: "Anti-ragging week awareness",
+    title: "Anti-Ragging Week Awareness",
+    alt: "Anti-Ragging Week Awareness",
     description: undefined as string | undefined,
   },
   {
     src: "/images/slides/thrikonam-25.png",
-    title: "College Onam Celebration",
-    alt: "THRIKONAM'25 — Onam celebration",
+    title: "THRIKONAM'25 — Onam Celebration",
+    alt: "THRIKONAM'25 — Onam Celebration",
     description: undefined as string | undefined,
   },
   {
     src: "/images/slides/excellence-day-25.png",
-    title: "College Graduation Ceremony",
-    alt: "EXCELLENCE-DAY'25 — graduation ceremony",
+    title: "EXCELLENCE-DAY'25 — Graduation Ceremony",
+    alt: "EXCELLENCE-DAY'25 — Graduation Ceremony",
     description: undefined as string | undefined,
   },
   {
     src: "/images/slides/industry-campus.jpg",
-    title: "Industry On Campus",
-    alt: "Industry on campus inauguration and environment day",
+    title: "Industry On Campus Inauguration & Environment Day",
+    alt: "Industry On Campus Inauguration & Environment Day",
     description: undefined as string | undefined,
   },
   {
     src: "/images/slides/ekthara-25.jpg",
-    title: "College Day",
-    alt: "EKTHARA'25 — college day",
+    title: "EKTHARA'25 — College Day",
+    alt: "EKTHARA'25 — College Day",
     description: undefined as string | undefined,
   },
 ] as const;
+
+export type CampusAlbumItem = (typeof campusAlbum)[number];
 
 /** Optional rich “spotlight” block for the homepage featured panel (trusted static copy). */
 export type AnnouncementSpotlight = {
@@ -723,6 +873,16 @@ export type AnnouncementSpotlight = {
   programLines: string[];
 };
 
+export const NOTICE_CATEGORIES = [
+  "Admissions",
+  "Examinations",
+  "Events",
+  "Circulars",
+  "Placements",
+] as const;
+
+export type NoticeCategory = (typeof NOTICE_CATEGORIES)[number];
+
 export type Announcement = {
   id: string;
   title: string;
@@ -731,6 +891,7 @@ export type Announcement = {
   published: boolean;
   priority: number;
   publishedAt?: string;
+  category: NoticeCategory;
   spotlight?: AnnouncementSpotlight;
 };
 
@@ -744,6 +905,7 @@ export const announcements: Announcement[] = [
     published: true,
     priority: 10,
     publishedAt: "2026-06-20T12:00:00.000Z",
+    category: "Admissions",
     spotlight: {
       body:
         "Registration is now open for admissions to the following programs at **College of Engineering Poonjar** (An Institution Under IHRD) for the year **2026 - 2027**.",
@@ -762,6 +924,7 @@ export const announcements: Announcement[] = [
     published: true,
     priority: 9,
     publishedAt: "2026-06-02T12:00:00.000Z",
+    category: "Circulars",
   },
   {
     id: "a-temp-appointment-2",
@@ -771,6 +934,7 @@ export const announcements: Announcement[] = [
     published: true,
     priority: 8,
     publishedAt: "2026-05-26T12:00:00.000Z",
+    category: "Circulars",
   },
   {
     id: "a-temp-appointment",
@@ -780,6 +944,7 @@ export const announcements: Announcement[] = [
     published: true,
     priority: 7,
     publishedAt: "2026-05-26T12:00:00.000Z",
+    category: "Circulars",
   },
   {
     id: "a-guest-notification-2",
@@ -789,6 +954,7 @@ export const announcements: Announcement[] = [
     published: true,
     priority: 6,
     publishedAt: "2026-05-22T12:00:00.000Z",
+    category: "Events",
   },
   {
     id: "a-guest-notification",
@@ -798,6 +964,7 @@ export const announcements: Announcement[] = [
     published: true,
     priority: 5,
     publishedAt: "2026-05-20T12:00:00.000Z",
+    category: "Events",
   },
 ];
 

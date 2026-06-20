@@ -86,6 +86,7 @@ export default function ContactPage() {
   return (
     <div className="min-w-0">
       <PageBanner
+        heroImage="/images/IMG_20240327_164043.jpg.jpeg"
         title="Contact us"
         description="Phone numbers, email addresses, and campus location."
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Contact us" }]}

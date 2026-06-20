@@ -1,5 +1,20 @@
 import { cn } from "@/lib/utils";
 
+export function HeadingUnderline({ align = "center" }: { align?: "center" | "left" }) {
+  return (
+    <div
+      className={cn(
+        "mt-3 flex flex-col gap-1",
+        align === "center" ? "items-center" : "items-start",
+      )}
+      aria-hidden
+    >
+      <span className="h-0.5 w-[6.5rem] rounded-full bg-[#1E3A8A] sm:w-28" />
+      <span className="h-0.5 w-10 rounded-full bg-[#D4A017]" />
+    </div>
+  );
+}
+
 export function SectionHeading({
   eyebrow,
   title,
@@ -7,6 +22,7 @@ export function SectionHeading({
   className,
   align = "center",
   id,
+  underline = false,
 }: {
   eyebrow?: string;
   title: string;
@@ -14,6 +30,7 @@ export function SectionHeading({
   className?: string;
   align?: "center" | "left";
   id?: string;
+  underline?: boolean;
 }) {
   return (
     <div
@@ -33,8 +50,14 @@ export function SectionHeading({
       >
         {title}
       </h2>
+      {underline ? <HeadingUnderline align={align} /> : null}
       {description && (
-        <p className="mt-3 text-sm leading-relaxed text-[#64748B] sm:text-base">
+        <p
+          className={cn(
+            "text-sm leading-relaxed text-[#64748B] sm:text-base",
+            underline ? "mt-4" : "mt-3",
+          )}
+        >
           {description}
         </p>
       )}

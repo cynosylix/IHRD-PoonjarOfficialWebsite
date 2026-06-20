@@ -10,6 +10,7 @@ type PageShellProps = {
   centered?: boolean;
   bannerChildren?: ReactNode;
   maxWidth?: string;
+  heroImage?: string;
   children: ReactNode;
   className?: string;
 };
@@ -22,6 +23,7 @@ export function PageShell({
   centered,
   bannerChildren,
   maxWidth = "max-w-6xl",
+  heroImage,
   children,
   className,
 }: PageShellProps) {
@@ -33,10 +35,11 @@ export function PageShell({
         eyebrow={eyebrow}
         breadcrumbs={breadcrumbs}
         centered={centered}
+        heroImage={heroImage}
       >
         {bannerChildren}
       </PageBanner>
-      <div className="bg-gradient-to-b from-slate-50 to-white pb-16 pt-10 sm:pb-20 sm:pt-12">
+      <div className="bg-gradient-to-b from-[#F8FAFF] to-white pb-16 pt-10 sm:pb-20 sm:pt-12">
         <div className={cn("mx-auto px-4 sm:px-6 lg:px-8", maxWidth)}>{children}</div>
       </div>
     </div>

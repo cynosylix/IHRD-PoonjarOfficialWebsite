@@ -1,3 +1,4 @@
+import { AdmissionAnnouncementModal } from "@/components/admission/admission-announcement-modal";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteNavbar } from "@/components/layout/site-navbar";
 import { SkipToContent } from "@/components/layout/skip-to-content";
@@ -15,6 +16,7 @@ export default function SiteLayout({
         {children}
       </main>
       <SiteFooter />
+      <AdmissionAnnouncementModal />
     </div>
   );
 }

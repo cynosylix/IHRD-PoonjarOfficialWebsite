@@ -3,11 +3,19 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 import { HtmlBlock } from "@/components/content/html-block";
+import { ProgramDetailPageView } from "@/components/programs/program-detail-page-view";
 import { PageBanner } from "@/components/layout/page-banner";
 import { Card } from "@/components/ui/card";
 import {
+  extractProgramDescription,
+  getProgramDetailConfig,
+  usesPremiumProgramLayout,
+} from "@/data/program-detail-config";
+import {
+  getDepartmentBySlug,
   getProgramBySlug,
   programs,
+  syllabi,
   type ProgramType,
 } from "@/data/site-data";
 
@@ -35,12 +43,50 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+function getProspectusUrl(departmentSlug?: string, programName?: string): string {
+  const match = syllabi.find(
+    (s) =>
+      s.departmentSlug === departmentSlug &&
+      (programName ? s.title.toLowerCase().includes("b.tech") : true),
+  );
+  return match?.fileUrl ?? "https://ktu.edu.in/en/academic/syllabus";
+}
+
 export default async function ProgramDetailPage({ params }: Props) {
   const { slug } = await params;
   const program = getProgramBySlug(slug);
   if (!program) notFound();
 
   const typeLabel = TYPE_LABEL[program.type];
+  const resolvedSlug = program.slug;
+
+  if (usesPremiumProgramLayout(resolvedSlug)) {
+    const config = getProgramDetailConfig(resolvedSlug, program)!;
+    const department = program.departmentSlug
+      ? getDepartmentBySlug(program.departmentSlug)
+      : undefined;
+
+    const defaultDepartment =
+      program.type === "DIPLOMA"
+        ? "Polytechnic Department"
+        : resolvedSlug === "mca"
+          ? "Computer Applications"
+          : "Engineering Department";
+
+    return (
+      <ProgramDetailPageView
+        program={program}
+        typeLabel={typeLabel}
+        departmentName={department?.name ?? defaultDepartment}
+        shortDescription={config.heroSummary ?? extractProgramDescription(program.about)}
+        heroImage={config.heroImage}
+        careers={config.careers}
+        prospectusUrl={getProspectusUrl(program.departmentSlug, program.name)}
+        config={config}
+      />
+    );
+  }
+
   const heroTitle = program.fullName ?? program.name;
 
   return (
@@ -128,9 +174,7 @@ export default async function ProgramDetailPage({ params }: Props) {
           </section>
 
           <section>
-            <h2 className="text-xl font-bold text-brand-950 sm:text-2xl">
-              What you will learn
-            </h2>
+            <h2 className="text-xl font-bold text-brand-950 sm:text-2xl">What you will learn</h2>
             <ul className="mt-4 grid gap-3 sm:grid-cols-2">
               {program.learnings.map((item) => (
                 <li
@@ -209,7 +253,7 @@ export default async function ProgramDetailPage({ params }: Props) {
                   Check eligibility, allotment, and application steps on the admissions page.
                 </p>
               </div>
-              <div className="flex flex-col gap-2 sm:flex-row sm:shrink-0">
+              <div className="flex flex-col gap-2 sm:shrink-0 sm:flex-row">
                 <Link
                   href="/academics/programs"
                   className="inline-flex items-center justify-center rounded-xl border border-brand-200 bg-white px-5 py-2.5 text-sm font-semibold text-brand-700 transition hover:bg-brand-50"

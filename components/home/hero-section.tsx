@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { ApplyNowLink } from "@/components/ui/apply-now-link";
 import { StaticImage } from "@/components/ui/static-image";
 import { cn } from "@/lib/utils";
 
@@ -110,8 +111,7 @@ export function HeroSection() {
               variants={fadeIn}
               className="mt-10 flex w-full flex-col gap-3 sm:flex-row"
             >
-              <Link
-                href="/admission"
+              <ApplyNowLink
                 className={cn(
                   "inline-flex h-12 w-full items-center justify-center gap-2 rounded-md bg-[#D4A017] px-7 text-sm font-semibold text-[#0B1F5B] transition-colors duration-200 sm:w-auto sm:text-[15px]",
                   "hover:bg-[#E5B422]",
@@ -119,7 +119,7 @@ export function HeroSection() {
               >
                 Apply for Admission
                 <ArrowRight className="h-4 w-4" aria-hidden />
-              </Link>
+              </ApplyNowLink>
               <Link
                 href="/academics/programs"
                 className={cn(

@@ -48,7 +48,7 @@ export const pageHeroImages: Record<string, { src: string; alt: string }> = {
     alt: "College of Engineering Poonjar campus",
   },
   "/placements": {
-    src: "/images/pages/placements.jpg",
+    src: "/images/IMG_20240327_164043.jpg.jpeg",
     alt: "Placement and pass-out highlights at College of Engineering Poonjar",
   },
   "/admission": {
@@ -583,6 +583,7 @@ export const placementDrives: {
   driveDate?: string;
   package?: string;
   selectedCount?: number;
+  logoUrl?: string;
 }[] = [];
 
 export const placementStatistics: {

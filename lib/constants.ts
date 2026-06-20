@@ -1,3 +1,7 @@
+/** CEP Admission 2026–27 online application (Google Form). */
+export const ADMISSION_APPLICATION_FORM_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLScFaw36u8_bNVFDmC0LkWd_0K925TkLBBRe2xEsg3iNaBDDqA/viewform";
+
 /** Primary navigation — public site */
 export const MAIN_NAV = [
   { href: "/admission", label: "Admission" },

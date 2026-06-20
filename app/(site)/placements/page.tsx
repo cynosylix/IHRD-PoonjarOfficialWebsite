@@ -1,68 +1,69 @@
 import type { Metadata } from "next";
-import { placementOverview, placementTeamMembers } from "@/data/site-data";
-import { HtmlBlock } from "@/components/content/html-block";
-import { PageBanner } from "@/components/layout/page-banner";
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+  placementActivities,
+  placementDrives,
+  placementOverview,
+  placementStatistics,
+  placementTeamMembers,
+} from "@/data/site-data";
+import {
+  PLACEMENT_HERO_IMAGE,
+  splitPlacementContent,
+} from "@/data/placement-page-config";
+import { studentTestimonials } from "@/data/student-portal";
+import { PlacementsPageContent } from "@/components/placements/placements-page-content";
+import { PageBanner } from "@/components/layout/page-banner";
+import { buildPlacementStats } from "@/lib/placement-stats";
 
 export const metadata: Metadata = {
   title: "Placement",
   description: "Career Guidance and Placement Unit — College of Engineering Poonjar.",
 };
 
+const PLACEMENT_SUCCESS_STORIES = studentTestimonials
+  .filter((t) => /placement|career|engineer/i.test(t.quote))
+  .slice(0, 2)
+  .map((t) => ({
+    quote: t.quote,
+    name: t.name,
+    programme: t.programme,
+  }));
+
 export default function PlacementsPage() {
   const members = [...placementTeamMembers].sort((a, b) => a.order - b.order);
+  const { aboutHtml, cellIntroHtml } = splitPlacementContent(placementOverview.content);
+  const stats = buildPlacementStats(placementStatistics);
+  const activities = [...placementActivities]
+    .sort((a, b) => a.order - b.order)
+    .map(({ title, description }) => ({ title, description }));
+  const recruiters = placementDrives.map((drive) => ({
+    name: drive.company,
+    description: [drive.description, drive.package ? `Package: ${drive.package}` : ""]
+      .filter(Boolean)
+      .join(" — "),
+    logoUrl: drive.logoUrl,
+  }));
 
   return (
     <div className="min-w-0">
       <PageBanner
-        title="Placement"
+        heroImage={PLACEMENT_HERO_IMAGE}
+        centered
+        underline
+        title="Placements"
         description="Career Guidance and Placement Unit — training, recruitment drives, and industry partnerships."
-        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Placement" }]}
+        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Placements" }]}
       />
 
-      <div className="bg-gradient-to-b from-slate-50 to-white pb-16 pt-10 sm:pb-20 sm:pt-12">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="cms-content">
-            <HtmlBlock html={placementOverview.content} />
-          </div>
-
-          <div className="mt-6 overflow-x-auto rounded-xl border border-slate-200 bg-white">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Name</TableHead>
-                  <TableHead>Designation</TableHead>
-                  <TableHead>Email</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {members.map((m) => (
-                  <TableRow key={m.name}>
-                    <TableCell className="font-medium">{m.name}</TableCell>
-                    <TableCell>{m.role}</TableCell>
-                    <TableCell>
-                      {m.email ? (
-                        <a href={`mailto:${m.email}`} className="break-all text-brand-700 hover:underline">
-                          {m.email}
-                        </a>
-                      ) : (
-                        "—"
-                      )}
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </div>
-        </div>
-      </div>
+      <PlacementsPageContent
+        aboutHtml={aboutHtml}
+        cellIntroHtml={cellIntroHtml}
+        members={members}
+        stats={stats}
+        activities={activities}
+        recruiters={recruiters}
+        successStories={PLACEMENT_SUCCESS_STORIES}
+      />
     </div>
   );
 }

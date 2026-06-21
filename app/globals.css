@@ -150,6 +150,39 @@ body {
     }
   }
 
+  .hero-bg-slide {
+    opacity: 0;
+    transition: opacity 1.25s ease-in-out;
+    z-index: 0;
+  }
+
+  .hero-bg-slide--active {
+    opacity: 1;
+    z-index: 1;
+  }
+
+  .hero-bg-slide-inner {
+    transform: scale(1);
+  }
+
+  .hero-bg-slide--active .hero-bg-slide-inner {
+    animation: hero-slide-ken-burns 5s linear forwards;
+  }
+
+  .hero-bg-slide:not(.hero-bg-slide--active) .hero-bg-slide-inner {
+    animation: none;
+    transform: scale(1);
+  }
+
+  @keyframes hero-slide-ken-burns {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.06);
+    }
+  }
+
   .footer-link-slide {
     @apply relative inline-block transition-colors duration-300;
   }

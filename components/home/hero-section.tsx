@@ -4,10 +4,8 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { ApplyNowLink } from "@/components/ui/apply-now-link";
-import { StaticImage } from "@/components/ui/static-image";
+import { HeroBackgroundSlideshow } from "@/components/home/hero-background-slideshow";
 import { cn } from "@/lib/utils";
-
-const HERO_IMAGE = "/images/collageOutDoor-2.webp";
 
 const OVERLAY_GRADIENT = `linear-gradient(
   135deg,
@@ -51,26 +49,19 @@ const statCard = {
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden text-white">
-      {/* Full-bleed campus background */}
-      <div className="absolute inset-0" aria-hidden>
-        <StaticImage
-          src={HERO_IMAGE}
-          alt=""
-          priority
-          sizes="100vw"
-          className="h-full w-full object-cover object-center"
-        />
-      </div>
+    <section className="relative isolate overflow-hidden text-white">
+      {/* Layer 1 — background slideshow (images only) */}
+      <HeroBackgroundSlideshow />
 
-      {/* Premium overlay */}
+      {/* Layer 2 — fixed blue gradient overlay */}
       <div
-        className="absolute inset-0"
+        className="pointer-events-none absolute inset-0 z-[1]"
         style={{ background: OVERLAY_GRADIENT }}
         aria-hidden
       />
 
-      <div className="relative mx-auto flex min-h-[min(92vh,880px)] max-w-6xl flex-col px-4 pb-16 pt-20 sm:px-6 sm:pb-20 sm:pt-24 lg:px-8 lg:pb-24 lg:pt-28">
+      {/* Layer 3 — fixed hero content */}
+      <div className="relative z-[2] mx-auto flex min-h-[min(92vh,880px)] max-w-6xl flex-col px-4 pb-16 pt-20 sm:px-6 sm:pb-20 sm:pt-24 lg:px-8 lg:pb-24 lg:pt-28">
         {/* Main content */}
         <div className="flex flex-1 items-center">
           <div className="max-w-xl min-w-0 lg:max-w-2xl">

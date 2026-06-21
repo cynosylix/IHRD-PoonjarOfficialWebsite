@@ -112,7 +112,7 @@ export function AdmissionAnnouncementModal() {
           <motion.button
             type="button"
             aria-label="Close admission announcement"
-            className="absolute inset-0 bg-black/45"
+            className="absolute inset-0 bg-[#0F172A]/65 backdrop-blur-md"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

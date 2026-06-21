@@ -4,8 +4,10 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { ApplyNowLink } from "@/components/ui/apply-now-link";
-import { HeroBackgroundSlideshow } from "@/components/home/hero-background-slideshow";
+import { StaticImage } from "@/components/ui/static-image";
 import { cn } from "@/lib/utils";
+
+const HERO_IMAGE = "/images/collageOutDoor-2.webp";
 
 const OVERLAY_GRADIENT = `linear-gradient(
   135deg,
@@ -50,8 +52,16 @@ const statCard = {
 export function HeroSection() {
   return (
     <section className="relative overflow-hidden text-white">
-      {/* Full-bleed campus background slideshow */}
-      <HeroBackgroundSlideshow />
+      {/* Full-bleed campus background */}
+      <div className="absolute inset-0" aria-hidden>
+        <StaticImage
+          src={HERO_IMAGE}
+          alt=""
+          priority
+          sizes="100vw"
+          className="h-full w-full object-cover object-center"
+        />
+      </div>
 
       {/* Premium overlay */}
       <div

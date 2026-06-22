@@ -142,7 +142,7 @@ body {
 
   @media (max-width: 767.98px) {
     .hero-stat-card {
-      padding: 16px 10px;
+      padding: 12px 8px;
     }
 
     .hero-stat-card:active {

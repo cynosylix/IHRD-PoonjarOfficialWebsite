@@ -129,18 +129,27 @@ export function HeroSection() {
           initial="hidden"
           animate="visible"
           variants={statsContainer}
-          className="relative z-10 mt-10 grid grid-cols-2 gap-3 sm:mt-16 md:gap-5 lg:mt-20 lg:grid-cols-4 lg:translate-y-6"
+          className={cn(
+            "relative z-10 mt-10 flex gap-2 overflow-x-auto scroll-smooth",
+            "snap-x snap-mandatory px-4 pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+            "sm:mt-16",
+            "md:mx-0 md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:px-0 md:pb-0 md:snap-none",
+            "lg:mt-20 lg:grid-cols-4 lg:translate-y-6",
+          )}
         >
           {STATS.map((stat) => (
             <motion.div
               key={stat.label}
               variants={statCard}
-              className="hero-stat-card flex h-full flex-col items-center justify-center text-center"
+              className={cn(
+                "hero-stat-card flex min-w-[5.25rem] flex-1 flex-shrink-0 snap-center flex-col items-center justify-center text-center",
+                "md:min-w-0 md:flex-shrink md:snap-align-none",
+              )}
             >
-              <p className="font-display text-[1.75rem] font-bold leading-none text-white md:text-[2.5rem]">
+              <p className="font-display text-2xl font-bold leading-none text-white md:text-[2.5rem]">
                 {stat.value}
               </p>
-              <p className="mt-2 px-0.5 text-xs leading-snug text-white/80 md:mt-3 md:px-0 md:text-base md:leading-normal">
+              <p className="mt-1.5 px-0.5 text-[10px] leading-tight text-white/80 md:mt-3 md:px-0 md:text-base md:leading-normal">
                 {stat.label}
               </p>
             </motion.div>

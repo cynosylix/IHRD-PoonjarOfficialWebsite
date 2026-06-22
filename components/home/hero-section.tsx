@@ -129,18 +129,20 @@ export function HeroSection() {
           initial="hidden"
           animate="visible"
           variants={statsContainer}
-          className="relative z-10 mt-14 grid grid-cols-1 gap-4 sm:mt-16 md:grid-cols-2 md:gap-5 lg:mt-20 lg:grid-cols-4 lg:translate-y-6"
+          className="relative z-10 mt-10 grid grid-cols-2 gap-3 sm:mt-16 md:gap-5 lg:mt-20 lg:grid-cols-4 lg:translate-y-6"
         >
           {STATS.map((stat) => (
             <motion.div
               key={stat.label}
               variants={statCard}
-              className="hero-stat-card text-center"
+              className="hero-stat-card flex h-full flex-col items-center justify-center text-center"
             >
-              <p className="font-display text-[2.5rem] font-bold leading-none text-white">
+              <p className="font-display text-[1.75rem] font-bold leading-none text-white md:text-[2.5rem]">
                 {stat.value}
               </p>
-              <p className="mt-3 text-base text-white/80">{stat.label}</p>
+              <p className="mt-2 px-0.5 text-xs leading-snug text-white/80 md:mt-3 md:px-0 md:text-base md:leading-normal">
+                {stat.label}
+              </p>
             </motion.div>
           ))}
         </motion.div>

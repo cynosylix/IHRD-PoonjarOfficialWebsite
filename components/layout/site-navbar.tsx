@@ -28,10 +28,10 @@ function NavLink({
       href={href}
       onClick={onClick}
       className={cn(
-        "inline-flex min-h-10 w-full items-center px-3 py-2 text-sm font-medium transition-colors lg:h-10 lg:w-auto lg:whitespace-nowrap lg:px-3",
-        indent && "pl-8 lg:pl-6",
+        "inline-flex min-h-10 w-full items-center px-3 py-2 text-sm font-medium transition-colors xl:h-10 xl:w-auto xl:whitespace-nowrap xl:px-3",
+        indent && "pl-8 xl:pl-6",
         active
-          ? "text-[#0F172A] lg:border-b-2 lg:border-[#D4A017]"
+          ? "text-[#0F172A] xl:border-b-2 xl:border-[#D4A017]"
           : "text-[#475569] hover:text-[#0F172A]",
       )}
     >
@@ -64,8 +64,8 @@ export function SiteNavbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white">
-      <div className="mx-auto flex max-w-6xl min-w-0 items-center gap-3 px-4 py-3 sm:px-6 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-6 lg:px-8">
-        <div className="flex min-w-0 flex-1 justify-start lg:flex-none">
+      <div className="mx-auto flex max-w-6xl min-w-0 items-center gap-3 px-4 py-3 sm:px-6 xl:grid xl:grid-cols-[1fr_auto_1fr] xl:items-center xl:gap-6 xl:px-8">
+        <div className="flex min-w-0 flex-1 justify-start xl:flex-none">
           <Link href="/" className="flex min-w-0 items-center" onClick={closeMobile}>
             <Image
               src="/images/logo.webp"
@@ -73,13 +73,13 @@ export function SiteNavbar() {
               width={1000}
               height={413}
               priority
-              className="h-9 w-auto max-w-[min(58vw,260px)] object-contain object-left sm:h-10 sm:max-w-[min(50vw,300px)] lg:max-w-[min(100%,320px)]"
+              className="h-9 w-auto max-w-[min(58vw,260px)] object-contain object-left sm:h-10 sm:max-w-[min(50vw,300px)] xl:max-w-[min(100%,320px)]"
             />
           </Link>
         </div>
 
         <nav
-          className="hidden shrink-0 items-center gap-1 lg:flex"
+          className="hidden min-w-0 shrink items-center gap-0.5 xl:flex"
           aria-label="Main"
         >
           <NavLink href="/">Home</NavLink>
@@ -93,7 +93,7 @@ export function SiteNavbar() {
               id="about-academics-trigger"
               aria-controls="about-academics-menu"
               className={cn(
-                "inline-flex h-10 items-center gap-1 px-3 text-sm font-medium text-[#475569] transition-colors hover:text-[#0F172A] lg:px-3",
+                "inline-flex h-10 items-center gap-1 px-2.5 text-sm font-medium text-[#475569] transition-colors hover:text-[#0F172A] xl:px-3",
                 aboutOpen && "text-[#0F172A]",
               )}
               aria-expanded={aboutOpen}
@@ -131,22 +131,29 @@ export function SiteNavbar() {
           </div>
           {MAIN_NAV.map((item) => (
             <NavLink key={item.href} href={item.href}>
-              {item.label}
+              {item.href === "/ioc" ? (
+                <>
+                  <span className="hidden 2xl:inline">IOC - Industry on Campus</span>
+                  <span className="2xl:hidden">IOC</span>
+                </>
+              ) : (
+                item.label
+              )}
             </NavLink>
           ))}
         </nav>
 
-        <div className="flex flex-1 items-center justify-end gap-2 lg:flex-none lg:justify-self-end">
+        <div className="flex flex-1 items-center justify-end gap-2 xl:flex-none xl:justify-self-end">
           <Link
             href="/search"
-            className="hidden h-9 w-9 items-center justify-center border border-slate-200 text-[#475569] transition-colors hover:border-slate-300 hover:text-[#0F172A] lg:inline-flex"
+            className="hidden h-9 w-9 items-center justify-center border border-slate-200 text-[#475569] transition-colors hover:border-slate-300 hover:text-[#0F172A] md:inline-flex xl:inline-flex"
             aria-label="Search site"
           >
             <Search className="h-4 w-4" />
           </Link>
           <button
             type="button"
-            className="inline-flex h-9 w-9 shrink-0 items-center justify-center border border-slate-200 text-[#475569] transition-colors hover:border-slate-300 hover:text-[#0F172A] lg:hidden"
+            className="inline-flex h-9 w-9 shrink-0 items-center justify-center border border-slate-200 text-[#475569] transition-colors hover:border-slate-300 hover:text-[#0F172A] xl:hidden"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             onClick={() => setOpen(!open)}
@@ -157,7 +164,7 @@ export function SiteNavbar() {
       </div>
 
       {open && (
-        <div className="border-t border-slate-200 bg-white lg:hidden">
+        <div className="border-t border-slate-200 bg-white xl:hidden">
           <div className="flex max-h-[min(70vh,100dvh)] flex-col overflow-y-auto px-4 py-4 pb-8">
             <div className="border-b border-slate-100 pb-3">
               <NavLink href="/" onClick={closeMobile}>

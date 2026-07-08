@@ -260,7 +260,7 @@ export function DepartmentsPageContent({ departments }: { departments: Departmen
             </h2>
           </FadeInView>
 
-          <StaggerContainer className="mt-8 grid grid-cols-2 gap-4 sm:mt-10 sm:gap-5 lg:grid-cols-4">
+          <StaggerContainer className="mt-8 grid grid-cols-1 gap-4 min-[420px]:grid-cols-2 sm:mt-10 sm:gap-5 lg:grid-cols-4">
             {portalStats.map((stat) => (
               <StaggerItem key={stat.label}>
                 <div
@@ -297,7 +297,7 @@ export function DepartmentsPageContent({ departments }: { departments: Departmen
 
           <FadeInView delay={0.06} className="mt-8 sm:mt-10">
             <div
-              className="flex gap-2 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              className="flex gap-2 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] sm:flex-wrap sm:overflow-visible sm:pb-0 [&::-webkit-scrollbar]:hidden"
               role="tablist"
               aria-label="Filter departments"
             >

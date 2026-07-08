@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
 const FOCUSABLE =
   'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
-const PROGRAM_PILLS = ["B.Tech", "MCA", "BCA", "BBA", "Diploma"] as const;
+const PROGRAM_PILLS = ["B.Tech", "MCA", "BCA",  "Diploma"] as const;
 
 const HELP_DESK = [
   { label: "B.Tech", phones: ["94461 22060"] },

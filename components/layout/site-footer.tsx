@@ -36,6 +36,44 @@ function telHref(phone: string) {
   return `tel:${phone.replace(/[^\d+]/g, "")}`;
 }
 
+function TechnicalSupportSection() {
+  return (
+    <section
+      className="mt-10 border-t border-white/10 pt-6"
+      aria-labelledby="footer-technical-support-heading"
+    >
+      <div className="flex flex-col items-center gap-4 text-center md:flex-row md:items-center md:justify-start md:gap-5 md:text-left">
+        <Image
+          src="/images/cyno-logo-white.png"
+          alt="Cynosylix Technology logo"
+          width={320}
+          height={90}
+          className="h-[70px] w-auto shrink-0 object-contain sm:h-[80px] lg:h-[90px]"
+        />
+
+        <div className="min-w-0">
+          <p
+            id="footer-technical-support-heading"
+            className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#D4A017]"
+          >
+            Technical Support &amp; Project Development
+          </p>
+          <p className="mt-1 font-display text-xl font-bold leading-tight tracking-tight text-white sm:text-[1.35rem]">
+            Cynosylix Technology
+          </p>
+          <p className="mt-1.5 text-sm leading-snug text-slate-400">
+            Professional Website Design, Development, Maintenance &amp; Technical Support.
+          </p>
+        </div>
+      </div>
+
+      <p className="mt-5 border-t border-white/[0.08] pt-4 text-center text-[11px] leading-relaxed tracking-wide text-slate-500">
+        Technical Support &amp; Project Development by Cynosylix Technology
+      </p>
+    </section>
+  );
+}
+
 export function SiteFooter() {
   const [primaryEmail] = siteSettings.emails;
   const [landline, mobile] = siteSettings.phones;
@@ -152,6 +190,8 @@ export function SiteFooter() {
             ))}
           </ul>
         </div>
+
+        <TechnicalSupportSection />
       </div>
 
       <div className="border-t border-[#1E293B] bg-[#0A1120]">

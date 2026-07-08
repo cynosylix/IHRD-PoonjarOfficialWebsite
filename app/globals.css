@@ -286,8 +286,22 @@ body {
 .about-content li {
   text-align: justify;
   line-height: 1.9;
-  font-size: 18px;
+  font-size: 1rem;
   color: #374151;
+}
+
+@media (min-width: 640px) {
+  .about-content p,
+  .about-content li {
+    font-size: 1.0625rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-content p,
+  .about-content li {
+    font-size: 1.125rem;
+  }
 }
 
 .about-content p + p {

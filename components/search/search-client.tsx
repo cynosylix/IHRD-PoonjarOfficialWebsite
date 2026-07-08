@@ -25,15 +25,15 @@ export function SearchClient() {
 
   return (
     <div>
-      <form action="/search" method="get" className="flex gap-2">
+      <form action="/search" method="get" className="flex flex-col gap-2 sm:flex-row">
         <Input
           name="q"
           defaultValue={q}
           placeholder="Type at least 2 characters…"
-          className="flex-1"
+          className="min-w-0 flex-1"
           aria-label="Search query"
         />
-        <Button type="submit">Search</Button>
+        <Button type="submit" className="w-full sm:w-auto">Search</Button>
       </form>
 
       {q.length >= 2 && (

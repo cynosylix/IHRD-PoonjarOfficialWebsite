@@ -9,6 +9,7 @@ export const MAIN_NAV = [
   { href: "/placements", label: "Placements" },
   { href: "/facilities", label: "Facilities" },
   { href: "/community", label: "Community" },
+  { href: "/ioc", label: "IOC - Industry on Campus" },
   { href: "/contact", label: "Contact Us" },
 ] as const;
 

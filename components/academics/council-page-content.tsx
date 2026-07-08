@@ -295,7 +295,7 @@ export function CouncilPageContent() {
         <div className="mx-auto max-w-6xl min-w-0 px-4 sm:px-6 lg:px-8">
           <SectionHeading eyebrow="Council at a Glance" title="Academic Council Statistics" />
 
-          <StaggerContainer className="mt-8 grid grid-cols-2 gap-4 sm:mt-10 sm:gap-5 lg:grid-cols-4">
+          <StaggerContainer className="mt-8 grid grid-cols-1 gap-4 min-[420px]:grid-cols-2 sm:mt-10 sm:gap-5 lg:grid-cols-4">
             {stats.map((stat) => (
               <StaggerItem key={stat.label}>
                 <div

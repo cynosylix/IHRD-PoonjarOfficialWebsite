@@ -135,6 +135,11 @@ export function searchPublic(query: string, take = 30): SearchHit[] {
     { title: "Placements", href: "/placements", keywords: "placement cell cgpu recruiters" },
     { title: "Facilities", href: "/facilities", keywords: "library lab hostel canteen transport" },
     { title: "Community", href: "/community", keywords: "alumni pta senate ieee nss iedc" },
+    {
+      title: "Industry on Campus (IOC)",
+      href: "/ioc",
+      keywords: "ioc industry on campus partners internship training cynosylix gadgeon",
+    },
     { title: "Notices", href: "/notices", keywords: "announcements notifications" },
     { title: "About institution", href: "/about/institution", keywords: "history vision mission ihrd" },
     { title: "IQAC", href: "/about/iqac", keywords: "quality assurance naac" },

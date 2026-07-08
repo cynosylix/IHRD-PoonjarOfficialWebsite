@@ -31,6 +31,7 @@ const STATIC_ROUTES = [
   "/placements",
   "/facilities",
   "/community",
+  "/ioc",
   "/contact",
   "/search",
   "/notices",

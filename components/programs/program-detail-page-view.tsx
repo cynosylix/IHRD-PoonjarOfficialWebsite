@@ -197,8 +197,8 @@ export function ProgramDetailPageView({
   const keyFeatureItems = config?.keyFeatures ?? program.learnings;
   const careerGridClass =
     config?.careerGridCols === "4"
-      ? "mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 lg:gap-5"
-      : "mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6 lg:gap-5";
+      ? "mt-10 grid grid-cols-1 gap-4 min-[420px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 lg:gap-5"
+      : "mt-10 grid grid-cols-1 gap-4 min-[420px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 lg:gap-5";
   const ctaTitle =
     config?.ctaTitle ?? "Start Your Engineering Journey at IHRD Poonjar";
   const ctaDescription =

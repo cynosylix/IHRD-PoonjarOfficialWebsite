@@ -300,7 +300,42 @@ export function PlacementsPageContent({
             ) : null}
           </FadeInView>
 
-          <FadeInView className="mx-auto mt-8 max-w-[900px] overflow-x-auto rounded-2xl border border-black/[0.06] bg-white shadow-[0_8px_28px_rgba(11,31,91,0.08)] sm:mt-10">
+          <FadeInView className="mx-auto mt-8 max-w-[900px] space-y-4 sm:mt-10 md:hidden">
+            {members.map((member) => (
+              <div
+                key={member.name}
+                className="rounded-2xl border border-black/[0.06] bg-white p-5 shadow-[0_8px_28px_rgba(11,31,91,0.08)]"
+              >
+                <p className="font-semibold text-[#0F172A]">{member.name}</p>
+                <p className="mt-1 text-sm text-[#64748B]">{member.role}</p>
+                <div className="mt-3 flex flex-col gap-1.5 border-t border-slate-100 pt-3">
+                  {member.email ? (
+                    <Link
+                      href={`mailto:${member.email}`}
+                      className="inline-flex items-center gap-1.5 break-all text-sm font-medium text-[#1E3A8A] hover:underline"
+                    >
+                      <Mail className="h-3.5 w-3.5 shrink-0" aria-hidden />
+                      {member.email}
+                    </Link>
+                  ) : null}
+                  {member.phone ? (
+                    <Link
+                      href={`tel:${member.phone.replace(/\s/g, "")}`}
+                      className="inline-flex items-center gap-1.5 text-sm font-medium text-[#1E3A8A] hover:underline"
+                    >
+                      <Phone className="h-3.5 w-3.5 shrink-0" aria-hidden />
+                      {member.phone}
+                    </Link>
+                  ) : null}
+                  {!member.email && !member.phone ? (
+                    <span className="text-sm text-[#64748B]">—</span>
+                  ) : null}
+                </div>
+              </div>
+            ))}
+          </FadeInView>
+
+          <FadeInView className="mx-auto mt-8 hidden max-w-[900px] overflow-x-auto rounded-2xl border border-black/[0.06] bg-white shadow-[0_8px_28px_rgba(11,31,91,0.08)] sm:mt-10 md:block">
             <table className="w-full min-w-[640px] text-left text-sm">
               <thead>
                 <tr className="border-b border-slate-100 bg-[#F8FAFF]">

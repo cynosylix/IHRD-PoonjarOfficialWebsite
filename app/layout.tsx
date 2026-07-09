@@ -25,15 +25,15 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
   title: {
-    default: "College of Engineering Poonjar",
-    template: "%s | College of Engineering Poonjar",
+    default: "College of Engineering Poonjar, a Unit of IHRD, Government of Kerala",
+    template: "%s | College of Engineering Poonjar, a Unit of IHRD, Government of Kerala",
   },
   description:
-    "Official website of College of Engineering Poonjar — academics, admissions, placements, and campus life.",
+    "Official website of College of Engineering Poonjar, a Unit of IHRD, Government of Kerala — academics, admissions, placements, and campus life.",
   openGraph: {
-    title: "College of Engineering Poonjar",
+    title: "College of Engineering Poonjar, a Unit of IHRD, Government of Kerala",
     description:
-      "IHRD engineering college — quality technical education in Kerala.",
+      "College of Engineering Poonjar, a Unit of IHRD, Government of Kerala — quality technical education in Kerala.",
     type: "website",
     images: [
       {
@@ -46,9 +46,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "College of Engineering Poonjar",
+    title: "College of Engineering Poonjar, a Unit of IHRD, Government of Kerala",
     description:
-      "IHRD engineering college — quality technical education in Kerala.",
+      "College of Engineering Poonjar, a Unit of IHRD, Government of Kerala — quality technical education in Kerala.",
     images: ["/images/collageOutDoor-2.webp"],
   },
   icons: {

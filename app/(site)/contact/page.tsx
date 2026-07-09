@@ -20,7 +20,8 @@ import { ExternalLink, Mail, MapPin, Phone, User } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Contact Us",
-  description: "Address, phone, email, and campus map.",
+  description:
+    "Contact College of Engineering Poonjar, a Unit of IHRD, Government of Kerala — address, phone, email, and campus map.",
 };
 
 function telHref(phone: string) {

@@ -254,7 +254,7 @@ export function AdmissionPageContent({
             id="admission-process"
             eyebrow="How it works"
             title="Admission Process"
-            description="A transparent, step-by-step pathway from application to confirmation at IHRD College Poonjar."
+            description="A transparent, step-by-step pathway from application to confirmation at College of Engineering Poonjar."
           />
 
           <StaggerContainer className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
@@ -449,7 +449,7 @@ export function AdmissionPageContent({
                 id="admission-cta"
                 className="font-display text-[clamp(1.75rem,3vw+0.5rem,2.5rem)] font-bold text-white"
               >
-                Ready to Join IHRD Poonjar?
+                Ready to Join College of Engineering Poonjar?
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-blue-100/90 sm:text-base">
                 Take the next step towards academic excellence and career success.

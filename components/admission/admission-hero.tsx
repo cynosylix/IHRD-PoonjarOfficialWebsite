@@ -75,8 +75,8 @@ export function AdmissionHero() {
             variants={fadeIn}
             className="mt-5 max-w-xl text-[clamp(1rem,1.1vw+0.5rem,1.25rem)] font-medium leading-relaxed text-blue-50/95"
           >
-            Begin your journey with IHRD College Poonjar and build a successful future through
-            quality education and innovation.
+            Begin your journey with College of Engineering Poonjar, a Unit of IHRD, Government
+            of Kerala, and build a successful future through quality education and innovation.
           </motion.p>
 
           <motion.div

@@ -113,7 +113,7 @@ export const programDetailConfig: Record<EnhancedProgramSlug, ProgramDetailConfi
       { title: "IT Consultant" },
       { title: "Project Manager" },
     ],
-    ctaTitle: "Begin Your MCA Journey at IHRD Poonjar",
+    ctaTitle: "Begin Your MCA Journey at College of Engineering Poonjar",
     ctaDescription:
       "Join a postgraduate programme designed to prepare you for leadership roles in software, data, and emerging technologies.",
   },
@@ -253,7 +253,7 @@ export function buildDiplomaProgramConfig(program: {
     keyFeaturesSectionDescription:
       "Practical skills and learning areas covered through the SBTE-approved curriculum.",
     careers: DIPLOMA_CAREERS[slug],
-    ctaTitle: `Begin Your Diploma in ${branch} at IHRD Poonjar`,
+    ctaTitle: `Begin Your Diploma in ${branch} at College of Engineering Poonjar`,
     ctaDescription:
       "Join a hands-on technical programme designed to prepare you for skilled careers in engineering, manufacturing, and industry services.",
   };

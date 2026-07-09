@@ -82,7 +82,7 @@ export function HeroSection() {
               variants={fadeIn}
               className="mt-5 font-display text-[clamp(2.375rem,5vw+0.75rem,4rem)] font-bold leading-[1.08] tracking-tight text-white"
             >
-              IHRD College Poonjar
+              College of Engineering Poonjar
             </motion.h1>
 
             <motion.p
@@ -92,7 +92,7 @@ export function HeroSection() {
               variants={fadeIn}
               className="mt-5 max-w-lg text-[clamp(1.0625rem,1.25vw+0.5rem,1.3125rem)] font-medium leading-snug text-blue-50/95"
             >
-              Excellence in Technical Education and Innovation
+              A Unit of IHRD, Government of Kerala
             </motion.p>
 
             <motion.div

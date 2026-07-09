@@ -10,7 +10,8 @@ const HERO_FALLBACK = {
 
 export const metadata: Metadata = {
   title: "About The Institution",
-  description: "About College of Engineering Poonjar — vision, mission, and establishment.",
+  description:
+    "About College of Engineering Poonjar, a Unit of IHRD, Government of Kerala — vision, mission, and establishment.",
 };
 
 export default function AboutInstitutionPage() {

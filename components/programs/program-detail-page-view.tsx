@@ -200,7 +200,7 @@ export function ProgramDetailPageView({
       ? "mt-10 grid grid-cols-1 gap-4 min-[420px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 lg:gap-5"
       : "mt-10 grid grid-cols-1 gap-4 min-[420px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 lg:gap-5";
   const ctaTitle =
-    config?.ctaTitle ?? "Start Your Engineering Journey at IHRD Poonjar";
+    config?.ctaTitle ?? "Start Your Engineering Journey at College of Engineering Poonjar";
   const ctaDescription =
     config?.ctaDescription ??
     "Join a future-focused learning environment designed to prepare you for industry and innovation.";
@@ -393,7 +393,7 @@ export function ProgramDetailPageView({
               underline
               eyebrow="Why choose us"
               title="Why Choose This Programme"
-              description="Study at IHRD College Poonjar with the support of experienced faculty and a future-ready learning environment."
+              description="Study at College of Engineering Poonjar with the support of experienced faculty and a future-ready learning environment."
             />
             <StaggerContainer className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {WHY_CHOOSE_ITEMS.map((item, index) => {

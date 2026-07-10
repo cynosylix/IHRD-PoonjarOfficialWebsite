@@ -49,7 +49,7 @@ const statCard = {
 
 export function HeroSection() {
   return (
-    <section className="relative isolate overflow-hidden text-white">
+    <section className="relative isolate overflow-x-clip text-white">
       {/* Layer 1 — background slideshow (images only) */}
       <HeroBackgroundSlideshow />
 
@@ -61,32 +61,22 @@ export function HeroSection() {
       />
 
       {/* Layer 3 — fixed hero content */}
-      <div className="relative z-[2] mx-auto flex min-h-[min(92vh,880px)] max-w-6xl flex-col px-4 pb-16 pt-20 sm:px-6 sm:pb-20 sm:pt-24 lg:px-8 lg:pb-24 lg:pt-28">
+      <div className="relative z-[2] mx-auto flex min-h-[min(92vh,880px)] max-w-6xl flex-col px-4 pb-16 pt-20 sm:px-6 sm:pb-20 sm:pt-24 lg:px-8 lg:pb-28 lg:pt-28">
         {/* Main content */}
         <div className="flex flex-1 items-center">
           <div className="max-w-xl min-w-0 lg:max-w-2xl">
-            <motion.p
+            <motion.h1
               custom={0}
               initial="hidden"
               animate="visible"
               variants={fadeIn}
-              className="text-xs font-semibold uppercase tracking-[0.16em] text-[#D4A017]"
-            >
-              IHRD · Government of Kerala
-            </motion.p>
-
-            <motion.h1
-              custom={0.06}
-              initial="hidden"
-              animate="visible"
-              variants={fadeIn}
-              className="mt-5 font-display text-[clamp(2.375rem,5vw+0.75rem,4rem)] font-bold leading-[1.08] tracking-tight text-white"
+              className="font-display text-[clamp(2.375rem,5vw+0.75rem,4rem)] font-bold leading-[1.08] tracking-tight text-white"
             >
               College of Engineering Poonjar
             </motion.h1>
 
             <motion.p
-              custom={0.12}
+              custom={0.08}
               initial="hidden"
               animate="visible"
               variants={fadeIn}
@@ -96,7 +86,7 @@ export function HeroSection() {
             </motion.p>
 
             <motion.div
-              custom={0.18}
+              custom={0.16}
               initial="hidden"
               animate="visible"
               variants={fadeIn}

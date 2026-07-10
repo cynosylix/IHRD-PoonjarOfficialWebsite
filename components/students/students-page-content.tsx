@@ -287,7 +287,7 @@ export function StudentsPageContent() {
         <div className="mx-auto max-w-6xl min-w-0 px-4 sm:px-6 lg:px-8">
           <SectionHeading eyebrow="Campus at a Glance" title="Student Life Statistics" />
 
-          <StaggerContainer className="mt-8 grid grid-cols-1 gap-4 min-[420px]:grid-cols-2 sm:mt-10 sm:gap-5 lg:grid-cols-4">
+          <StaggerContainer className="mt-8 grid grid-cols-1 gap-4 sm:mt-10 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
             {studentPortalStats.map((stat) => (
               <StaggerItem key={stat.label}>
                 <div

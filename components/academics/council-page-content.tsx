@@ -85,7 +85,7 @@ function ContactFooter({
                 href={gmailComposeUrl(email)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2.5 text-sm font-medium text-[#1E3A8A] transition-colors hover:text-[#0B1F5B]"
+                className="flex min-w-0 items-center gap-2.5 text-sm font-medium text-[#1E3A8A] transition-colors hover:text-[#0B1F5B]"
               >
                 <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white text-[#1E3A8A] shadow-sm ring-1 ring-[#E2E8F0]">
                   <Mail className="h-3.5 w-3.5" aria-hidden />
@@ -96,12 +96,12 @@ function ContactFooter({
             {phone ? (
               <a
                 href={`tel:${phone.replace(/\s/g, "")}`}
-                className="flex items-center gap-2.5 text-sm font-medium text-[#1E3A8A] transition-colors hover:text-[#0B1F5B]"
+                className="flex min-w-0 items-center gap-2.5 text-sm font-medium text-[#1E3A8A] transition-colors hover:text-[#0B1F5B]"
               >
                 <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white text-[#1E3A8A] shadow-sm ring-1 ring-[#E2E8F0]">
                   <Phone className="h-3.5 w-3.5" aria-hidden />
                 </span>
-                <span className="truncate">{phone}</span>
+                <span className="min-w-0 truncate">{phone}</span>
               </a>
             ) : null}
           </div>
@@ -295,7 +295,7 @@ export function CouncilPageContent() {
         <div className="mx-auto max-w-6xl min-w-0 px-4 sm:px-6 lg:px-8">
           <SectionHeading eyebrow="Council at a Glance" title="Academic Council Statistics" />
 
-          <StaggerContainer className="mt-8 grid grid-cols-1 gap-4 min-[420px]:grid-cols-2 sm:mt-10 sm:gap-5 lg:grid-cols-4">
+          <StaggerContainer className="mt-8 grid grid-cols-1 gap-4 sm:mt-10 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
             {stats.map((stat) => (
               <StaggerItem key={stat.label}>
                 <div

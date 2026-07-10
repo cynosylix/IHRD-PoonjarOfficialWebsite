@@ -339,12 +339,12 @@ export function AdmissionPageContent({
                   {helplines.map((h) => (
                     <li
                       key={h.phone}
-                      className="flex flex-col gap-1 py-3 first:pt-0 last:pb-0 sm:flex-row sm:items-center sm:justify-between"
+                      className="flex flex-col gap-1 py-3 first:pt-0 last:pb-0 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
                     >
-                      <span className="text-sm font-medium text-[#334155]">{h.name}</span>
+                      <span className="min-w-0 break-words text-sm font-medium text-[#334155]">{h.name}</span>
                       <a
                         href={`tel:${h.phone}`}
-                        className="text-sm font-semibold text-[#1E3A8A] transition-colors hover:text-[#0B1F5B]"
+                        className="shrink-0 text-sm font-semibold text-[#1E3A8A] transition-colors hover:text-[#0B1F5B]"
                       >
                         {h.phone}
                       </a>
@@ -368,14 +368,14 @@ export function AdmissionPageContent({
                     .map((row) => (
                       <li
                         key={row.course}
-                        className="flex flex-col gap-2 py-3 first:pt-0 last:pb-0 sm:flex-row sm:items-center sm:justify-between"
+                        className="flex flex-col gap-2 py-3 first:pt-0 last:pb-0 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
                       >
-                        <span className="text-sm font-medium text-[#334155]">{row.course}</span>
+                        <span className="min-w-0 break-words text-sm font-medium text-[#334155]">{row.course}</span>
                         <a
                           href={row.fileUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 text-sm font-semibold text-[#1E3A8A] transition-colors hover:text-[#0B1F5B]"
+                          className="inline-flex shrink-0 items-center gap-1 text-sm font-semibold text-[#1E3A8A] transition-colors hover:text-[#0B1F5B]"
                         >
                           Download
                           <Download className="h-3.5 w-3.5" aria-hidden />

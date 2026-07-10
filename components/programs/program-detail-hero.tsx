@@ -203,11 +203,11 @@ export function ProgramDetailHero({
             initial="hidden"
             animate="visible"
             variants={fadeIn}
-            className="mt-5 flex w-full flex-col gap-2.5 sm:mt-6 sm:flex-row sm:flex-wrap sm:gap-3"
+            className="mt-5 flex w-full flex-col gap-2.5 sm:mt-6 md:flex-row md:flex-wrap md:gap-3"
           >
             <ApplyNowLink
               className={cn(
-                "inline-flex h-11 items-center justify-center gap-2 rounded-md bg-[#D4A017] px-5 text-sm font-semibold text-[#0B1F5B] transition-colors duration-200 sm:h-11 sm:px-6",
+                "inline-flex h-11 w-full items-center justify-center gap-2 rounded-md bg-[#D4A017] px-5 text-sm font-semibold text-[#0B1F5B] transition-colors duration-200 md:w-auto md:px-6",
                 "hover:bg-[#E5B422]",
               )}
             >
@@ -220,7 +220,7 @@ export function ProgramDetailHero({
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn(
-                  "inline-flex h-11 items-center justify-center gap-2 rounded-md border border-white/35 bg-white/10 px-5 text-sm font-semibold text-white transition-colors duration-200 sm:px-6",
+                  "inline-flex h-11 w-full items-center justify-center gap-2 rounded-md border border-white/35 bg-white/10 px-5 text-sm font-semibold text-white transition-colors duration-200 md:w-auto md:px-6",
                   "hover:border-white/55 hover:bg-white/15",
                 )}
               >
@@ -231,7 +231,7 @@ export function ProgramDetailHero({
             <Link
               href={contactButtonHref ?? departmentHref ?? "/contact"}
               className={cn(
-                "inline-flex h-11 items-center justify-center gap-2 rounded-md border border-white/35 bg-white/10 px-5 text-sm font-semibold text-white transition-colors duration-200 sm:px-6",
+                "inline-flex h-11 w-full items-center justify-center gap-2 rounded-md border border-white/35 bg-white/10 px-5 text-sm font-semibold text-white transition-colors duration-200 md:w-auto md:px-6",
                 "hover:border-white/55 hover:bg-white/15",
               )}
             >

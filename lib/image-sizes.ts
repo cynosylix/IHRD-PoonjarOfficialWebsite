@@ -125,6 +125,7 @@ const IMAGE_SIZES: Record<string, ImageSize> = {
   "/images/footer-logo.png": { width: 1435, height: 1436 },
   "/images/footer-logo.webp": { width: 1435, height: 1436 },
   "/images/kuttaottam.webp": { width: 875, height: 665 },
+  "/images/logo-mark.webp": { width: 413, height: 317 },
   "/images/logo.webp": { width: 1000, height: 413 },
   "/images/pages/about-institution.jpg": { width: 1080, height: 540 },
   "/images/pages/admission.jpg": { width: 1350, height: 1575 },

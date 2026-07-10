@@ -41,7 +41,7 @@ export function ProgramTierCards({ tiers }: { tiers: ProgramTierPayload[] }) {
   }, [prefersFineHover]);
 
   return (
-    <div className="flex flex-col gap-5 lg:flex-row lg:items-stretch lg:gap-4">
+    <div className="flex flex-col gap-5 xl:flex-row xl:items-stretch xl:gap-4">
       {tiers.map((tier) => {
         const tapExpanded = !prefersFineHover && tappedOpen === tier.type;
         const count = tier.programs.length;
@@ -57,7 +57,7 @@ export function ProgramTierCards({ tiers }: { tiers: ProgramTierPayload[] }) {
             id={tier.type.toLowerCase()}
             className={cn(
               "group/tier relative flex min-h-[260px] flex-col overflow-hidden rounded-2xl border border-brand-200/80 bg-white shadow-card transition-all duration-500 ease-out",
-              "hover:border-brand-300 lg:min-h-[320px] lg:flex-[1] lg:basis-0 lg:hover:z-20 lg:hover:flex-[2.15] lg:hover:shadow-xl",
+              "hover:border-brand-300 xl:min-h-[320px] xl:flex-[1] xl:basis-0 xl:hover:z-20 xl:hover:flex-[2.15] xl:hover:shadow-xl",
             )}
           >
             <div className="h-1 shrink-0 bg-gradient-to-r from-brand-600 to-brand-700" aria-hidden />

@@ -197,8 +197,8 @@ export function ProgramDetailPageView({
   const keyFeatureItems = config?.keyFeatures ?? program.learnings;
   const careerGridClass =
     config?.careerGridCols === "4"
-      ? "mt-10 grid grid-cols-1 gap-4 min-[420px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 lg:gap-5"
-      : "mt-10 grid grid-cols-1 gap-4 min-[420px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 lg:gap-5";
+      ? "mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-5"
+      : "mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 lg:gap-5";
   const ctaTitle =
     config?.ctaTitle ?? "Start Your Engineering Journey at College of Engineering Poonjar";
   const ctaDescription =
@@ -511,28 +511,28 @@ export function ProgramDetailPageView({
                 />
                 <div className="mt-6 overflow-hidden rounded-2xl border border-black/[0.06] bg-white shadow-[0_8px_28px_rgba(11,31,91,0.08)]">
                 <dl className="divide-y divide-slate-100">
-                  <div className="grid gap-1 px-5 py-4 sm:grid-cols-[11rem_1fr] sm:gap-4 sm:px-6">
+                  <div className="grid min-w-0 gap-1 px-5 py-4 sm:grid-cols-[11rem_1fr] sm:gap-4 sm:px-6">
                     <dt className="text-sm font-semibold text-[#0F172A]">Programme type</dt>
-                    <dd className="text-sm text-[#64748B]">
+                    <dd className="min-w-0 break-words text-sm text-[#64748B]">
                       {typeLabel} ({program.type})
                     </dd>
                   </div>
                   {program.duration ? (
-                    <div className="grid gap-1 px-5 py-4 sm:grid-cols-[11rem_1fr] sm:gap-4 sm:px-6">
+                    <div className="grid min-w-0 gap-1 px-5 py-4 sm:grid-cols-[11rem_1fr] sm:gap-4 sm:px-6">
                       <dt className="text-sm font-semibold text-[#0F172A]">Duration</dt>
-                      <dd className="text-sm text-[#64748B]">{program.duration}</dd>
+                      <dd className="min-w-0 break-words text-sm text-[#64748B]">{program.duration}</dd>
                     </div>
                   ) : null}
                   {program.intake ? (
-                    <div className="grid gap-1 px-5 py-4 sm:grid-cols-[11rem_1fr] sm:gap-4 sm:px-6">
+                    <div className="grid min-w-0 gap-1 px-5 py-4 sm:grid-cols-[11rem_1fr] sm:gap-4 sm:px-6">
                       <dt className="text-sm font-semibold text-[#0F172A]">Intake</dt>
-                      <dd className="text-sm text-[#64748B]">{program.intake}</dd>
+                      <dd className="min-w-0 break-words text-sm text-[#64748B]">{program.intake}</dd>
                     </div>
                   ) : null}
                   {program.affiliation ? (
-                    <div className="grid gap-1 px-5 py-4 sm:grid-cols-[11rem_1fr] sm:gap-4 sm:px-6">
+                    <div className="grid min-w-0 gap-1 px-5 py-4 sm:grid-cols-[11rem_1fr] sm:gap-4 sm:px-6">
                       <dt className="text-sm font-semibold text-[#0F172A]">Affiliation</dt>
-                      <dd className="text-sm text-[#64748B]">{program.affiliation}</dd>
+                      <dd className="min-w-0 break-words text-sm text-[#64748B]">{program.affiliation}</dd>
                     </div>
                   ) : null}
                 </dl>

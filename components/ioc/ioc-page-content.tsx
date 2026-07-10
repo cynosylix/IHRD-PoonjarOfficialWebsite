@@ -94,7 +94,7 @@ export function IocPageContent() {
             />
           </FadeInView>
 
-          <StaggerContainer className="mt-10 grid grid-cols-1 gap-5 min-[420px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 lg:gap-6">
+          <StaggerContainer className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 lg:gap-6">
             {IOC_STATS.map((stat, index) => (
               <StaggerItem key={stat.label} className="h-full">
                 <StatCard stat={stat} icon={STAT_ICONS[index] ?? Sparkles} />

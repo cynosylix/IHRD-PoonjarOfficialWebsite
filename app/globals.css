@@ -242,6 +242,13 @@ body {
 }
 
 /* Rich HTML blocks from static content (data/site-data.ts) */
+.cms-content {
+  @apply min-w-0 break-words;
+}
+.cms-content pre,
+.cms-content code {
+  @apply max-w-full overflow-x-auto whitespace-pre-wrap;
+}
 .cms-content h1 {
   @apply text-xl font-bold text-brand-900 mt-6 mb-3 sm:text-2xl font-display;
 }

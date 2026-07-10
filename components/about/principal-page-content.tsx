@@ -153,7 +153,7 @@ export function PrincipalPageContent() {
             </h2>
           </FadeInView>
 
-          <StaggerContainer className="mt-10 grid grid-cols-1 gap-4 min-[420px]:grid-cols-2 sm:mt-12 sm:gap-6 lg:grid-cols-4">
+          <StaggerContainer className="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
             {principalAchievements.map((stat) => (
               <StaggerItem key={stat.label}>
                 <div className="border border-white/15 bg-white/10 px-4 py-6 text-center backdrop-blur-sm transition-colors duration-300 hover:bg-white/15 sm:px-5 sm:py-7">

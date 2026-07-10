@@ -28,7 +28,7 @@ function NavLink({
       href={href}
       onClick={onClick}
       className={cn(
-        "inline-flex min-h-10 w-full items-center px-3 py-2 text-sm font-medium transition-colors xl:h-10 xl:w-auto xl:whitespace-nowrap xl:px-3",
+        "inline-flex min-h-10 w-full items-center px-3 py-2 text-sm font-medium transition-colors duration-200 xl:h-10 xl:w-auto xl:justify-center xl:whitespace-nowrap xl:px-2.5 2xl:px-3",
         indent && "pl-8 xl:pl-6",
         active
           ? "text-[#0F172A] xl:border-b-2 xl:border-[#D4A017]"
@@ -63,23 +63,28 @@ export function SiteNavbar() {
   }, [aboutOpen]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white">
-      <div className="mx-auto flex max-w-6xl min-w-0 items-center gap-3 px-4 py-3 sm:px-6 xl:grid xl:grid-cols-[1fr_auto_1fr] xl:items-center xl:gap-6 xl:px-8">
-        <div className="flex min-w-0 flex-1 justify-start xl:flex-none">
-          <Link href="/" className="flex min-w-0 items-center" onClick={closeMobile}>
-            <Image
-              src="/images/logo.webp"
-              alt="College of Engineering Poonjar"
-              width={1000}
-              height={413}
-              priority
-              className="h-9 w-auto max-w-[min(58vw,260px)] object-contain object-left sm:h-10 sm:max-w-[min(50vw,300px)] xl:max-w-[min(100%,320px)]"
-            />
-          </Link>
-        </div>
+    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-sm supports-[backdrop-filter]:bg-white/90">
+      <div className="mx-auto flex h-[76px] max-w-6xl min-w-0 items-center justify-between px-5 sm:h-[80px] sm:px-6 xl:h-[84px] xl:px-8">
+        {/* Emblem only */}
+        <Link
+          href="/"
+          onClick={closeMobile}
+          className="flex shrink-0 items-center"
+          aria-label="College of Engineering Poonjar — Home"
+        >
+          <Image
+            src="/images/logo-mark.webp"
+            alt="College of Engineering Poonjar"
+            width={413}
+            height={317}
+            priority
+            sizes="(max-width: 640px) 44px, (max-width: 1280px) 48px, 56px"
+            className="h-10 w-auto object-contain sm:h-11 xl:h-12 2xl:h-14"
+          />
+        </Link>
 
         <nav
-          className="hidden min-w-0 shrink items-center gap-0.5 xl:flex"
+          className="hidden min-w-0 flex-1 items-center justify-center gap-0.5 xl:ml-10 xl:flex 2xl:ml-12"
           aria-label="Main"
         >
           <NavLink href="/">Home</NavLink>
@@ -93,7 +98,7 @@ export function SiteNavbar() {
               id="about-academics-trigger"
               aria-controls="about-academics-menu"
               className={cn(
-                "inline-flex h-10 items-center gap-1 px-2.5 text-sm font-medium text-[#475569] transition-colors hover:text-[#0F172A] xl:px-3",
+                "inline-flex h-10 items-center gap-1 px-2.5 text-sm font-medium text-[#475569] transition-colors duration-200 hover:text-[#0F172A] 2xl:px-3",
                 aboutOpen && "text-[#0F172A]",
               )}
               aria-expanded={aboutOpen}
@@ -103,7 +108,7 @@ export function SiteNavbar() {
               <span className="whitespace-nowrap">About / Academics</span>
               <ChevronDown
                 className={cn(
-                  "h-4 w-4 shrink-0 transition-transform",
+                  "h-4 w-4 shrink-0 transition-transform duration-200",
                   aboutOpen && "rotate-180",
                 )}
               />
@@ -121,7 +126,7 @@ export function SiteNavbar() {
                     href={item.href}
                     role="menuitem"
                     onClick={() => setAboutOpen(false)}
-                    className="block px-4 py-2.5 text-sm text-[#475569] transition-colors hover:bg-slate-50 hover:text-[#0F172A]"
+                    className="block px-4 py-2.5 text-sm text-[#475569] transition-colors duration-200 hover:bg-slate-50 hover:text-[#0F172A]"
                   >
                     {item.label}
                   </Link>
@@ -143,17 +148,17 @@ export function SiteNavbar() {
           ))}
         </nav>
 
-        <div className="flex flex-1 items-center justify-end gap-2 xl:flex-none xl:justify-self-end">
+        <div className="flex shrink-0 items-center justify-end gap-2">
           <Link
             href="/search"
-            className="hidden h-9 w-9 items-center justify-center border border-slate-200 text-[#475569] transition-colors hover:border-slate-300 hover:text-[#0F172A] md:inline-flex xl:inline-flex"
+            className="hidden h-9 w-9 items-center justify-center border border-slate-200 text-[#475569] transition-colors duration-200 hover:border-slate-300 hover:text-[#0F172A] md:inline-flex"
             aria-label="Search site"
           >
             <Search className="h-4 w-4" />
           </Link>
           <button
             type="button"
-            className="inline-flex h-9 w-9 shrink-0 items-center justify-center border border-slate-200 text-[#475569] transition-colors hover:border-slate-300 hover:text-[#0F172A] xl:hidden"
+            className="inline-flex h-9 w-9 shrink-0 items-center justify-center border border-slate-200 text-[#475569] transition-colors duration-200 hover:border-slate-300 hover:text-[#0F172A] xl:hidden"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             onClick={() => setOpen(!open)}
@@ -165,7 +170,7 @@ export function SiteNavbar() {
 
       {open && (
         <div className="border-t border-slate-200 bg-white xl:hidden">
-          <div className="flex max-h-[min(70vh,100dvh)] flex-col overflow-y-auto px-4 py-4 pb-8">
+          <div className="flex max-h-[min(70vh,100dvh)] flex-col overflow-y-auto px-4 py-4 pb-8 sm:px-6">
             <div className="border-b border-slate-100 pb-3">
               <NavLink href="/" onClick={closeMobile}>
                 Home

@@ -48,28 +48,18 @@ export function AdmissionHero() {
 
       <div className="relative mx-auto flex min-h-[min(72vh,640px)] max-w-6xl flex-col justify-center px-4 py-16 sm:min-h-[min(78vh,720px)] sm:px-6 sm:py-20 lg:px-8 lg:py-24">
         <div className="max-w-2xl">
-          <motion.p
+          <motion.h1
             custom={0}
             initial="hidden"
             animate="visible"
             variants={fadeIn}
-            className="text-xs font-semibold uppercase tracking-[0.16em] text-[#D4A017]"
-          >
-            IHRD · Government of Kerala
-          </motion.p>
-
-          <motion.h1
-            custom={0.06}
-            initial="hidden"
-            animate="visible"
-            variants={fadeIn}
-            className="mt-4 font-display text-[clamp(2.25rem,4.5vw+0.75rem,3.5rem)] font-bold leading-[1.08] tracking-tight text-white"
+            className="font-display text-[clamp(2.25rem,4.5vw+0.75rem,3.5rem)] font-bold leading-[1.08] tracking-tight text-white"
           >
             Admissions Open
           </motion.h1>
 
           <motion.p
-            custom={0.12}
+            custom={0.08}
             initial="hidden"
             animate="visible"
             variants={fadeIn}
@@ -80,7 +70,7 @@ export function AdmissionHero() {
           </motion.p>
 
           <motion.div
-            custom={0.18}
+            custom={0.16}
             initial="hidden"
             animate="visible"
             variants={fadeIn}

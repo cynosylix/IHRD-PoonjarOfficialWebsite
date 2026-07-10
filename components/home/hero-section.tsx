@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
@@ -62,11 +63,30 @@ export function HeroSection() {
 
       {/* Layer 3 — fixed hero content */}
       <div className="relative z-[2] mx-auto flex min-h-[min(92vh,880px)] max-w-6xl flex-col px-4 pb-16 pt-20 sm:px-6 sm:pb-20 sm:pt-24 lg:px-8 lg:pb-28 lg:pt-28">
+        {/* Mobile-only college emblem — hidden by default, shown ≤768px */}
+        <motion.div
+          custom={0}
+          initial="hidden"
+          animate="visible"
+          variants={fadeIn}
+          className="mb-5 mt-1 hidden w-full justify-center max-[768px]:mb-7 max-[768px]:flex"
+        >
+          <Image
+            src="/images/logo-mark.webp"
+            alt="College of Engineering Poonjar"
+            width={413}
+            height={317}
+            priority
+            sizes="90px"
+            className="h-auto w-[70px] object-contain object-center min-[380px]:w-20 min-[480px]:w-[90px]"
+          />
+        </motion.div>
+
         {/* Main content */}
         <div className="flex flex-1 items-center">
           <div className="max-w-xl min-w-0 lg:max-w-2xl">
             <motion.h1
-              custom={0}
+              custom={0.06}
               initial="hidden"
               animate="visible"
               variants={fadeIn}
@@ -76,7 +96,7 @@ export function HeroSection() {
             </motion.h1>
 
             <motion.p
-              custom={0.08}
+              custom={0.12}
               initial="hidden"
               animate="visible"
               variants={fadeIn}
@@ -86,7 +106,7 @@ export function HeroSection() {
             </motion.p>
 
             <motion.div
-              custom={0.16}
+              custom={0.18}
               initial="hidden"
               animate="visible"
               variants={fadeIn}

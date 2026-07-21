@@ -43,7 +43,11 @@ export function isBtechProgramSlug(slug: string) {
 export function BtechFeeStructureSection() {
   return (
     <FadeInView>
-      <section aria-labelledby="btech-fee-structure-heading">
+      <section
+        id="btech-fee-structure"
+        className="scroll-mt-28"
+        aria-labelledby="btech-fee-structure-heading"
+      >
         <SectionHeading
           id="btech-fee-structure-heading"
           underline

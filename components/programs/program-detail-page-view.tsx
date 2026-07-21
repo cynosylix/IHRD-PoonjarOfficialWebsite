@@ -24,6 +24,7 @@ import {
   BtechFeeStructureSection,
   isBtechProgramSlug,
 } from "@/components/programs/btech-fee-structure";
+import { BtechDocumentsSection } from "@/components/programs/btech-documents-section";
 import { WHY_CHOOSE_ITEMS, type ProgramCareer, type ProgramDetailConfig } from "@/data/program-detail-config";
 import type { ProgramRow } from "@/data/site-data";
 import { cn } from "@/lib/utils";
@@ -450,6 +451,7 @@ export function ProgramDetailPageView({
             ) : null}
 
             {isBtechProgramSlug(program.slug) ? <BtechFeeStructureSection /> : null}
+            {isBtechProgramSlug(program.slug) ? <BtechDocumentsSection /> : null}
 
             {program.allotment ? (
               <FadeInView>

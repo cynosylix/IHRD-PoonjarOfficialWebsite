@@ -884,6 +884,8 @@ export const NOTICE_CATEGORIES = [
 
 export type NoticeCategory = (typeof NOTICE_CATEGORIES)[number];
 
+export type AnnouncementHomepageBadge = "NEW" | "IMPORTANT";
+
 export type Announcement = {
   id: string;
   title: string;
@@ -894,9 +896,51 @@ export type Announcement = {
   publishedAt?: string;
   category: NoticeCategory;
   spotlight?: AnnouncementSpotlight;
+  /** Homepage Latest Announcements badge override. */
+  homepageBadge?: AnnouncementHomepageBadge;
+  /** Shown with calendar icon on the homepage (e.g. Academic Year 2026–27). */
+  academicYearLabel?: string;
+  /** Optional CTA on the homepage card. */
+  ctaLabel?: string;
+  ctaHref?: string;
+  /** Subtle highlight for high-priority homepage cards. */
+  highlight?: boolean;
 };
 
 export const announcements: Announcement[] = [
+  {
+    id: "a-btech-fee-structure-2026-27",
+    title: "B.Tech Admission Fee Structure 2026–27",
+    excerpt:
+      "The B.Tech Admission Fee Structure for the Academic Year 2026–27 has been published. Parents and students can now view the complete fee details for Merit (Low Fee) and Merit (High Fee) categories before completing the admission process.",
+    content:
+      "<p>The B.Tech Admission Fee Structure for the Academic Year 2026–27 has been published. Parents and students can now view the complete fee details for Merit (Low Fee) and Merit (High Fee) categories on the B.Tech programme pages.</p>",
+    published: true,
+    priority: 20,
+    publishedAt: "2026-07-21T10:00:00.000Z",
+    category: "Admissions",
+    homepageBadge: "NEW",
+    academicYearLabel: "Academic Year 2026–27",
+    ctaLabel: "View Fee Structure",
+    ctaHref: "/academics/programs/btech-computer-science-engineering#btech-fee-structure",
+    highlight: true,
+  },
+  {
+    id: "a-btech-documents-keam-2026",
+    title: "Documents Required for B.Tech Admission (KEAM 2026)",
+    excerpt:
+      "Students who have received KEAM 2026 allotment are requested to bring all the required original certificates and supporting documents at the time of admission.",
+    content:
+      "<p>Students who have received KEAM 2026 allotment are requested to bring all the required original certificates and supporting documents at the time of admission. See the full checklist on the B.Tech programme pages.</p>",
+    published: true,
+    priority: 19,
+    publishedAt: "2026-07-21T09:00:00.000Z",
+    category: "Admissions",
+    homepageBadge: "IMPORTANT",
+    academicYearLabel: "Academic Year 2026–27",
+    ctaLabel: "View Required Documents",
+    ctaHref: "/academics/programs/btech-computer-science-engineering#btech-documents",
+  },
   {
     id: "a-admissions",
     title: "Admissions — Academic Year 2026–2027",

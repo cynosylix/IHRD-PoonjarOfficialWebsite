@@ -26,6 +26,9 @@ function formatTel(phone: string) {
   return `tel:+91${phone.replace(/\s/g, "")}`;
 }
 
+/** Set to `true` to re-enable the admission announcement popup on load. */
+const ENABLE_ANNOUNCEMENT = false;
+
 export function AdmissionAnnouncementModal() {
   const titleId = useId();
   const modalRef = useRef<HTMLDivElement>(null);
@@ -36,6 +39,7 @@ export function AdmissionAnnouncementModal() {
 
   useEffect(() => {
     setMounted(true);
+    if (!ENABLE_ANNOUNCEMENT) return;
     if (shouldShowAdmissionModal()) {
       setIsOpen(true);
     }

@@ -20,6 +20,10 @@ import { HeadingUnderline, SectionHeading } from "@/components/home/section-head
 import { FadeInView } from "@/components/motion/fade-in-view";
 import { StaggerContainer, StaggerItem } from "@/components/motion/stagger-container";
 import { ProgramDetailHero } from "@/components/programs/program-detail-hero";
+import {
+  BtechFeeStructureSection,
+  isBtechProgramSlug,
+} from "@/components/programs/btech-fee-structure";
 import { WHY_CHOOSE_ITEMS, type ProgramCareer, type ProgramDetailConfig } from "@/data/program-detail-config";
 import type { ProgramRow } from "@/data/site-data";
 import { cn } from "@/lib/utils";
@@ -444,6 +448,8 @@ export function ProgramDetailPageView({
                 </div>
               </FadeInView>
             ) : null}
+
+            {isBtechProgramSlug(program.slug) ? <BtechFeeStructureSection /> : null}
 
             {program.allotment ? (
               <FadeInView>

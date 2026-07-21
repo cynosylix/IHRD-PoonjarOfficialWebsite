@@ -131,6 +131,7 @@ export function searchPublic(query: string, take = 30): SearchHit[] {
     { title: "Admission", href: "/admission", keywords: "apply eligibility fees lateral entry" },
     { title: "Academic programmes", href: "/academics/programs", keywords: "btech mca diploma courses" },
     { title: "Departments", href: "/academics/departments", keywords: "cse ece engineering departments" },
+    { title: "Faculty", href: "/faculty", keywords: "faculty staff mechanical automobile teachers" },
     { title: "Students", href: "/students", keywords: "forms grievance anti ragging feedback" },
     { title: "Placements", href: "/placements", keywords: "placement cell cgpu recruiters" },
     { title: "Facilities", href: "/facilities", keywords: "library lab hostel canteen transport" },

@@ -18,6 +18,7 @@ export const ABOUT_DROPDOWN = [
   { href: "/about/institution", label: "About The Institution" },
   { href: "/about/principal", label: "Principal's Desk" },
   { href: "/academics/departments", label: "Departments" },
+  { href: "/faculty", label: "Faculty" },
   { href: "/about/iqac", label: "IQAC" },
   { href: "/academics/council", label: "Academic Council" },
   { href: "/academics/programs", label: "Academic Opportunities" },

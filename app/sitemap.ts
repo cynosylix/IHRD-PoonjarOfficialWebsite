@@ -16,6 +16,7 @@ const STATIC_ROUTES = [
   "/about/principal",
   "/about/iqac",
   "/academics/departments",
+  "/faculty",
   "/academics/programs",
   "/academics/council",
   "/academics/syllabus",

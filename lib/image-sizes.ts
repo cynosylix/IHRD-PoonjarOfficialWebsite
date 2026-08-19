@@ -143,7 +143,7 @@ const IMAGE_SIZES: Record<string, ImageSize> = {
   "/images/pages/facilities.jpg": { width: 1080, height: 540 },
   "/images/pages/iqac.jpg": { width: 1080, height: 540 },
   "/images/pages/placements.jpg": { width: 1000, height: 1600 },
-  "/images/pages/principal.jpg": { width: 150, height: 175 },
+  "/images/pages/principal.jpeg": { width: 360, height: 480 },
   "/images/pages/programs.jpg": { width: 1805, height: 465 },
   "/images/pages/students.jpg": { width: 1805, height: 465 },
   "/images/pages/students.png": { width: 1303, height: 981 },

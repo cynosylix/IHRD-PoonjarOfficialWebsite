@@ -241,14 +241,14 @@ export const aboutInstitution = {
 };
 
 export const principalProfile = {
-  name: "Dr. M V Rajesh",
+  name: "Prof Dr John George",
   designation: "Principal",
-  qualification: "Ph.D.",
-  yearsOfExperience: "25+",
+  qualification: "M.Tech, Ph.D. in Power Systems",
+  yearsOfExperience: "27 years",
   quote:
     "Education is not merely the acquisition of knowledge, but the development of character, innovation, and leadership.",
   message: `<p>As we gather in the serene embrace of our college's verdant campus, I am filled with pride and gratitude for the journey we have embarked upon together. Our institution stands not only as a bastion of academic excellence but also as a nurturing ground for the leaders and innovators of tomorrow. At our college, we believe in more than just imparting knowledge; we strive to cultivate holistic development in our students. We endeavour to nurture their young minds, providing them with the fertile soil they need to enrich their intellect and spread the wings of their aspirations. Our commitment extends beyond the classroom, as we endeavour to equip our students with the real-life experiences and practical skills necessary to navigate the challenges they will encounter in their professional and personal lives.</p><p>One of the defining features of our institution is our commitment to fostering a calm, eco-friendly, and green environment. Our lush campus not only provides a picturesque backdrop for learning but also serves as a constant reminder of our responsibility to the planet. We take pride in our sustainability initiatives and our efforts to instil environmental consciousness in our students. It is heartening to see the fruits of our labour reflected in the success of our placement programs and the strong ties we maintain with our esteemed alumni. Our students are not only well-prepared academically but also possess the confidence and adaptability to excel in any work environment. The high placement success and active engagement of our alumni stand as a testament to the quality of education and mentorship provided at our college.</p><p>Moreover, the drive and enthusiasm of our students in organizing and participating in various programs and events are truly commendable. Whether it be cultural festivals, academic competitions, or community outreach initiatives, our students consistently demonstrate their passion and commitment to making a positive impact on society. Central to our mission is our unwavering focus on providing excellent academics and state-of-the-art facilities to our students. From cutting-edge laboratories to well-stocked libraries, we spare no effort in ensuring that our students have access to the resources they need to thrive. As we look ahead to the future, I am confident that our college will continue to be a beacon of excellence, guiding and inspiring generations of students to reach greater heights. Together, let us continue to nurture talent, foster innovation, and create a brighter tomorrow.</p>`,
-  photoUrl: "/images/pages/principal.jpg",
+  photoUrl: "/images/pages/principal.jpeg",
   email: "principal@cep.ac.in",
   phone: "+918547005035",
 };
@@ -272,7 +272,7 @@ export const principalVisionPillars = [
 ] as const;
 
 export const principalAchievements = [
-  { value: 25, suffix: "+", label: "Years of Service" },
+  { value: 27, suffix: "", label: "Years of Service" },
   { value: 2000, suffix: "+", label: "Student Strength" },
   { value: 8, suffix: "", label: "Programs Offered" },
   { value: 25, suffix: "+", label: "Institutional Achievements" },
@@ -667,7 +667,7 @@ export const iqacContent = {
 };
 
 export const iqacMembers = [
-  { role: "Chairman", member: "Dr. M V Rajesh (Principal)", order: 1 },
+  { role: "Chairman", member: "Prof Dr John George (Principal)", order: 1 },
   { role: "Representative from Teachers", member: "Mr. Shine P James (HoD ECE)", order: 2 },
   { role: "Representative from Teachers", member: "Mr. Rajesh K.R (HoD CSE)", order: 3 },
   { role: "Representative from Teachers", member: "Mr. Joshy Joseph , (HoD, EEE)", order: 4 },
@@ -696,7 +696,7 @@ export type AcademicCouncilMember = {
 
 export const academicCouncilMembers: AcademicCouncilMember[] = [
   {
-    name: "Dr. M V Rajesh",
+    name: "Prof Dr John George",
     designation: "Chairman",
     departmentOrRole: "Principal",
     email: "principal@cep.ac.in",

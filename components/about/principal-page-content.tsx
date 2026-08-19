@@ -29,7 +29,7 @@ export function PrincipalPageContent() {
                 <div className="group overflow-hidden rounded-xl border-2 border-[#D4A017]/70 bg-white p-1.5 shadow-[0_12px_40px_-12px_rgba(11,31,91,0.2)] transition-shadow duration-300 hover:shadow-[0_18px_48px_-10px_rgba(11,31,91,0.24)]">
                   <div className="overflow-hidden rounded-[10px]">
                     <StaticImage
-                      src={p.photoUrl ?? "/images/pages/principal.jpg"}
+                      src={p.photoUrl ?? "/images/pages/principal.jpeg"}
                       alt={`${p.name} portrait`}
                       className="aspect-[4/5] w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                       priority
@@ -55,7 +55,7 @@ export function PrincipalPageContent() {
                         Experience
                       </dt>
                       <dd className="mt-1 font-medium text-[#0F172A]">
-                        {p.yearsOfExperience} Years in Academic Leadership
+                        {p.yearsOfExperience}
                       </dd>
                     </div>
                   </dl>

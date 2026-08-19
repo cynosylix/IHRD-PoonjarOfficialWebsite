@@ -3,7 +3,7 @@ import { communitySections } from "@/data/community-sections";
 import { facultyPhotoUrl } from "@/lib/faculty-photo";
 import { communityMemberPhotoUrl } from "@/lib/community-photo";
 
-const PRINCIPAL_PHOTO = "/images/pages/principal.jpg";
+const PRINCIPAL_PHOTO = "/images/pages/principal.jpeg";
 
 /** Normalize names for cross-page photo matching (faculty, senate, committees). */
 export function normalizeStaffName(name: string): string {
@@ -24,8 +24,8 @@ function buildStaffPhotoMap(): Map<string, string> {
     if (key && !map.has(key)) map.set(key, photo);
   };
 
-  add("Dr. M V Rajesh", PRINCIPAL_PHOTO);
-  add("M V Rajesh", PRINCIPAL_PHOTO);
+  add("Prof Dr John George", PRINCIPAL_PHOTO);
+  add("John George", PRINCIPAL_PHOTO);
   add("Principal", PRINCIPAL_PHOTO);
 
   for (const dept of departments) {

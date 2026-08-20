@@ -70,7 +70,7 @@ export function PageBanner({
           />
         </>
       ) : null}
-      <div className="relative mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-14">
+      <div className="relative mx-auto max-w-6xl min-w-0 px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-14">
         {breadcrumbs && breadcrumbs.length > 0 ? (
           <nav
             className={cn(
@@ -114,7 +114,7 @@ export function PageBanner({
           ) : null}
           <h1
             className={cn(
-              "font-display text-[clamp(1.75rem,3vw+0.5rem,2.5rem)] font-bold leading-tight tracking-tight",
+              "font-display text-[clamp(1.75rem,3vw+0.5rem,2.5rem)] font-bold leading-tight tracking-tight break-words",
               eyebrow && "mt-2",
             )}
           >

@@ -17,6 +17,7 @@
 html {
   scroll-behavior: smooth;
   overflow-x: clip;
+  scroll-padding-top: 5.5rem;
 }
 
 body {
@@ -24,6 +25,18 @@ body {
   background: #ffffff;
   overflow-x: clip;
   text-rendering: optimizeLegibility;
+}
+
+img,
+video,
+canvas {
+  max-width: 100%;
+}
+
+iframe,
+embed,
+object {
+  max-width: 100%;
 }
 
 /* Custom scrollbar */
@@ -285,13 +298,14 @@ body {
 }
 
 .table-scroll {
-  @apply -mx-4 overflow-x-auto px-4 sm:mx-0 sm:overflow-visible sm:px-0;
+  @apply -mx-4 max-w-full overflow-x-auto px-4 sm:mx-0 sm:px-0;
 }
 
 /* About institution page — justified academic prose */
 .about-content p,
 .about-content li {
   text-align: justify;
+  overflow-wrap: break-word;
   line-height: 1.9;
   font-size: 1rem;
   color: #374151;

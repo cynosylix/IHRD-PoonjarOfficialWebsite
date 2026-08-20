@@ -140,14 +140,14 @@ export function IocPageContent() {
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link
                 href="/academics/programs"
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-semibold text-[#0B1F5B] shadow-lg transition-all duration-300 hover:bg-white/95 hover:shadow-xl"
+                className="inline-flex min-h-11 w-full max-w-full items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-semibold text-[#0B1F5B] shadow-lg transition-all duration-300 hover:bg-white/95 hover:shadow-xl sm:w-auto"
               >
                 Explore Programs
                 <ChevronRight className="h-4 w-4" aria-hidden />
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-white/50 hover:bg-white/20"
+                className="inline-flex min-h-11 w-full max-w-full items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-white/50 hover:bg-white/20 sm:w-auto"
               >
                 Contact IOC Coordinator
                 <ArrowRight className="h-4 w-4" aria-hidden />

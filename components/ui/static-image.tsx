@@ -40,7 +40,7 @@ export function StaticImage({
       decoding={priority ? "sync" : "async"}
       fetchPriority={priority ? "high" : "auto"}
       sizes={sizes}
-      className={cn("max-w-full", className)}
+        className={cn("max-w-full h-auto", className)}
     />
   );
 }

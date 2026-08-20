@@ -243,14 +243,106 @@ export const aboutInstitution = {
 export const principalProfile = {
   name: "Prof Dr John George",
   designation: "Principal",
-  qualification: "M.Tech, Ph.D. in Power Systems",
+  qualification: "B.Tech, M.Tech, Ph.D.",
   yearsOfExperience: "27 years",
+  teachingFrom: "27.09.1999",
   quote:
     "Education is not merely the acquisition of knowledge, but the development of character, innovation, and leadership.",
   message: `<p>As we gather in the serene embrace of our college's verdant campus, I am filled with pride and gratitude for the journey we have embarked upon together. Our institution stands not only as a bastion of academic excellence but also as a nurturing ground for the leaders and innovators of tomorrow. At our college, we believe in more than just imparting knowledge; we strive to cultivate holistic development in our students. We endeavour to nurture their young minds, providing them with the fertile soil they need to enrich their intellect and spread the wings of their aspirations. Our commitment extends beyond the classroom, as we endeavour to equip our students with the real-life experiences and practical skills necessary to navigate the challenges they will encounter in their professional and personal lives.</p><p>One of the defining features of our institution is our commitment to fostering a calm, eco-friendly, and green environment. Our lush campus not only provides a picturesque backdrop for learning but also serves as a constant reminder of our responsibility to the planet. We take pride in our sustainability initiatives and our efforts to instil environmental consciousness in our students. It is heartening to see the fruits of our labour reflected in the success of our placement programs and the strong ties we maintain with our esteemed alumni. Our students are not only well-prepared academically but also possess the confidence and adaptability to excel in any work environment. The high placement success and active engagement of our alumni stand as a testament to the quality of education and mentorship provided at our college.</p><p>Moreover, the drive and enthusiasm of our students in organizing and participating in various programs and events are truly commendable. Whether it be cultural festivals, academic competitions, or community outreach initiatives, our students consistently demonstrate their passion and commitment to making a positive impact on society. Central to our mission is our unwavering focus on providing excellent academics and state-of-the-art facilities to our students. From cutting-edge laboratories to well-stocked libraries, we spare no effort in ensuring that our students have access to the resources they need to thrive. As we look ahead to the future, I am confident that our college will continue to be a beacon of excellence, guiding and inspiring generations of students to reach greater heights. Together, let us continue to nurture talent, foster innovation, and create a brighter tomorrow.</p>`,
   photoUrl: "/images/pages/principal.jpeg",
   email: "principal@cep.ac.in",
-  phone: "+918547005035",
+  personalEmail: "johngcea@gmail.com",
+  phone: "+91 9447895099",
+  addressLines: [
+    "Thiruhrudaya Bhavan",
+    "Amplalathumkala P. O",
+    "Ezhukone, Kollam Dist.",
+    "Kerala — 691505",
+  ],
+};
+
+export const principalQualifications = [
+  {
+    degree: "B.Tech",
+    field: "Electrical and Electronics Engineering",
+    years: "1992–96",
+    institution: "T.K.M. College of Engineering, Kollam",
+  },
+  {
+    degree: "M.Tech",
+    field: "Power Systems",
+    years: "2002–04",
+    institution: "College of Engineering Trivandrum",
+  },
+  {
+    degree: "Ph.D.",
+    field: "Power Quality",
+    years: "November 2015",
+    institution: "National Institute of Technology Calicut",
+  },
+] as const;
+
+export const principalProfessionalDetails = [
+  { label: "Profession", value: "Teaching (from 27.09.1999 to till date)" },
+  {
+    label: "Employer",
+    value: "Institute of Human Resource Development (IHRD), Thiruvananthapuram",
+  },
+  { label: "Years of Experience", value: "27 years" },
+  {
+    label: "Present Institution",
+    value: "College of Engineering Poonjar (Under IHRD)",
+  },
+  { label: "Present Designation", value: "Principal" },
+  {
+    label: "Previous Designation",
+    value: "Professor and Dean, College of Engineering Adoor (Under IHRD)",
+  },
+  {
+    label: "Industrial Experience",
+    value:
+      "1 year (25.11.1997 to 24.11.1998) as trainee at Fertilizers and Chemicals Travancore Ltd (FACT), Udyogamandal, Kochi",
+  },
+] as const;
+
+export const principalAwardsAndHonors = [
+  "Member and Convener — Board of Studies (Electrical and Electronics Engineering), APJ Abdul Kalam Technological University (Kerala Technological University) (2023 onwards)",
+  "Member — Board of Studies (Electrical and Electronics Engineering), APJ Abdul Kalam Technological University (Kerala Technological University) (2019–23)",
+  "Principal — College of Engineering Adoor, IHRD, Government of Kerala, from 22.08.2015 to 21.09.2016, and 2025",
+  "Member, Board of Governors — College of Engineering Adoor",
+  "Expert Committee Member — APJ Abdul Kalam Technological University (KTU)",
+  "Expert Committee Member — Kerala State Council for Science, Technology, and Environment (KSCSTE), Thiruvananthapuram, Government of Kerala",
+  'Editorial Board Member, "International Journal for Science Technology and Innovation", IHRD, Government of Kerala',
+  "Member, Board of Governors (University Nominee) — College of Engineering, Muttathara",
+  "Member, Academic Council (University Nominee) — Sree Buddha College of Engineering, Pattoor, Alappuzha",
+  "Member, Academic Council — St. George Central School (CBSE), Ampalathumkala, Kollam",
+  "Best Paper Award in the area of power systems at the National Seminar held at College of Engineering Trivandrum in November 2004",
+  "Past Vice Chair, Professional Activities Committee, IEEE Kerala Section (2022)",
+  "Past Vice Chair, Student Activities Committee, IEEE Kerala Section (2023, 2024)",
+  "Chair, Student Activities Committee, IEEE Kerala Section (2025, 2026)",
+] as const;
+
+export const principalMemberships = [
+  { name: "IEEE Senior Member", detail: "Membership No. 90338706" },
+  { name: "ISTE Life Member", detail: "Indian Society for Technical Education" },
+  { name: "IEEE Power and Energy Society", detail: "IEEE PES" },
+  { name: "IEEE Industrial Applications Society", detail: "IEEE IAS" },
+  {
+    name: "IEEE SIGHT",
+    detail: "Special Interest Group for Humanitarian Technology",
+  },
+  { name: "IEEE Sensor Council", detail: "IEEE Sensors" },
+] as const;
+
+export const principalResearch = {
+  interests: [
+    "Power Systems",
+    "Power Quality",
+    "Power System Protection",
+    "Smart Grid",
+  ],
+  publications:
+    "9 publications in journals, international conferences, and national seminars, including IEEE publications.",
 };
 
 export const principalVisionPillars = [

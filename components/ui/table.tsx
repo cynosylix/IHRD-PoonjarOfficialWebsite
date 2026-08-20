@@ -7,7 +7,7 @@ export function Table({
 }: HTMLAttributes<HTMLTableElement>) {
   return (
     <table
-      className={cn("w-full caption-bottom text-sm", className)}
+      className={cn("w-full max-w-full caption-bottom text-sm", className)}
       {...props}
     />
   );
@@ -51,7 +51,7 @@ export function TableHead({
   return (
     <th
       className={cn(
-        "h-11 px-4 text-left align-middle text-xs font-semibold uppercase tracking-wide text-slate-500",
+        "h-11 px-3 text-left align-middle text-xs font-semibold uppercase tracking-wide text-slate-500 sm:px-4",
         className,
       )}
       {...props}
@@ -65,7 +65,10 @@ export function TableCell({
 }: TdHTMLAttributes<HTMLTableCellElement>) {
   return (
     <td
-      className={cn("p-4 align-middle text-slate-700", className)}
+        className={cn(
+          "p-3 align-middle text-slate-700 break-words sm:p-4",
+          className,
+        )}
       {...props}
     />
   );

@@ -90,7 +90,7 @@ export function HeroSection() {
               initial="hidden"
               animate="visible"
               variants={fadeIn}
-              className="font-display text-[clamp(2.375rem,5vw+0.75rem,4rem)] font-bold leading-[1.08] tracking-tight text-white"
+              className="font-display text-[clamp(1.75rem,5vw+0.5rem,4rem)] font-bold leading-[1.08] tracking-tight text-white break-words"
             >
               College of Engineering Poonjar
             </motion.h1>

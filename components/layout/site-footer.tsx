@@ -167,7 +167,7 @@ export function SiteFooter() {
             <FooterHeading>Campus</FooterHeading>
             <div className="mt-4 flex items-start gap-2.5 text-sm leading-relaxed text-slate-400">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0" aria-hidden />
-              <address className="not-italic">{siteSettings.address}</address>
+              <address className="not-italic break-words">{siteSettings.address}</address>
             </div>
           </div>
         </div>
@@ -196,7 +196,7 @@ export function SiteFooter() {
 
       <div className="border-t border-[#1E293B] bg-[#0A1120]">
         <div className="mx-auto flex max-w-6xl min-w-0 flex-col items-center justify-between gap-3 px-4 py-5 text-xs text-slate-500 sm:flex-row sm:px-6 lg:px-8">
-          <p suppressHydrationWarning className="text-center sm:text-left">
+          <p suppressHydrationWarning className="text-center break-words sm:text-left">
             © {new Date().getFullYear()} {siteSettings.collegeName}. All rights
             reserved.
           </p>

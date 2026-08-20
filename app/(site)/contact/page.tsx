@@ -158,6 +158,9 @@ export default function ContactPage() {
                 {principalProfile.email ? (
                   <EmailLink email={principalProfile.email} />
                 ) : null}
+                {principalProfile.personalEmail ? (
+                  <EmailLink email={principalProfile.personalEmail} />
+                ) : null}
               </div>
             </Panel>
 

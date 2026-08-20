@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 
 export default function NotFound() {
   return (
-    <div className="flex min-h-screen min-w-0 flex-col">
+    <div className="flex min-h-screen min-w-0 flex-col overflow-x-clip">
       <SkipToContent />
       <SiteNavbar />
       <main id="main-content" className="min-w-0 flex-1 overflow-x-clip">

@@ -5,7 +5,7 @@ import { PrincipalPageContent } from "@/components/about/principal-page-content"
 export const metadata: Metadata = {
   title: "Principal's Message",
   description:
-    "Prof. Dr. John George, Principal, College of Engineering Poonjar — qualifications, professional profile, and message.",
+    "Message from the Principal of College of Engineering Poonjar — leadership, vision, and commitment to academic excellence.",
 };
 
 export default function PrincipalPage() {

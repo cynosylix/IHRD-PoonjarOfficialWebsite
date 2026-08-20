@@ -25,6 +25,7 @@ function buildStaffPhotoMap(): Map<string, string> {
   };
 
   add("Prof Dr John George", PRINCIPAL_PHOTO);
+  add("Prof. (Dr.) John George", PRINCIPAL_PHOTO);
   add("John George", PRINCIPAL_PHOTO);
   add("Principal", PRINCIPAL_PHOTO);
 

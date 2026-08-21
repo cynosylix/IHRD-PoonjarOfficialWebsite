@@ -20,10 +20,11 @@ import {
   DEPARTMENT_FILTERS,
   DEPARTMENT_PORTAL_STATS,
   DEPARTMENT_WHY_CHOOSE,
-  FEATURED_DEPARTMENT_SLUG,
   departmentMatchesFilter,
   excerptHtml,
   getProgramCountForDepartment,
+  getProgramsForDepartment,
+  programCourseLabel,
   type DepartmentFilterId,
 } from "@/lib/department-utils";
 import { cn } from "@/lib/utils";
@@ -36,6 +37,19 @@ const WHY_ICONS = {
 } as const;
 
 const DEPARTMENT_IMAGE_FALLBACK = "/images/pages/departments.jpg";
+
+function DepartmentCourseList({ slug }: { slug: string }) {
+  const courses = getProgramsForDepartment(slug);
+  if (courses.length === 0) return null;
+
+  return (
+    <ul className="mt-3 space-y-1 text-sm font-medium leading-snug text-[#1E3A8A]">
+      {courses.map((program) => (
+        <li key={program.slug}>{programCourseLabel(program)}</li>
+      ))}
+    </ul>
+  );
+}
 
 function DepartmentMeta({ facultyCount, programCount }: { facultyCount: number; programCount: number }) {
   return (
@@ -109,12 +123,12 @@ function DepartmentCard({ dept }: { dept: Department }) {
       )}
     >
       <div className="shrink-0 px-5 pt-5 sm:px-6 sm:pt-6">
-        <div className="relative h-[140px] overflow-hidden rounded-xl bg-gradient-to-br from-[#F8FAFF] to-[#EEF4FF] ring-1 ring-black/[0.04]">
+        <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-gradient-to-br from-[#F8FAFF] to-[#EEF4FF] ring-1 ring-black/[0.04]">
           <StaticImage
             src={imageSrc}
             alt={dept.name}
-            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-            className="h-full w-full object-contain object-center p-1.5 transition-transform duration-300 ease-out group-hover:scale-[1.03]"
+            sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+            className="absolute inset-0 h-full w-full object-contain object-center p-2 transition-transform duration-300 ease-out group-hover:scale-[1.03]"
           />
         </div>
       </div>
@@ -123,6 +137,7 @@ function DepartmentCard({ dept }: { dept: Department }) {
         <h3 className="font-display text-[1.25rem] font-bold leading-snug tracking-tight text-[#0F172A] sm:text-[1.35rem]">
           {dept.name}
         </h3>
+        <DepartmentCourseList slug={dept.slug} />
         <p className="mt-3 line-clamp-3 text-[15px] leading-[1.65] text-[#64748B]">
           {excerptHtml(dept.intro, 160)}
         </p>
@@ -130,74 +145,6 @@ function DepartmentCard({ dept }: { dept: Department }) {
         <div className="mt-auto pt-5">
           <DepartmentMeta facultyCount={dept.faculties.length} programCount={programCount} />
           <LearnMoreButton href={href} className="mt-4" />
-        </div>
-      </div>
-    </article>
-  );
-}
-
-function FeaturedDepartmentCard({ dept }: { dept: Department }) {
-  const programCount = getProgramCountForDepartment(dept.slug);
-  const href = `/academics/departments/${dept.slug}`;
-  const imageSrc = dept.imageUrl ?? DEPARTMENT_IMAGE_FALLBACK;
-
-  return (
-    <article
-      className={cn(
-        "group overflow-hidden rounded-2xl border border-[#1E3A8A]/15 bg-white",
-        "shadow-[0_12px_40px_-16px_rgba(11,31,91,0.2)]",
-        "transition-shadow duration-300 hover:shadow-[0_20px_52px_-14px_rgba(11,31,91,0.24)]",
-      )}
-    >
-      <div className="grid lg:grid-cols-2">
-        <div className="relative min-h-[220px] overflow-hidden sm:min-h-[260px] lg:min-h-[340px]">
-          <StaticImage
-            src={imageSrc}
-            alt={dept.name}
-            sizes="(min-width: 1024px) 50vw, 100vw"
-            className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-          />
-          <div
-            className="absolute inset-0 bg-gradient-to-r from-[#0B1F5B]/50 via-[#0B1F5B]/20 to-transparent lg:bg-gradient-to-t lg:from-[#0B1F5B]/55 lg:via-transparent lg:to-transparent"
-            aria-hidden
-          />
-        </div>
-
-        <div className="flex flex-col justify-center p-6 sm:p-8 lg:p-10">
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#D4A017]">
-            Featured Department
-          </p>
-          <h3 className="mt-2 font-display text-[clamp(1.35rem,2vw+0.5rem,1.85rem)] font-bold text-[#0F172A]">
-            {dept.name}
-          </h3>
-          <p className="mt-4 text-sm leading-relaxed text-[#64748B] sm:text-[15px]">
-            {excerptHtml(dept.intro, 280)}
-          </p>
-
-          <div className="mt-6 flex flex-wrap gap-4">
-            <div className="flex items-center gap-2 rounded-xl border border-slate-200/80 bg-[#F8FAFF] px-4 py-3">
-              <Users className="h-4 w-4 text-[#1E3A8A]" aria-hidden />
-              <div>
-                <p className="text-lg font-bold tabular-nums text-[#0F172A]">{dept.faculties.length}</p>
-                <p className="text-[11px] font-medium uppercase tracking-wider text-[#64748B]">Faculty</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-2 rounded-xl border border-slate-200/80 bg-[#F8FAFF] px-4 py-3">
-              <GraduationCap className="h-4 w-4 text-[#1E3A8A]" aria-hidden />
-              <div>
-                <p className="text-lg font-bold tabular-nums text-[#0F172A]">{programCount}</p>
-                <p className="text-[11px] font-medium uppercase tracking-wider text-[#64748B]">Programs</p>
-              </div>
-            </div>
-          </div>
-
-          <Link
-            href={href}
-            className="mt-8 inline-flex w-fit items-center gap-2 rounded-lg bg-[#0B1F5B] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1E3A8A]"
-          >
-            Explore Department
-            <ArrowRight className="h-4 w-4" aria-hidden />
-          </Link>
         </div>
       </div>
     </article>
@@ -223,19 +170,6 @@ export function DepartmentsPageContent({ departments }: { departments: Departmen
   const filteredDepartments = useMemo(
     () => sortedDepartments.filter((d) => departmentMatchesFilter(d, activeFilter)),
     [sortedDepartments, activeFilter],
-  );
-
-  const featuredDepartment = useMemo(() => {
-    const preferred = filteredDepartments.find((d) => d.slug === FEATURED_DEPARTMENT_SLUG);
-    return preferred ?? filteredDepartments[0] ?? null;
-  }, [filteredDepartments]);
-
-  const gridDepartments = useMemo(
-    () =>
-      featuredDepartment
-        ? filteredDepartments.filter((d) => d.slug !== featuredDepartment.slug)
-        : filteredDepartments,
-    [filteredDepartments, featuredDepartment],
   );
 
   return (
@@ -336,29 +270,25 @@ export function DepartmentsPageContent({ departments }: { departments: Departmen
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-10 space-y-10 sm:mt-12 sm:space-y-12"
+              className="mt-10 sm:mt-12"
             >
-              {featuredDepartment ? (
-                <FeaturedDepartmentCard dept={featuredDepartment} />
+              {filteredDepartments.length > 0 ? (
+                <StaggerContainer
+                  key={`${activeFilter}-grid`}
+                  className="grid grid-cols-1 items-stretch gap-6 sm:grid-cols-2 sm:gap-7 lg:grid-cols-3 lg:gap-8"
+                  stagger={0.08}
+                >
+                  {filteredDepartments.map((dept) => (
+                    <StaggerItem key={dept.slug} className="flex h-full min-w-0">
+                      <DepartmentCard dept={dept} />
+                    </StaggerItem>
+                  ))}
+                </StaggerContainer>
               ) : (
                 <p className="rounded-2xl border border-dashed border-slate-300 bg-white/60 px-6 py-12 text-center text-sm text-[#64748B]">
                   No departments match this category.
                 </p>
               )}
-
-              {gridDepartments.length > 0 ? (
-                <StaggerContainer
-                  key={`${activeFilter}-grid`}
-                  className="grid gap-6 sm:grid-cols-2 sm:gap-7 lg:grid-cols-3 lg:gap-8"
-                  stagger={0.08}
-                >
-                  {gridDepartments.map((dept) => (
-                    <StaggerItem key={dept.slug} className="flex h-full">
-                      <DepartmentCard dept={dept} />
-                    </StaggerItem>
-                  ))}
-                </StaggerContainer>
-              ) : null}
             </motion.div>
           </AnimatePresence>
         </div>

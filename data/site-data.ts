@@ -27,6 +27,8 @@ export type FacultyRow = {
   qualification?: string;
   isLabCoordinator: boolean;
   order: number;
+  /** Filename under /images/faculty/{deptSlug}/ when not `{order}.jpg`. */
+  photoFile?: string;
 };
 
 export type Department = {
@@ -435,10 +437,45 @@ export const programs: ProgramRow[] = [
     allotment:
       "<p>The MCA course admission allotment process operates via a Single Window System (SWS), facilitating allotments to Government, Aided, Private Self Financing, and Self Financing Colleges under Government Control. Allotments are based on online options submitted by candidates included in the rank list for MCA admission.</p><p>For details of MCA Entrance examination and allotment see the website: <a href=\"https://www.lbscentre.kerala.gov.in\" target=\"_blank\" rel=\"noopener noreferrer\">www.lbscentre.kerala.gov.in</a></p>",
   },
+  {
+    slug: "bca",
+    type: "UG",
+    name: "BCA",
+    fullName: "Bachelor of Computer Applications",
+    duration: "3 Years",
+    affiliation: "APJ Abdul Kalam Technological University",
+    order: 4,
+    departmentSlug: "computer-applications",
+    about:
+      "<p>College of Engineering Poonjar offers the Bachelor of Computer Applications (BCA) programme under the Department of Computer Applications. BCA is an undergraduate programme designed to build a strong foundation in computer applications, programming, and software development. The course covers programming languages, database systems, web technologies, computer networks, operating systems, and application development through classroom learning and laboratory practice. Students gain practical skills through projects, workshops, and industry-oriented activities, along with communication, teamwork, and problem-solving abilities required in the IT sector. Graduates can pursue careers in software development, IT services, system support, and application development, or continue to postgraduate programmes such as MCA.</p>",
+    objectives: [
+      "Provide a strong foundation in computer applications, programming, and software development.",
+      "Develop practical skills in databases, web technologies, and application design.",
+      "Build problem-solving, analytical, and professional communication skills.",
+      "Prepare graduates for IT careers and higher studies in computer applications.",
+    ],
+    learnings: [
+      "Programming fundamentals, data structures, and algorithms",
+      "Database management and application development",
+      "Web technologies, computer networks, and operating systems",
+      "Software engineering practices and project work",
+      "Communication, teamwork, and professional skills for the IT workplace",
+    ],
+    outcomes: [
+      "Develop and maintain computer applications for defined user needs.",
+      "Apply programming and database skills to practical software problems.",
+      "Work effectively in teams and communicate technical ideas clearly.",
+      "Qualify for entry-level IT roles or postgraduate study such as MCA.",
+    ],
+    eligibility:
+      "<p>Candidates who have passed the Higher Secondary Examination, Kerala, or an examination recognised as equivalent thereto, with Mathematics / Computer Science / Computer Application as one of the subjects, are eligible for admission as per university and government norms. Reservation and minimum-mark criteria applicable to the programme shall be as notified for the relevant academic year.</p>",
+    allotment:
+      "<p>Admission to the BCA programme is carried out through the official allotment process notified for the academic year. Candidates should follow the instructions, rank list, and option registration published by the competent admission authority.</p><p>For details of allotment, see the website: <a href=\"https://www.lbscentre.kerala.gov.in\" target=\"_blank\" rel=\"noopener noreferrer\">www.lbscentre.kerala.gov.in</a></p>",
+  },
   diplomaBranch(
     "diploma-computer-engineering",
     "Computer Engineering",
-    4,
+    5,
     [
       "Programming, computer hardware, and networking fundamentals",
       "Workshop practices, drawing, and measurement techniques",
@@ -451,7 +488,7 @@ export const programs: ProgramRow[] = [
   diplomaBranch(
     "diploma-electronics-engineering",
     "Electronics Engineering",
-    5,
+    6,
     [
       "Electronic devices, circuits, and digital systems",
       "Microcontrollers, embedded systems, and communication basics",
@@ -464,7 +501,7 @@ export const programs: ProgramRow[] = [
   diplomaBranch(
     "diploma-electrical-electronics-engineering",
     "Electrical and Electronics Engineering",
-    6,
+    7,
     [
       "Electrical machines, power systems, and electronics fundamentals",
       "Wiring, installation, and maintenance practices",
@@ -477,7 +514,7 @@ export const programs: ProgramRow[] = [
   diplomaBranch(
     "diploma-automobile-engineering",
     "Automobile Engineering",
-    7,
+    8,
     [
       "Automotive systems, engines, and vehicle maintenance",
       "Workshop practices, drawing, and measurement techniques",
@@ -490,7 +527,7 @@ export const programs: ProgramRow[] = [
   diplomaBranch(
     "diploma-civil-engineering-health-hygiene",
     "Civil (Public Health And Environment) Engineering",
-    8,
+    9,
     [
       "Building construction, surveying, and civil drawing",
       "Sanitation, water supply, and health-related civil applications",
@@ -1069,6 +1106,15 @@ export const syllabi = [
     order: 1,
   },
   {
+    id: "sy-bca",
+    departmentSlug: "computer-applications" as string | undefined,
+    title: "Bachelor of Computer Applications",
+    fileUrl: "https://ktu.edu.in/en/academic/syllabus",
+    semester: undefined as string | undefined,
+    academicYear: "KTU",
+    order: 2,
+  },
+  {
     id: "sy-btech-cse",
     departmentSlug: "computer-science-engineering" as string | undefined,
     title: "B.Tech Computer Science and Engineering",
@@ -1128,6 +1174,12 @@ export const syllabi = [
 
 export function getDepartmentBySlug(slug: string) {
   return departments.find((d) => d.slug === slug);
+}
+
+export function getProgramsByDepartmentSlug(slug: string) {
+  return programs
+    .filter((p) => p.departmentSlug === slug)
+    .sort((a, b) => a.order - b.order);
 }
 
 export function getAdmissionTrack(slug: string) {

@@ -18,7 +18,7 @@ import { FadeInView } from "@/components/motion/fade-in-view";
 import { StaggerContainer, StaggerItem } from "@/components/motion/stagger-container";
 import { SectionHeading } from "@/components/home/section-heading";
 import { cn } from "@/lib/utils";
-import type { ProgramRow, ProgramType } from "@/data/site-data";
+import type { ProgramRow } from "@/data/site-data";
 
 const ADMISSION_STEPS = [
   {
@@ -88,9 +88,10 @@ type SectionMeta = {
 };
 
 type ProgramSection = {
-  type: ProgramType;
+  id: string;
   meta: SectionMeta;
   rows: ProgramRow[];
+  useProgramNameAsLabel?: boolean;
 };
 
 type Helpline = { name: string; phone: string };
@@ -277,8 +278,8 @@ export function AdmissionPageContent({
             description={`Explore ${totalPrograms} programme${totalPrograms === 1 ? "" : "s"} across UG, PG, and Diploma categories.`}
           />
 
-          {sections.map(({ type, meta, rows }) => (
-            <FadeInView key={type}>
+          {sections.map(({ id, meta, rows, useProgramNameAsLabel }) => (
+            <FadeInView key={id}>
               <div className="mb-8 flex flex-col items-center gap-3 text-center sm:flex-row sm:justify-between sm:text-left">
                 <div className="max-w-2xl">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#D4A017]">
@@ -297,7 +298,10 @@ export function AdmissionPageContent({
               <ul className="grid list-none grid-cols-1 gap-5 p-0 sm:grid-cols-2 xl:grid-cols-3">
                 {rows.map((program) => (
                   <li key={program.slug}>
-                    <ProgramCard program={program} label={meta.label} />
+                    <ProgramCard
+                      program={program}
+                      label={useProgramNameAsLabel ? program.name : meta.label}
+                    />
                   </li>
                 ))}
               </ul>

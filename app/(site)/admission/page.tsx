@@ -5,7 +5,6 @@ import {
   admissionFeeStructure,
   admissionHelplines,
   programs,
-  type ProgramType,
 } from "@/data/site-data";
 
 export const metadata: Metadata = {
@@ -13,21 +12,14 @@ export const metadata: Metadata = {
   description: "Programme-wise admission information for UG, PG, and Diploma courses.",
 };
 
-const SECTION_META: Record<
-  ProgramType,
-  { title: string; blurb: string; label: string }
-> = {
+const COMPUTER_APPLICATIONS_SLUG = "computer-applications";
+
+const SECTION_META = {
   UG: {
     label: "UG",
     title: "B.Tech Admission",
     blurb:
       "Full-time graduate courses of APJ Abdul Kalam Technological University (KTU), approved by AICTE.",
-  },
-  PG: {
-    label: "PG",
-    title: "MCA Admission",
-    blurb:
-      "Master of Computer Applications (MCA) of APJ Abdul Kalam Technological University (KTU), approved by AICTE.",
   },
   DIPLOMA: {
     label: "Diploma",
@@ -35,17 +27,48 @@ const SECTION_META: Record<
     blurb:
       "Three year regular diploma courses affiliated to the Board of Technical Education, Kerala.",
   },
-};
-
-const SECTION_ORDER: ProgramType[] = ["UG", "PG", "DIPLOMA"];
+} as const;
 
 export default function AdmissionHubPage() {
   const total = programs.length;
-  const sections = SECTION_ORDER.map((type) => ({
-    type,
-    meta: SECTION_META[type],
-    rows: programs.filter((p) => p.type === type).sort((a, b) => a.order - b.order),
-  })).filter((s) => s.rows.length > 0);
+
+  const ugRows = programs
+    .filter((p) => p.type === "UG" && p.departmentSlug !== COMPUTER_APPLICATIONS_SLUG)
+    .sort((a, b) => a.order - b.order);
+
+  const computerApplicationsRows = programs
+    .filter((p) => p.departmentSlug === COMPUTER_APPLICATIONS_SLUG)
+    .sort((a, b) => {
+      if (a.slug === "mca") return -1;
+      if (b.slug === "mca") return 1;
+      return a.order - b.order;
+    });
+
+  const diplomaRows = programs
+    .filter((p) => p.type === "DIPLOMA")
+    .sort((a, b) => a.order - b.order);
+
+  const sections = [];
+
+  if (ugRows.length > 0) {
+    sections.push({ id: "ug", meta: SECTION_META.UG, rows: ugRows });
+  }
+  if (computerApplicationsRows.length > 0) {
+    sections.push({
+      id: "computer-applications",
+      meta: {
+        label: "Department",
+        title: "Computer Applications",
+        blurb:
+          "MCA and BCA programmes offered by the Department of Computer Applications.",
+      },
+      rows: computerApplicationsRows,
+      useProgramNameAsLabel: true,
+    });
+  }
+  if (diplomaRows.length > 0) {
+    sections.push({ id: "diploma", meta: SECTION_META.DIPLOMA, rows: diplomaRows });
+  }
 
   return (
     <div className="min-w-0">

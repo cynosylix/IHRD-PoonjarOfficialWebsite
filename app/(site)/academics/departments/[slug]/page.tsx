@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { departments, getDepartmentBySlug } from "@/data/site-data";
+import { departments, getDepartmentBySlug, getProgramsByDepartmentSlug } from "@/data/site-data";
 import { HtmlBlock } from "@/components/content/html-block";
 import { FacultyGrid } from "@/components/content/faculty-grid";
 import { PageShell } from "@/components/layout/page-shell";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -25,6 +27,7 @@ export default async function DepartmentPage({ params }: Props) {
   const dept = getDepartmentBySlug(slug);
   if (!dept) notFound();
 
+  const deptPrograms = getProgramsByDepartmentSlug(slug);
   const faculty = dept.faculties
     .filter((f) => !f.isLabCoordinator)
     .sort((a, b) => a.order - b.order);
@@ -60,6 +63,35 @@ export default async function DepartmentPage({ params }: Props) {
           </div>
         </div>
       </div>
+
+      {deptPrograms.length > 0 ? (
+        <div className="mt-10">
+          <h2 className="text-xl font-semibold text-brand-900">Programmes</h2>
+          <ul className="mt-4 grid list-none grid-cols-1 gap-3 p-0 sm:grid-cols-2">
+            {deptPrograms.map((program) => (
+              <li key={program.slug}>
+                <Link
+                  href={`/academics/programs/${program.slug}`}
+                  className="group flex h-full items-start justify-between gap-3 rounded-xl border border-slate-200 bg-white px-4 py-4 text-left shadow-sm transition-colors hover:border-[#1E3A8A]/30 hover:bg-[#F8FAFF]"
+                >
+                  <span>
+                    <span className="block text-[11px] font-semibold uppercase tracking-wider text-[#1E3A8A]">
+                      {program.name}
+                    </span>
+                    <span className="mt-1 block font-display text-base font-semibold text-[#0F172A]">
+                      {program.fullName ?? program.name}
+                    </span>
+                  </span>
+                  <ArrowRight
+                    className="mt-1 h-4 w-4 shrink-0 text-[#1E3A8A] transition-transform group-hover:translate-x-0.5"
+                    aria-hidden
+                  />
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
 
       <FacultyGrid deptSlug={slug} members={faculty} title="Faculty" />
 

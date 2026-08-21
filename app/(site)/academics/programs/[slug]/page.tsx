@@ -69,7 +69,7 @@ export default async function ProgramDetailPage({ params }: Props) {
     const defaultDepartment =
       program.type === "DIPLOMA"
         ? "Polytechnic Department"
-        : resolvedSlug === "mca"
+        : program.departmentSlug === "computer-applications"
           ? "Computer Applications"
           : "Engineering Department";
 

@@ -1,4 +1,4 @@
-import type { Department } from "@/data/site-data";
+import type { Department, ProgramRow } from "@/data/site-data";
 import { programs } from "@/data/site-data";
 
 export function excerptHtml(html: string, max = 140) {
@@ -7,13 +7,27 @@ export function excerptHtml(html: string, max = 140) {
 }
 
 export function getProgramCountForDepartment(slug: string): number {
-  return programs.filter((p) => p.departmentSlug === slug).length;
+  return getProgramsForDepartment(slug).length;
+}
+
+export function getProgramsForDepartment(slug: string): ProgramRow[] {
+  return programs
+    .filter((p) => p.departmentSlug === slug)
+    .sort((a, b) => a.order - b.order);
+}
+
+export function programCourseLabel(program: ProgramRow): string {
+  if ((program.name === "MCA" || program.name === "BCA") && program.fullName) {
+    return `${program.name} – ${program.fullName}`;
+  }
+  return program.fullName ?? program.name;
 }
 
 export type DepartmentFilterId =
   | "all"
   | "engineering"
   | "computer-science"
+  | "computer-applications"
   | "electronics"
   | "electrical"
   | "mechanical"
@@ -23,6 +37,7 @@ export const DEPARTMENT_FILTERS: { id: DepartmentFilterId; label: string }[] = [
   { id: "all", label: "All Departments" },
   { id: "engineering", label: "Engineering" },
   { id: "computer-science", label: "Computer Science" },
+  { id: "computer-applications", label: "Computer Applications" },
   { id: "electronics", label: "Electronics" },
   { id: "electrical", label: "Electrical" },
   { id: "mechanical", label: "Mechanical" },
@@ -36,7 +51,8 @@ const FILTER_SLUGS: Record<Exclude<DepartmentFilterId, "all">, string[]> = {
     "electrical-electronics-engineering",
     "automobile-engineering",
   ],
-  "computer-science": ["computer-science-engineering", "computer-applications"],
+  "computer-science": ["computer-science-engineering"],
+  "computer-applications": ["computer-applications"],
   electronics: ["electronics-communication-engineering"],
   electrical: ["electrical-electronics-engineering"],
   mechanical: ["automobile-engineering"],
@@ -47,8 +63,6 @@ export function departmentMatchesFilter(dept: Department, filter: DepartmentFilt
   if (filter === "all") return true;
   return FILTER_SLUGS[filter].includes(dept.slug);
 }
-
-export const FEATURED_DEPARTMENT_SLUG = "computer-science-engineering";
 
 export const DEPARTMENT_PORTAL_STATS = [
   { value: 50, suffix: "+", label: "Faculty Members" },

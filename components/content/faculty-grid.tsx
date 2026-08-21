@@ -12,7 +12,7 @@ export function FacultyGrid({ deptSlug, members, title = "Faculty" }: FacultyGri
   const entries: MemberGridEntry[] = members.map((f) => ({
     name: f.name,
     lines: [f.designation, f.qualification].filter(Boolean) as string[],
-    photoUrl: facultyPhotoUrl(deptSlug, f.order),
+    photoUrl: facultyPhotoUrl(deptSlug, f.order, f.photoFile),
     order: f.order,
   }));
 

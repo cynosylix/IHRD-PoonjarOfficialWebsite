@@ -31,7 +31,7 @@ function buildStaffPhotoMap(): Map<string, string> {
 
   for (const dept of departments) {
     for (const f of dept.faculties) {
-      add(f.name, facultyPhotoUrl(dept.slug, f.order));
+      add(f.name, facultyPhotoUrl(dept.slug, f.order, f.photoFile));
     }
   }
 
